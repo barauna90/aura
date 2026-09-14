@@ -1,0 +1,15 @@
+export const MAIN_MENU = [
+  { href: '/dashboard', label: 'Dashboard' },
+  { href: '/estudar', label: 'Estudar' },
+  { href: '/provas', label: 'Provas anteriores' },
+  { href: '/simulados', label: 'Simulados' },
+  { href: '/redacao', label: 'Redação' },
+  { href: '/plano', label: 'Plano de estudos' },
+  { href: '/caderno-de-erros', label: 'Caderno de erros' },
+  { href: '/desempenho', label: 'Meu desempenho' },
+  { href: '/guia', label: 'Guia ENEM' },
+  { href: '/indique', label: 'Indique e ganhe' },
+  { href: '/assinatura', label: 'Minha assinatura' },
+  { href: '/perfil', label: 'Perfil' },
+  { href: '/ajuda', label: 'Ajuda' },
+] as const;

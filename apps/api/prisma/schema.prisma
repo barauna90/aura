@@ -1,0 +1,1112 @@
+// =====================================================================
+//  SIP-ENEM — Modelo de dados
+//  Princípio inegociável: conteúdo oficial (OFFICIAL_INEP) só é exibido
+//  como "prova oficial" quando reviewStatus = VERIFIED e nunca é alterado
+//  silenciosamente (ver ContentVersion + AuditLog).
+// =====================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------
+//  Enums
+// ---------------------------------------------------------------------
+
+enum UserRole {
+  STUDENT
+  REVIEWER
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum SourceType {
+  OFFICIAL_INEP
+  EDITORIAL
+  AI_GENERATED_EDUCATIONAL
+}
+
+enum ReviewStatus {
+  PENDING
+  VALIDATING
+  VERIFIED
+  REJECTED
+}
+
+enum PipelineStage {
+  IMPORTED
+  AUTO_VALIDATED
+  HUMAN_REVIEW_1
+  HUMAN_REVIEW_2
+  PUBLISHED
+}
+
+enum ExamArea {
+  LINGUAGENS
+  HUMANAS
+  NATUREZA
+  MATEMATICA
+  REDACAO
+}
+
+enum ExamApplication {
+  REGULAR
+  REAPLICACAO
+  PPL
+  DIGITAL
+}
+
+enum BookletColor {
+  AZUL
+  AMARELO
+  BRANCO
+  ROSA
+  CINZA
+  VERDE
+  LARANJA
+  NAO_APLICAVEL
+}
+
+enum ForeignLanguage {
+  INGLES
+  ESPANHOL
+}
+
+enum AnswerOption {
+  A
+  B
+  C
+  D
+  E
+}
+
+enum SessionMode {
+  PROVA_REAL
+  ESTUDO
+}
+
+enum SessionStatus {
+  CREATED
+  IN_PROGRESS
+  PAUSED
+  FINISHED
+  EXPIRED
+}
+
+enum EssayStatus {
+  DRAFT
+  SUBMITTED
+  EVALUATING
+  EVALUATED
+  FAILED
+}
+
+enum EvaluatorRole {
+  A
+  B
+  C
+}
+
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  EXPIRED
+  REFUNDED
+  SUSPENDED
+}
+
+enum PaymentStatus {
+  PENDING
+  CONFIRMED
+  FAILED
+  REFUNDED
+  CHARGEBACK
+}
+
+enum PaymentMethod {
+  PIX
+  CREDIT_CARD
+  BOLETO
+}
+
+enum CouponType {
+  PERCENT
+  FIXED
+  FIRST_MONTH
+  N_MONTHS
+  FREE_TRIAL
+}
+
+enum CommissionStatus {
+  PENDING
+  APPROVED
+  AVAILABLE
+  REQUESTED
+  PAID
+  CANCELED
+  REVERSED
+}
+
+enum CommissionModel {
+  PERCENT
+  FIXED
+}
+
+enum WithdrawalStatus {
+  REQUESTED
+  APPROVED
+  PAID
+  REJECTED
+}
+
+enum StudyTaskStatus {
+  PENDING
+  DONE
+  SKIPPED
+}
+
+enum NotificationChannel {
+  EMAIL
+  WEB_PUSH
+  IN_APP
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+// ---------------------------------------------------------------------
+//  Usuários e acesso
+// ---------------------------------------------------------------------
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  role         UserRole @default(STUDENT)
+  isActive     Boolean  @default(true)
+  mfaEnabled   Boolean  @default(false)
+  mfaSecret    String?
+  referralCode String   @unique
+  referredById String?
+  referredBy   User?    @relation("Referrals", fields: [referredById], references: [id])
+  referrals    User[]   @relation("Referrals")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  deletedAt    DateTime?
+
+  profile        Profile?
+  refreshTokens  RefreshToken[]
+  subscriptions  Subscription[]
+  payments       Payment[]
+  examSessions   ExamSession[]
+  essays         Essay[]
+  studyPlans     StudyPlan[]
+  errorNotebook  ErrorNotebookEntry[]
+  favorites      Favorite[]
+  achievements   UserAchievement[]
+  notifications  Notification[]
+  goals          Goal[]
+  commissions    Commission[]     @relation("AffiliateCommissions")
+  withdrawals    Withdrawal[]
+  scholarships   Scholarship[]
+  supportTickets SupportTicket[]
+  consents       Consent[]
+  auditLogs      AuditLog[]
+  couponUsages   CouponUsage[]
+  referralClicks ReferralClick[]  @relation("ReferrerClicks")
+}
+
+model Profile {
+  id             String    @id @default(cuid())
+  userId         String    @unique
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName       String
+  cpfHash        String?   @unique // hash (não o CPF em claro) — antifraude de indicação
+  goal           String? // Medicina, Direito, Engenharia, Licenciaturas, Outro
+  targetExamDate DateTime?
+  weeklyHours    Int?
+  mainDifficulty String?
+  onboardingDone Boolean   @default(false)
+  fontScale      Int       @default(100)
+  theme          String    @default("system")
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String   @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  userAgent String?
+  ip        String?
+  createdAt DateTime @default(now())
+}
+
+model Consent {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String // terms, privacy, marketing_email, web_push
+  version   String
+  granted   Boolean
+  createdAt DateTime @default(now())
+
+  @@index([userId, type])
+}
+
+// ---------------------------------------------------------------------
+//  Conteúdo oficial — proveniência obrigatória
+// ---------------------------------------------------------------------
+
+model ContentSource {
+  id              String     @id @default(cuid())
+  sourceType      SourceType
+  sourceUrl       String
+  sourceYear      Int
+  documentVersion String
+  importDate      DateTime   @default(now())
+  lastValidation  DateTime?
+  checksum        String // SHA-256 do documento original
+  reviewStatus    ReviewStatus @default(PENDING)
+  description     String?
+  createdAt       DateTime   @default(now())
+
+  exams     Exam[]
+  booklets  ExamBooklet[]
+  officialAnswers OfficialAnswerSet[]
+  essayPrompts    EssayPrompt[]
+  knowledgeDocs   OfficialDocument[]
+}
+
+/// Uma "prova" = edição + aplicação + dia. Ex.: ENEM 2023, regular, dia 1.
+model Exam {
+  id                  String          @id @default(cuid())
+  editionId           String
+  edition             ExamEdition     @relation(fields: [editionId], references: [id])
+  application         ExamApplication
+  day                 Int // 1 ou 2
+  title               String
+  /// Duração oficial cadastrada individualmente por prova (seção 7).
+  durationMinutes     Int
+  hasEssay            Boolean         @default(false)
+  hasForeignLanguage  Boolean         @default(false)
+  areas               ExamArea[]
+  /// Provas antigas podem ter estrutura diferente — nunca adaptar (seção 5).
+  structureNote       String?
+  sourceId            String
+  source              ContentSource   @relation(fields: [sourceId], references: [id])
+  reviewStatus        ReviewStatus    @default(PENDING)
+  pipelineStage       PipelineStage   @default(IMPORTED)
+  version             Int             @default(1)
+  isFreeSample        Boolean         @default(false)
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+
+  booklets     ExamBooklet[]
+  sessions     ExamSession[]
+  essayPrompt  EssayPrompt?
+
+  @@unique([editionId, application, day])
+}
+
+model ExamEdition {
+  id        String   @id @default(cuid())
+  year      Int      @unique
+  name      String // "ENEM 2023"
+  /// Regras vigentes naquela edição (versionadas). Nunca copiar de outro ano sem fonte.
+  rulesVersion String?
+  createdAt DateTime @default(now())
+
+  exams          Exam[]
+  essayZeroRules EssayZeroRule[]
+}
+
+model ExamBooklet {
+  id          String       @id @default(cuid())
+  examId      String
+  exam        Exam         @relation(fields: [examId], references: [id])
+  color       BookletColor @default(NAO_APLICAVEL)
+  label       String // "Caderno 1 — Azul"
+  pdfKey      String // chave no object storage
+  pdfChecksum String
+  pageCount   Int
+  sourceId    String
+  source      ContentSource @relation(fields: [sourceId], references: [id])
+  reviewStatus ReviewStatus @default(PENDING)
+  createdAt   DateTime     @default(now())
+
+  pages      ExamPage[]
+  questions  Question[]
+  answerSets OfficialAnswerSet[]
+
+  @@unique([examId, color])
+}
+
+/// Página renderizada do caderno oficial (exibição fiel, sem OCR).
+model ExamPage {
+  id         String      @id @default(cuid())
+  bookletId  String
+  booklet    ExamBooklet @relation(fields: [bookletId], references: [id], onDelete: Cascade)
+  pageNumber Int
+  imageKey   String?
+  checksum   String?
+
+  @@unique([bookletId, pageNumber])
+}
+
+model Question {
+  id              String        @id @default(cuid())
+  bookletId       String
+  booklet         ExamBooklet   @relation(fields: [bookletId], references: [id])
+  originalNumber  Int
+  area            ExamArea
+  foreignLanguage ForeignLanguage?
+  pageNumber      Int?
+  /// Transcrição opcional (nunca substitui o PDF). Só publicada se VERIFIED.
+  statementText   String?
+  sourceType      SourceType    @default(OFFICIAL_INEP)
+  reviewStatus    ReviewStatus  @default(PENDING)
+  pipelineStage   PipelineStage @default(IMPORTED)
+  version         Int           @default(1)
+  checksum        String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  options         QuestionOption[]
+  officialAnswer  OfficialAnswer?
+  classification  QuestionClassification?
+  resolution      QuestionResolution?
+  answers         Answer[]
+  errorEntries    ErrorNotebookEntry[]
+  favorites       Favorite[]
+
+  @@unique([bookletId, originalNumber])
+  @@index([area])
+}
+
+model QuestionOption {
+  id         String       @id @default(cuid())
+  questionId String
+  question   Question     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  letter     AnswerOption
+  text       String?
+
+  @@unique([questionId, letter])
+}
+
+model OfficialAnswerSet {
+  id           String        @id @default(cuid())
+  bookletId    String
+  booklet      ExamBooklet   @relation(fields: [bookletId], references: [id])
+  sourceId     String
+  source       ContentSource @relation(fields: [sourceId], references: [id])
+  pdfKey       String?
+  checksum     String
+  reviewStatus ReviewStatus  @default(PENDING)
+  createdAt    DateTime      @default(now())
+
+  answers OfficialAnswer[]
+}
+
+model OfficialAnswer {
+  id           String            @id @default(cuid())
+  answerSetId  String
+  answerSet    OfficialAnswerSet @relation(fields: [answerSetId], references: [id], onDelete: Cascade)
+  questionId   String            @unique
+  question     Question          @relation(fields: [questionId], references: [id])
+  /// Nulo quando a questão foi anulada oficialmente pelo Inep.
+  correct      AnswerOption?
+  annulled     Boolean           @default(false)
+  reviewStatus ReviewStatus      @default(PENDING)
+}
+
+/// Classificação pedagógica (assunto, competência/habilidade) — só exibida se VERIFIED.
+model QuestionClassification {
+  id           String       @id @default(cuid())
+  questionId   String       @unique
+  question     Question     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  discipline   String?
+  topicId      String?
+  topic        StudyTopic?  @relation(fields: [topicId], references: [id])
+  competency   String?
+  skill        String?
+  reviewStatus ReviewStatus @default(PENDING)
+}
+
+/// Resolução editorial validada. Ausente => "Resolução detalhada ainda não disponível."
+model QuestionResolution {
+  id           String       @id @default(cuid())
+  questionId   String       @unique
+  question     Question     @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  body         String
+  sourceType   SourceType   @default(EDITORIAL)
+  authorId     String?
+  reviewStatus ReviewStatus @default(PENDING)
+  version      Int          @default(1)
+}
+
+model EssayPrompt {
+  id              String        @id @default(cuid())
+  examId          String        @unique
+  exam            Exam          @relation(fields: [examId], references: [id])
+  theme           String
+  /// Textos motivadores originais (apenas via fonte oficial).
+  motivatingTexts Json
+  pdfKey          String?
+  maxLines        Int           @default(30)
+  sourceId        String
+  source          ContentSource @relation(fields: [sourceId], references: [id])
+  reviewStatus    ReviewStatus  @default(PENDING)
+  version         Int           @default(1)
+
+  essays Essay[]
+}
+
+/// Regras de nota zero versionadas por edição (seção 15).
+model EssayZeroRule {
+  id          String      @id @default(cuid())
+  editionId   String
+  edition     ExamEdition @relation(fields: [editionId], references: [id])
+  code        String // FUGA_TEMA, NAO_DISSERTATIVO, EM_BRANCO, INSUFICIENTE, ...
+  description String
+  sourceUrl   String
+  reviewStatus ReviewStatus @default(PENDING)
+
+  @@unique([editionId, code])
+}
+
+/// Documentos oficiais para a base RAG (editais, matriz de referência, cartilhas).
+model OfficialDocument {
+  id           String        @id @default(cuid())
+  sourceId     String
+  source       ContentSource @relation(fields: [sourceId], references: [id])
+  title        String
+  year         Int
+  kind         String // EDITAL, MATRIZ_REFERENCIA, CARTILHA_REDACAO, ...
+  storageKey   String
+  version      Int           @default(1)
+  reviewStatus ReviewStatus  @default(PENDING)
+  chunks       OfficialDocumentChunk[]
+}
+
+model OfficialDocumentChunk {
+  id         String           @id @default(cuid())
+  documentId String
+  document   OfficialDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  ordinal    Int
+  content    String
+  page       Int?
+
+  @@index([documentId, ordinal])
+}
+
+/// Versionamento: toda alteração de conteúdo gera uma versão (seção 40/41).
+model ContentVersion {
+  id           String   @id @default(cuid())
+  entityType   String // Exam, Question, OfficialAnswer, EssayPrompt, ...
+  entityId     String
+  version      Int
+  previousData Json?
+  newData      Json
+  reason       String
+  authorId     String
+  createdAt    DateTime @default(now())
+
+  @@index([entityType, entityId])
+}
+
+// ---------------------------------------------------------------------
+//  Execução de provas
+// ---------------------------------------------------------------------
+
+model ExamSession {
+  id              String        @id @default(cuid())
+  userId          String
+  user            User          @relation(fields: [userId], references: [id])
+  examId          String
+  exam            Exam          @relation(fields: [examId], references: [id])
+  bookletId       String
+  mode            SessionMode
+  status          SessionStatus @default(CREATED)
+  language        ForeignLanguage?
+  /// Modo estudo pode limitar a áreas específicas.
+  selectedAreas   ExamArea[]
+  startedAt       DateTime?
+  /// Horário previsto de encerramento (servidor) — fonte da verdade do cronômetro.
+  expectedEndAt   DateTime?
+  pausedAt        DateTime?
+  /// Segundos acumulados em pausa (somente modo estudo).
+  pausedSeconds   Int           @default(0)
+  finishedAt      DateTime?
+  timeUsedSeconds Int?
+  device          String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  answerSheet AnswerSheet?
+  result      SessionResult?
+  essay       Essay?
+  notes       SessionNote[]
+
+  @@index([userId, createdAt])
+}
+
+model AnswerSheet {
+  id         String      @id @default(cuid())
+  sessionId  String      @unique
+  session    ExamSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  lockedAt   DateTime?
+  updatedAt  DateTime    @updatedAt
+
+  answers Answer[]
+}
+
+model Answer {
+  id             String        @id @default(cuid())
+  answerSheetId  String
+  answerSheet    AnswerSheet   @relation(fields: [answerSheetId], references: [id], onDelete: Cascade)
+  questionId     String
+  question       Question      @relation(fields: [questionId], references: [id])
+  questionNumber Int
+  option         AnswerOption?
+  changeCount    Int           @default(0)
+  answeredAt     DateTime?
+  timeSpentSec   Int?
+  /// Preenchido na correção.
+  isCorrect      Boolean?
+
+  @@unique([answerSheetId, questionId])
+}
+
+model SessionNote {
+  id         String      @id @default(cuid())
+  sessionId  String
+  session    ExamSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  questionId String?
+  body       String
+  flagged    Boolean     @default(false)
+  createdAt  DateTime    @default(now())
+}
+
+model SessionResult {
+  id                    String      @id @default(cuid())
+  sessionId             String      @unique
+  session               ExamSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  totalQuestions        Int
+  correct               Int
+  wrong                 Int
+  blank                 Int
+  percent               Float
+  timeUsedSeconds       Int
+  avgSecondsPerQuestion Float
+  changedAnswers        Int
+  byArea                Json
+  byDiscipline          Json?
+  createdAt             DateTime    @default(now())
+}
+
+// ---------------------------------------------------------------------
+//  Redação
+// ---------------------------------------------------------------------
+
+model Essay {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  sessionId   String?     @unique
+  session     ExamSession? @relation(fields: [sessionId], references: [id])
+  promptId    String
+  prompt      EssayPrompt @relation(fields: [promptId], references: [id])
+  draftText   String?
+  finalText   String?
+  lineCount   Int?
+  status      EssayStatus @default(DRAFT)
+  submittedAt DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  evaluations   EssayEvaluation[]
+  finalResult   EssayFinalResult?
+}
+
+model EssayEvaluation {
+  id            String        @id @default(cuid())
+  essayId       String
+  essay         Essay         @relation(fields: [essayId], references: [id], onDelete: Cascade)
+  evaluator     EvaluatorRole
+  provider      String
+  model         String
+  zeroScore     Boolean       @default(false)
+  zeroReason    String?
+  total         Int
+  positives     Json
+  improvements  Json
+  rawResponse   Json?
+  createdAt     DateTime      @default(now())
+
+  competencies EssayCompetencyScore[]
+
+  @@index([essayId])
+}
+
+model EssayCompetencyScore {
+  id            String          @id @default(cuid())
+  evaluationId  String
+  evaluation    EssayEvaluation @relation(fields: [evaluationId], references: [id], onDelete: Cascade)
+  competency    Int // 1..5
+  score         Int // 0..200
+  justification String
+  problematicExcerpts Json
+
+  @@unique([evaluationId, competency])
+}
+
+model EssayFinalResult {
+  id                 String   @id @default(cuid())
+  essayId            String   @unique
+  essay              Essay    @relation(fields: [essayId], references: [id], onDelete: Cascade)
+  total              Int
+  competencyScores   Json // {1: n, 2: n, ...}
+  usedThirdEvaluator Boolean  @default(false)
+  divergence         Int
+  consistencyFlags   Json
+  checklist          Json
+  studyRecommendation Json
+  createdAt          DateTime @default(now())
+}
+
+// ---------------------------------------------------------------------
+//  Estudo
+// ---------------------------------------------------------------------
+
+model StudyTopic {
+  id          String    @id @default(cuid())
+  area        ExamArea
+  discipline  String
+  name        String
+  slug        String    @unique
+  description String?
+  /// "conteúdo recorrente nas provas analisadas" — contagem derivada de classificações VERIFIED.
+  recurrence  Int       @default(0)
+  matrixSkill String?
+  sourceType  SourceType @default(EDITORIAL)
+  reviewStatus ReviewStatus @default(PENDING)
+
+  classifications QuestionClassification[]
+  tasks           StudyTask[]
+  materials       StudyMaterial[]
+}
+
+model StudyMaterial {
+  id           String       @id @default(cuid())
+  topicId      String
+  topic        StudyTopic   @relation(fields: [topicId], references: [id])
+  title        String
+  body         String
+  sourceType   SourceType   @default(EDITORIAL)
+  reviewStatus ReviewStatus @default(PENDING)
+  version      Int          @default(1)
+}
+
+model StudyPlan {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  kind        String // REGULAR | INTENSIVO
+  targetDate  DateTime?
+  weeklyHours Int
+  daysLeft    Int?
+  rationale   Json
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  tasks StudyTask[]
+}
+
+model StudyTask {
+  id          String          @id @default(cuid())
+  planId      String
+  plan        StudyPlan       @relation(fields: [planId], references: [id], onDelete: Cascade)
+  topicId     String?
+  topic       StudyTopic?     @relation(fields: [topicId], references: [id])
+  scheduledOn DateTime
+  kind        String // QUESTOES | REVISAO | PROVA | REDACAO | LEITURA
+  title       String
+  minutes     Int
+  status      StudyTaskStatus @default(PENDING)
+  payload     Json?
+
+  @@index([planId, scheduledOn])
+}
+
+model ErrorNotebookEntry {
+  id           String    @id @default(cuid())
+  userId       String
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questionId   String
+  question     Question  @relation(fields: [questionId], references: [id])
+  note         String?
+  reviewed     Boolean   @default(false)
+  /// Repetição espaçada
+  nextReviewAt DateTime?
+  interval     Int       @default(1)
+  ease         Float     @default(2.5)
+  createdAt    DateTime  @default(now())
+
+  @@unique([userId, questionId])
+}
+
+model Favorite {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id])
+  createdAt  DateTime @default(now())
+
+  @@unique([userId, questionId])
+}
+
+model Goal {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  kind      String // QUESTOES_DIA | HORAS_SEMANA | REDACOES_MES | PROVAS_MES | SEQUENCIA
+  target    Int
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Achievement {
+  id          String @id @default(cuid())
+  code        String @unique
+  title       String
+  description String
+
+  users UserAchievement[]
+}
+
+model UserAchievement {
+  id            String      @id @default(cuid())
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievementId String
+  achievement   Achievement @relation(fields: [achievementId], references: [id])
+  earnedAt      DateTime    @default(now())
+
+  @@unique([userId, achievementId])
+}
+
+// ---------------------------------------------------------------------
+//  Assinatura, pagamentos, promoções
+// ---------------------------------------------------------------------
+
+model Plan {
+  id               String   @id @default(cuid())
+  code             String   @unique // FREE | ESTUDANTE | INTENSIVO
+  name             String
+  description      String?
+  priceCents       Int
+  currency         String   @default("BRL")
+  intervalMonths   Int      @default(1)
+  trialDays        Int      @default(0)
+  /// Limites configuráveis pelo admin (ex.: {"essaysPerMonth": 4, "fullExams": -1})
+  limits           Json
+  benefits         Json
+  isActive         Boolean  @default(true)
+  sortOrder        Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  subscriptions Subscription[]
+  coupons       Coupon[]       @relation("CouponPlans")
+}
+
+model Subscription {
+  id                 String             @id @default(cuid())
+  userId             String
+  user               User               @relation(fields: [userId], references: [id])
+  planId             String
+  plan               Plan               @relation(fields: [planId], references: [id])
+  status             SubscriptionStatus @default(TRIALING)
+  provider           String
+  providerRef        String?
+  currentPeriodStart DateTime
+  currentPeriodEnd   DateTime
+  cancelAtPeriodEnd  Boolean            @default(false)
+  canceledAt         DateTime?
+  couponId           String?
+  coupon             Coupon?            @relation(fields: [couponId], references: [id])
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  payments    Payment[]
+  commissions Commission[]
+
+  @@index([userId, status])
+}
+
+model Payment {
+  id             String        @id @default(cuid())
+  userId         String
+  user           User          @relation(fields: [userId], references: [id])
+  subscriptionId String?
+  subscription   Subscription? @relation(fields: [subscriptionId], references: [id])
+  provider       String
+  providerRef    String        @unique
+  method         PaymentMethod
+  amountCents    Int
+  discountCents  Int           @default(0)
+  status         PaymentStatus @default(PENDING)
+  /// Fingerprint do meio de pagamento (antifraude). Nunca o número.
+  instrumentHash String?
+  confirmedAt    DateTime?
+  refundedAt     DateTime?
+  rawWebhook     Json?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  commissions Commission[]
+}
+
+model WebhookEvent {
+  id          String   @id @default(cuid())
+  provider    String
+  eventId     String
+  type        String
+  payload     Json
+  processedAt DateTime?
+  error       String?
+  createdAt   DateTime @default(now())
+
+  @@unique([provider, eventId])
+}
+
+model Coupon {
+  id             String     @id @default(cuid())
+  code           String     @unique
+  type           CouponType
+  /// Percentual (0-100) ou centavos, conforme type.
+  value          Int
+  months         Int?
+  startsAt       DateTime
+  endsAt         DateTime?
+  maxUses        Int?
+  maxUsesPerUser Int        @default(1)
+  minAmountCents Int?
+  isActive       Boolean    @default(true)
+  affiliateId    String?
+  promotionId    String?
+  promotion      Promotion? @relation(fields: [promotionId], references: [id])
+  createdAt      DateTime   @default(now())
+
+  plans         Plan[]          @relation("CouponPlans")
+  usages        CouponUsage[]
+  subscriptions Subscription[]
+}
+
+model CouponUsage {
+  id        String   @id @default(cuid())
+  couponId  String
+  coupon    Coupon   @relation(fields: [couponId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@index([couponId, userId])
+}
+
+model Promotion {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  kind        String // CUPOM | PRIMEIRO_MES | TESTE_GRATUITO | CAMPANHA_INDICACAO
+  startsAt    DateTime
+  endsAt      DateTime?
+  isActive    Boolean  @default(true)
+  config      Json
+  createdAt   DateTime @default(now())
+
+  coupons Coupon[]
+}
+
+// ---------------------------------------------------------------------
+//  Indicação e comissões
+// ---------------------------------------------------------------------
+
+model ReferralSettings {
+  id                   String          @id @default("default")
+  model                CommissionModel @default(PERCENT)
+  value                Int             @default(20) // % ou centavos
+  recurring            Boolean         @default(false)
+  firstPaymentOnly     Boolean         @default(true)
+  validationDays       Int             @default(30)
+  minWithdrawalCents   Int             @default(5000)
+  payoutMethods        Json            @default("[\"PIX\"]")
+  updatedAt            DateTime        @updatedAt
+}
+
+model ReferralClick {
+  id         String   @id @default(cuid())
+  referrerId String
+  referrer   User     @relation("ReferrerClicks", fields: [referrerId], references: [id])
+  ipHash     String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+
+  @@index([referrerId, createdAt])
+}
+
+model Commission {
+  id             String           @id @default(cuid())
+  affiliateId    String
+  affiliate      User             @relation("AffiliateCommissions", fields: [affiliateId], references: [id])
+  referredUserId String
+  subscriptionId String
+  subscription   Subscription     @relation(fields: [subscriptionId], references: [id])
+  paymentId      String
+  payment        Payment          @relation(fields: [paymentId], references: [id])
+  amountCents    Int
+  status         CommissionStatus @default(PENDING)
+  availableAt    DateTime?
+  fraudFlags     Json?
+  blockedReason  String?
+  withdrawalId   String?
+  withdrawal     Withdrawal?      @relation(fields: [withdrawalId], references: [id])
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+
+  @@unique([paymentId, affiliateId])
+  @@index([affiliateId, status])
+}
+
+model Withdrawal {
+  id          String           @id @default(cuid())
+  userId      String
+  user        User             @relation(fields: [userId], references: [id])
+  amountCents Int
+  method      String
+  pixKeyHash  String?
+  status      WithdrawalStatus @default(REQUESTED)
+  paidAt      DateTime?
+  createdAt   DateTime         @default(now())
+
+  commissions Commission[]
+}
+
+// ---------------------------------------------------------------------
+//  Bolsas / patrocínio
+// ---------------------------------------------------------------------
+
+model Sponsor {
+  id        String   @id @default(cuid())
+  name      String
+  seats     Int
+  usedSeats Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  scholarships Scholarship[]
+}
+
+model Scholarship {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  sponsorId String?
+  sponsor   Sponsor? @relation(fields: [sponsorId], references: [id])
+  /// null = acesso integral gratuito sem prazo
+  days      Int?
+  startsAt  DateTime @default(now())
+  endsAt    DateTime?
+  grantedBy String
+  reason    String?
+  active    Boolean  @default(true)
+
+  @@index([userId, active])
+}
+
+// ---------------------------------------------------------------------
+//  Notificações, suporte, auditoria, observabilidade
+// ---------------------------------------------------------------------
+
+model Notification {
+  id        String              @id @default(cuid())
+  userId    String
+  user      User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  channel   NotificationChannel
+  kind      String
+  title     String
+  body      String
+  readAt    DateTime?
+  sentAt    DateTime?
+  createdAt DateTime            @default(now())
+
+  @@index([userId, readAt])
+}
+
+model SupportTicket {
+  id        String       @id @default(cuid())
+  userId    String
+  user      User         @relation(fields: [userId], references: [id])
+  subject   String
+  body      String
+  status    TicketStatus @default(OPEN)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String?
+  actor      User?    @relation(fields: [actorId], references: [id])
+  action     String
+  entityType String?
+  entityId   String?
+  metadata   Json?
+  ip         String?
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([actorId, createdAt])
+}
+
+model AiUsage {
+  id           String   @id @default(cuid())
+  provider     String
+  model        String
+  purpose      String // ESSAY_EVAL | STUDY_PLAN | TUTOR | RAG
+  inputTokens  Int
+  outputTokens Int
+  costCents    Int      @default(0)
+  latencyMs    Int
+  success      Boolean
+  error        String?
+  createdAt    DateTime @default(now())
+
+  @@index([purpose, createdAt])
+}
+
+model SystemAlert {
+  id        String   @id @default(cuid())
+  level     String // INFO | WARN | ERROR
+  source    String
+  message   String
+  metadata  Json?
+  resolvedAt DateTime?
+  createdAt DateTime @default(now())
+}
