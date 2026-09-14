@@ -8,6 +8,7 @@ use App\Models\Subscription;
 use App\Models\User;
 use App\Services\AuditService;
 use App\Services\Promotion\PromotionService;
+use App\Services\Referral\ReferralService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -21,6 +22,7 @@ class SubscriptionService
         private readonly PaymentGateway $gateway,
         private readonly PromotionService $promotions,
         private readonly AuditService $audit,
+        private readonly ReferralService $referrals,
     ) {}
 
     /**
@@ -47,6 +49,9 @@ class SubscriptionService
             $trialDays = max($trialDays, $c['trial_days']);
             $couponId = $c['coupon_id'];
         }
+        // Desconto de indicação (configurável): só na primeira assinatura de quem entrou por um código.
+        $referralDiscount = $this->referrals->discountFor($user, $plan);
+        $discount = min($plan->price_cents, $discount + $referralDiscount);
         $amount = max(0, $plan->price_cents - $discount);
 
         if ($cpf) {
@@ -58,7 +63,7 @@ class SubscriptionService
 
         $customerId = $this->gateway->ensureCustomer($user, $cpf, $phone);
 
-        return DB::transaction(function () use ($user, $plan, $billingType, $amount, $discount, $trialDays, $couponId, $customerId) {
+        return DB::transaction(function () use ($user, $plan, $billingType, $amount, $discount, $referralDiscount, $trialDays, $couponId, $customerId) {
             $subscription = Subscription::create([
                 'user_id' => $user->id,
                 'plan_id' => $plan->id,
@@ -88,7 +93,7 @@ class SubscriptionService
             if ($couponId) {
                 $this->promotions->consume($couponId, $user);
             }
-            $this->audit->log('subscription.checkout', $user->id, 'Subscription', $subscription->id, ['plan' => $plan->code, 'billing_type' => $billingType, 'discount' => $discount]);
+            $this->audit->log('subscription.checkout', $user->id, 'Subscription', $subscription->id, ['plan' => $plan->code, 'billing_type' => $billingType, 'discount' => $discount, 'referral_discount' => $referralDiscount]);
 
             return ['subscription' => $subscription, 'payment' => $payment, 'pix_image' => $remote['payment']['pix_image'], 'discount_cents' => $discount, 'trial_days' => $trialDays];
         });
@@ -106,6 +111,8 @@ class SubscriptionService
         }
         $sub->update(['cancel_at_period_end' => true, 'canceled_at' => now(), 'status' => $sub->status === 'PENDING' ? 'CANCELED' : $sub->status]);
         $this->audit->log('subscription.cancel_requested', $user->id, 'Subscription', $sub->id);
+        // Desistência dentro do período de bloqueio: a comissão do indicador não é efetivada.
+        $this->referrals->onSubscriptionCanceled($sub);
 
         return $sub;
     }

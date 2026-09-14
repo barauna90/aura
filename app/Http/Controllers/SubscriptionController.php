@@ -9,6 +9,7 @@ use App\Services\Billing\AccessService;
 use App\Services\Billing\AsaasGateway;
 use App\Services\Billing\SubscriptionService;
 use App\Services\Promotion\PromotionService;
+use App\Services\Referral\ReferralService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class SubscriptionController extends Controller
         private readonly AccessService $access,
         private readonly PromotionService $promotions,
         private readonly AsaasGateway $asaas,
+        private readonly ReferralService $referrals,
     ) {}
 
     public function index(Request $request): View
@@ -33,6 +35,7 @@ class SubscriptionController extends Controller
             'plans' => Plan::where('is_active', true)->where('price_cents', '>', 0)->orderBy('sort_order')->get(),
             'payments' => Payment::where('user_id', $user->id)->latest()->limit(24)->get(),
             'gatewayReady' => $this->asaas->isConfigured(),
+            'referralDiscount' => $this->referrals->discountFor($user, Plan::where('is_active', true)->where('price_cents', '>', 0)->orderBy('sort_order')->first() ?? new Plan(['price_cents' => 0])),
         ]);
     }
 

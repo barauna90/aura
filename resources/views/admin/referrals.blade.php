@@ -10,8 +10,9 @@
     <h2 class="font-semibold">Regras de comissionamento</h2>
     <div class="grid gap-3 sm:grid-cols-3">
         <div><label class="label">Modelo</label><select class="input" name="model"><option value="PERCENT" @selected($settings->model === 'PERCENT')>Percentual</option><option value="FIXED" @selected($settings->model === 'FIXED')>Valor fixo (centavos)</option></select></div>
-        <div><label class="label">Valor</label><input class="input" name="value" type="number" value="{{ $settings->value }}"></div>
-        <div><label class="label">Período de validação (dias)</label><input class="input" name="validation_days" type="number" value="{{ $settings->validation_days }}"></div>
+        <div><label class="label">Comissão do indicador (centavos ou %)</label><input class="input" name="value" type="number" value="{{ $settings->value }}"><p class="mt-1 text-xs text-muted">Ex.: 1000 = R$ 10,00 no modelo fixo.</p></div>
+        <div><label class="label">Desconto para o indicado na assinatura (centavos)</label><input class="input" name="referred_discount_cents" type="number" value="{{ $settings->referred_discount_cents }}"><p class="mt-1 text-xs text-muted">Aplicado na primeira cobrança de quem entrou por código.</p></div>
+        <div><label class="label">Bloqueio da comissão (dias)</label><input class="input" name="validation_days" type="number" value="{{ $settings->validation_days }}"><p class="mt-1 text-xs text-muted">Se o indicado cancelar ou houver estorno nesse prazo, a comissão não é efetivada.</p></div>
         <div><label class="label">Valor mínimo para saque (centavos)</label><input class="input" name="min_withdrawal_cents" type="number" value="{{ $settings->min_withdrawal_cents }}"></div>
         <div><label class="label">Formas de pagamento (vírgula)</label><input class="input" name="payout_methods" value="{{ implode(',', $settings->payout_methods) }}"></div>
     </div>

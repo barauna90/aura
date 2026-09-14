@@ -4,6 +4,7 @@ namespace App\Services\Referral;
 
 use App\Models\Commission;
 use App\Models\Payment;
+use App\Models\Plan;
 use App\Models\ReferralClick;
 use App\Models\ReferralSetting;
 use App\Models\Subscription;
@@ -42,6 +43,31 @@ class ReferralService
         }
 
         return $base.strtoupper(bin2hex(random_bytes(3)));
+    }
+
+    /**
+     * Desconto para o indicado (centavos), aplicado somente na primeira assinatura
+     * de um usuário que entrou por código de indicação e ainda não pagou nada.
+     */
+    public function discountFor(User $user, Plan $plan): int
+    {
+        if (! $user->referred_by_id || $plan->price_cents <= 0) {
+            return 0;
+        }
+        if (Payment::where('user_id', $user->id)->where('status', 'CONFIRMED')->exists()) {
+            return 0;
+        }
+
+        return min($plan->price_cents, (int) ReferralSetting::current()->referred_discount_cents);
+    }
+
+    /** Desistência (cancelamento) enquanto a comissão ainda está bloqueada: não é efetivada. */
+    public function onSubscriptionCanceled(Subscription $subscription): void
+    {
+        Commission::where('subscription_id', $subscription->id)->whereIn('status', ['PENDING', 'APPROVED'])->each(function (Commission $c) {
+            $c->update(['status' => 'CANCELED', 'blocked_reason' => 'Indicado cancelou a assinatura durante o período de validação']);
+            $this->audit->log('commission.canceled', null, 'Commission', $c->id, ['reason' => 'DESISTENCIA']);
+        });
     }
 
     /** Chamado após pagamento CONFIRMADO (webhook). */
@@ -94,7 +120,8 @@ class ReferralService
     {
         $released = 0;
         Commission::with('subscription')->whereIn('status', ['PENDING', 'APPROVED'])->where('available_at', '<=', now())->each(function (Commission $c) use (&$released) {
-            if (in_array($c->subscription->status, ['CANCELED', 'REFUNDED', 'SUSPENDED'], true)) {
+            $sub = $c->subscription;
+            if (in_array($sub->status, ['CANCELED', 'REFUNDED', 'SUSPENDED'], true) || $sub->cancel_at_period_end || $sub->canceled_at) {
                 $c->update(['status' => 'CANCELED', 'blocked_reason' => 'Assinatura indicada não permaneceu ativa']);
 
                 return;
@@ -126,6 +153,10 @@ class ReferralService
             'requested_cents' => $sum(['REQUESTED']),
             'paid_cents' => $sum(['PAID']),
             'min_withdrawal_cents' => $s->min_withdrawal_cents,
+            'commission_cents' => $s->model === 'FIXED' ? $s->value : null,
+            'commission_percent' => $s->model === 'PERCENT' ? $s->value : null,
+            'referred_discount_cents' => $s->referred_discount_cents,
+            'validation_days' => $s->validation_days,
             'history' => $commissions,
         ];
     }

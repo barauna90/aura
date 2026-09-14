@@ -150,7 +150,7 @@
         <div id="indique" class="card-glass relative overflow-hidden">
             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Indique amigos</p>
             <h2 class="mt-2 text-2xl font-bold tracking-tight">Indique amigos e ganhe comissões</h2>
-            <p class="mt-2 text-sm text-muted">Quanto mais amigos você indicar, mais você ganha. Todos saem vencendo.</p>
+            <p class="mt-2 text-sm text-muted">Seu amigo ganha R$ {{ number_format($referral->referred_discount_cents / 100, 2, ',', '.') }} de desconto na assinatura e você recebe {{ $referral->model === 'FIXED' ? 'R$ '.number_format($referral->value / 100, 2, ',', '.') : $referral->value.'%' }} de comissão quando o pagamento for confirmado. Todos saem vencendo.</p>
             <img src="{{ asset('images/referral-friends.png') }}" alt="Dois estudantes sorrindo apontando para a frente" class="mx-auto mt-4 max-h-64 w-auto" width="1125" height="1425" loading="lazy">
             <a href="{{ route('register') }}" class="btn-secondary mt-4 w-full">Quero indicar agora →</a>
         </div>

@@ -42,6 +42,14 @@ A tela mostra a URL do webhook a cadastrar no Asaas (`POST /webhooks/asaas`) e o
 
 Falhas geram `system_alerts` (visíveis no dashboard admin) e ficam em `webhook_events.error`.
 
+## Indicação (regra do produto)
+
+Configurável em `Administração → Indicações` (`referral_settings`), com os padrões:
+
+- **Indicado:** R$ 10,00 de desconto (`referred_discount_cents`) na primeira cobrança de quem se cadastrou com um código.
+- **Indicador:** comissão fixa de R$ 10,00 (`model = FIXED`, `value = 1000`), criada **somente** quando o webhook confirma o pagamento.
+- **Bloqueio:** a comissão fica `PENDING` por 7 dias (`validation_days`). Se nesse prazo o indicado cancelar, houver estorno ou chargeback, ela vira `CANCELED` e não é efetivada; caso contrário o job diário a torna `AVAILABLE` para saque.
+
 ## Cancelamento e expiração
 
 `POST /assinatura/cancelar` chama `DELETE /subscriptions/{id}` no Asaas e marca `cancel_at_period_end`; o acesso continua até `current_period_end`. O agendador (`routes/console.php`, a cada hora) muda `ACTIVE/TRIALING` vencidos para `CANCELED`, `EXPIRED` ou `PAST_DUE`.

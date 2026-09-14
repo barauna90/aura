@@ -9,6 +9,7 @@ use App\Models\Setting;
 use App\Models\Subscription;
 use App\Models\User;
 use App\Services\Billing\AccessService;
+use App\Services\Referral\ReferralService;
 use App\Services\SettingsService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
@@ -48,8 +49,9 @@ class BillingTest extends TestCase
         $this->assertSame('PENDING', $sub->status);
         $this->assertSame('sub_abc', $sub->gateway_subscription_id);
         $this->assertSame('00020126PIX', $payment->pix_payload);
+        $this->assertSame(1000, $payment->discount_cents); // indicado ganha R$ 10 na assinatura
         $this->assertSame('FREE', app(AccessService::class)->resolve($user)['tier'] === 'FREE' ? 'FREE' : 'PREMIUM');
-        Http::assertSent(fn ($r) => $r->url() === 'https://api-sandbox.asaas.com/v3/subscriptions' && $r->hasHeader('access_token', 'test-key') && $r['billingType'] === 'PIX' && $r['value'] === 29.9);
+        Http::assertSent(fn ($r) => $r->url() === 'https://api-sandbox.asaas.com/v3/subscriptions' && $r->hasHeader('access_token', 'test-key') && $r['billingType'] === 'PIX' && $r['value'] === 19.9); // R$ 10 de desconto de indicação
 
         // Webhook sem token → rejeitado, nada muda.
         $this->postJson('/webhooks/asaas', ['event' => 'PAYMENT_CONFIRMED', 'payment' => ['id' => 'pay_1']])->assertStatus(401);
@@ -65,7 +67,8 @@ class BillingTest extends TestCase
         $this->assertSame('PREMIUM', app(AccessService::class)->resolve($user)['tier']);
         $commission = Commission::where('affiliate_id', $referrer->id)->firstOrFail();
         $this->assertSame('PENDING', $commission->status);
-        $this->assertSame(598, $commission->amount_cents); // 20% de R$ 29,90
+        $this->assertSame(1000, $commission->amount_cents); // R$ 10 fixos para o indicador
+        $this->assertTrue($commission->available_at->between(now()->addDays(6), now()->addDays(8))); // bloqueio de 7 dias
 
         // Entrega "at least once": evento repetido é ignorado.
         $this->withHeaders(['asaas-access-token' => 'webhook-secret'])->postJson('/webhooks/asaas', $payload)->assertOk()->assertJson(['status' => 'duplicate']);
@@ -76,6 +79,36 @@ class BillingTest extends TestCase
         $this->assertSame('REFUNDED', $sub->fresh()->status);
         $this->assertSame('FREE', app(AccessService::class)->resolve($user)['tier']);
         $this->assertSame('CANCELED', $commission->fresh()->status);
+    }
+
+    public function test_commission_is_not_released_if_referred_user_gives_up_within_hold_period(): void
+    {
+        $referrer = User::factory()->create();
+        $user = User::factory()->create(['referred_by_id' => $referrer->id]);
+        $this->actingAs($user)->post('/assinatura/assinar', ['plan' => 'ESTUDANTE', 'billing_type' => 'PIX', 'cpf' => '123.456.789-09'])->assertRedirect();
+        $this->withHeaders(['asaas-access-token' => 'webhook-secret'])->postJson('/webhooks/asaas', ['id' => 'evt_1', 'event' => 'PAYMENT_CONFIRMED', 'payment' => ['id' => 'pay_1', 'subscription' => 'sub_abc', 'value' => 19.9]])->assertOk();
+        $commission = Commission::where('affiliate_id', $referrer->id)->firstOrFail();
+        $this->assertSame('PENDING', $commission->status);
+
+        // Antes dos 7 dias nada é liberado.
+        $this->assertSame(0, app(ReferralService::class)->releaseMatured());
+
+        // Desistência dentro do prazo → comissão cancelada, mesmo depois do prazo.
+        Http::fake(['api-sandbox.asaas.com/v3/subscriptions/sub_abc' => Http::response([], 200)]);
+        $this->actingAs($user)->post('/assinatura/cancelar')->assertRedirect();
+        $this->assertSame('CANCELED', $commission->fresh()->status);
+        $this->travel(8)->days();
+        $this->assertSame(0, app(ReferralService::class)->releaseMatured());
+
+        // Sem desistência: liberada após o prazo.
+        $other = User::factory()->create(['referred_by_id' => $referrer->id]);
+        $sub = Subscription::create(['user_id' => $other->id, 'plan_id' => Plan::where('code', 'ESTUDANTE')->value('id'), 'status' => 'ACTIVE', 'gateway_subscription_id' => 'sub_ok', 'current_period_start' => now(), 'current_period_end' => now()->addMonth()]);
+        $this->withHeaders(['asaas-access-token' => 'webhook-secret'])->postJson('/webhooks/asaas', ['id' => 'evt_ok', 'event' => 'PAYMENT_CONFIRMED', 'payment' => ['id' => 'pay_ok', 'subscription' => 'sub_ok', 'value' => 19.9]])->assertOk();
+        $ok = Commission::where('subscription_id', $sub->id)->firstOrFail();
+        $this->assertSame('PENDING', $ok->status);
+        $this->travel(8)->days();
+        $this->assertSame(1, app(ReferralService::class)->releaseMatured());
+        $this->assertSame('AVAILABLE', $ok->fresh()->status);
     }
 
     public function test_recurring_payment_unknown_locally_is_linked_by_subscription(): void

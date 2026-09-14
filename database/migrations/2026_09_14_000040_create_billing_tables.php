@@ -122,11 +122,14 @@ return new class extends Migration
 
         Schema::create('referral_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('model', 8)->default('PERCENT'); // PERCENT | FIXED
-            $table->unsignedInteger('value')->default(20);
+            // Padrão do produto: R$ 10 de desconto para o indicado na assinatura, R$ 10 de comissão
+            // fixa para o indicador (só com pagamento confirmado), bloqueada por 7 dias.
+            $table->string('model', 8)->default('FIXED'); // PERCENT | FIXED
+            $table->unsignedInteger('value')->default(1000);
+            $table->unsignedInteger('referred_discount_cents')->default(1000);
             $table->boolean('recurring')->default(false);
             $table->boolean('first_payment_only')->default(true);
-            $table->unsignedSmallInteger('validation_days')->default(30);
+            $table->unsignedSmallInteger('validation_days')->default(7);
             $table->unsignedInteger('min_withdrawal_cents')->default(5000);
             $table->json('payout_methods');
             $table->timestamps();

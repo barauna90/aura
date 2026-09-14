@@ -51,6 +51,7 @@
             <div><label class="label" for="phone">Celular (opcional)</label><input class="input" id="phone" name="phone" value="{{ old('phone', auth()->user()->phone) }}" inputmode="tel"></div>
             <div><label class="label" for="coupon">Cupom (opcional)</label><div class="flex gap-2"><input class="input uppercase" id="coupon" name="coupon" value="{{ old('coupon') }}"><button type="button" id="coupon-check" data-url="{{ route('subscription.coupon') }}" class="btn-secondary px-3">Aplicar</button></div></div>
         </div>
+        @if($referralDiscount > 0)<div class="notice-success">Você entrou por indicação: <strong>{{ $brl($referralDiscount) }} de desconto</strong> serão aplicados na primeira cobrança.</div>@endif
         <div id="coupon-result" hidden class="notice-neutral"></div>
         <button class="btn-primary px-6 py-3 text-base" @disabled(!$gatewayReady)>Assinar e gerar cobrança</button>
         <p class="text-xs text-muted">O acesso premium é liberado automaticamente assim que o pagamento for confirmado pelo Asaas.</p>

@@ -6,7 +6,7 @@
 <div class="grid items-center gap-6 md:grid-cols-[1.4fr_1fr]">
     <div>
         <h1 class="text-2xl font-semibold">Indique amigos e ganhe comissões</h1>
-        <p class="text-sm text-muted">Compartilhe seu link. Quando um indicado assina e o pagamento é confirmado, você recebe comissão após o período de validação.</p>
+        <p class="text-sm text-muted">Compartilhe seu link ou código. Quem se cadastrar com ele ganha <strong>{{ $brl($referred_discount_cents) }} de desconto</strong> na assinatura, e você recebe <strong>{{ $commission_cents !== null ? $brl($commission_cents) : $commission_percent.'%' }}</strong> quando o pagamento for confirmado. O valor fica bloqueado por {{ $validation_days }} dias: se o indicado desistir nesse prazo, a comissão não é efetivada.</p>
         <div class="card mt-4">
             <p class="text-sm text-muted">Seu link exclusivo</p>
             <div class="mt-1 flex flex-wrap items-center gap-2">
@@ -26,7 +26,7 @@
     <div class="stat"><p class="text-xs uppercase text-muted">Total recebido</p><p class="mt-1 text-2xl font-semibold">{{ $brl($paid_cents) }}</p></div>
 </div>
 <div class="mt-3 grid gap-3 sm:grid-cols-3">
-    <div class="stat"><p class="text-xs uppercase text-muted">Comissão pendente</p><p class="mt-1 text-2xl font-semibold">{{ $brl($pending_cents) }}</p><p class="text-xs text-muted">Em validação</p></div>
+    <div class="stat"><p class="text-xs uppercase text-muted">Saldo bloqueado</p><p class="mt-1 text-2xl font-semibold">{{ $brl($pending_cents) }}</p><p class="text-xs text-muted">Liberado após {{ $validation_days }} dias sem desistência</p></div>
     <div class="stat"><p class="text-xs uppercase text-muted">Comissão disponível</p><p class="mt-1 text-2xl font-semibold text-success">{{ $brl($available_cents) }}</p></div>
     <div class="stat"><p class="text-xs uppercase text-muted">Saque solicitado</p><p class="mt-1 text-2xl font-semibold">{{ $brl($requested_cents) }}</p></div>
 </div>

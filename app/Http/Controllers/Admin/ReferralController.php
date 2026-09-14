@@ -30,6 +30,7 @@ class ReferralController extends Controller
         $data = $request->validate([
             'model' => ['required', 'in:PERCENT,FIXED'],
             'value' => ['required', 'integer', 'min:0'],
+            'referred_discount_cents' => ['required', 'integer', 'min:0'],
             'recurring' => ['nullable', 'boolean'],
             'first_payment_only' => ['nullable', 'boolean'],
             'validation_days' => ['required', 'integer', 'min:0', 'max:365'],
