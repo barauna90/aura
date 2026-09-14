@@ -5,12 +5,33 @@
 @source '../views/**/*.blade.php';
 
 /* ------------------------------------------------------------------
-   Aura Simulados — design tokens (tema escuro por padrão, inspirado nas
-   referências: navy profundo, gradiente roxo→azul, acentos ciano/rosa)
+   Aura Simulados — design tokens (tema claro por padrão: fundo branco,
+   grafite, gradiente roxo→azul e acentos ciano/rosa das referências)
    ------------------------------------------------------------------ */
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
 
+    --color-bg: #f6f7fb;
+    --color-bg-2: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-2: #eef1f8;
+    --color-border: rgba(30, 41, 99, 0.12);
+    --color-text: #131a33;
+    --color-muted: #5a6486;
+    --color-primary: #5b3df5;
+    --color-primary-2: #2563eb;
+    --color-accent: #0891b2;
+    --color-pink: #db2777;
+    --color-success: #15803d;
+    --color-warning: #b45309;
+    --color-danger: #dc2626;
+
+    --radius-xl: 1rem;
+    --radius-2xl: 1.25rem;
+}
+
+/* Tema escuro opcional (acessibilidade / preferência do usuário) */
+[data-theme='dark'] {
     --color-bg: #070b18;
     --color-bg-2: #0d1326;
     --color-surface: #111a33;
@@ -25,22 +46,7 @@
     --color-success: #34d399;
     --color-warning: #fbbf24;
     --color-danger: #f87171;
-
-    --radius-xl: 1rem;
-    --radius-2xl: 1.25rem;
-}
-
-/* Tema claro opcional (acessibilidade) */
-[data-theme='light'] {
-    --color-bg: #f5f6fb;
-    --color-bg-2: #eceff8;
-    --color-surface: #ffffff;
-    --color-surface-2: #f1f3fa;
-    --color-border: rgba(30, 41, 99, 0.12);
-    --color-text: #131a33;
-    --color-muted: #5a6486;
-    --color-primary: #5b3df5;
-    --color-primary-2: #2563eb;
+    color-scheme: dark;
 }
 
 html {
@@ -78,13 +84,17 @@ body {
 @layer components {
     .glow-bg {
         background:
-            radial-gradient(60rem 30rem at 15% -10%, rgba(124, 92, 255, 0.28), transparent 60%),
-            radial-gradient(50rem 30rem at 90% 10%, rgba(59, 130, 246, 0.22), transparent 60%),
-            radial-gradient(40rem 24rem at 60% 100%, rgba(236, 72, 153, 0.16), transparent 60%),
+            radial-gradient(60rem 30rem at 15% -10%, rgba(124, 92, 255, 0.18), transparent 60%),
+            radial-gradient(50rem 30rem at 90% 10%, rgba(59, 130, 246, 0.14), transparent 60%),
+            radial-gradient(40rem 24rem at 60% 100%, rgba(236, 72, 153, 0.1), transparent 60%),
             var(--color-bg);
     }
+    /* Superfícies translúcidas seguem os tokens (funcionam nos dois temas) */
+    .soft {
+        @apply rounded-2xl border border-border bg-surface-2/70;
+    }
     .gradient-text {
-        background: linear-gradient(90deg, #a78bfa 0%, #60a5fa 50%, #22d3ee 100%);
+        background: linear-gradient(90deg, #7c3aed 0%, #2563eb 50%, #0891b2 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -109,13 +119,13 @@ body {
         @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 bg-danger/90 text-white hover:bg-danger;
     }
     .btn-success {
-        @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 bg-success text-[#052e1c] hover:brightness-110;
+        @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 bg-success text-white hover:brightness-110;
     }
     .card {
         @apply rounded-2xl border border-border bg-surface/80 p-5 backdrop-blur;
     }
     .card-glass {
-        @apply rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur;
+        @apply rounded-2xl border border-border bg-surface/80 p-5 shadow-[0_10px_40px_-20px_rgba(30,41,99,0.35)] backdrop-blur;
     }
     .input {
         @apply w-full rounded-xl border border-border bg-bg-2 px-3.5 py-2.5 text-sm text-text placeholder:text-muted/70 focus:border-primary;
@@ -139,7 +149,7 @@ body {
         @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-danger/15 text-danger;
     }
     .badge-primary {
-        @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-primary/20 text-[#c4b5fd];
+        @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-primary/15 text-primary;
     }
     .notice {
         @apply rounded-xl border px-4 py-3 text-sm;
@@ -185,7 +195,7 @@ body {
         @apply h-8 w-8 rounded-full border border-border bg-bg-2 text-xs font-semibold transition hover:border-accent;
     }
     .bubble[aria-pressed='true'] {
-        @apply border-accent bg-accent text-[#062b33];
+        @apply border-primary bg-primary text-white;
     }
 }
 

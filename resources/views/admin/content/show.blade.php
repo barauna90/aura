@@ -55,7 +55,7 @@ document.getElementById('btn-validate').addEventListener('click', async (e) => {
                     <div class="flex flex-wrap justify-between gap-2"><span>{{ $b->label }} · {{ $b->page_count }} páginas · {{ $b->questions_count }} questões</span><span class="flex gap-1"><span class="badge-{{ $b->review_status === 'VERIFIED' ? 'success' : 'warning' }}">{{ $b->review_status }}</span>@if($b->answerSets->isNotEmpty())<span class="badge-primary">gabarito {{ $b->answerSets->count() }}</span>@endif</span></div>
                     <p class="mt-1 text-xs text-muted">checksum {{ substr($b->pdf_checksum, 0, 16) }}…</p>
                     @if($isAdmin)
-                    <details class="mt-2"><summary class="cursor-pointer text-[#c4b5fd]">Registrar gabarito oficial deste caderno</summary>
+                    <details class="mt-2"><summary class="cursor-pointer text-primary">Registrar gabarito oficial deste caderno</summary>
                         <form method="POST" action="{{ route('admin.content.answer_key', $b) }}" enctype="multipart/form-data" class="mt-2 space-y-2">
                             @csrf
                             <div><label class="label">URL do gabarito oficial</label><input class="input" name="source_url" type="url" required></div>
@@ -70,7 +70,7 @@ document.getElementById('btn-validate').addEventListener('click', async (e) => {
             @endforeach
         </ul>
         @if($isAdmin)
-        <details class="mt-3"><summary class="cursor-pointer text-sm text-[#c4b5fd]">Adicionar caderno (PDF oficial)</summary>
+        <details class="mt-3"><summary class="cursor-pointer text-sm text-primary">Adicionar caderno (PDF oficial)</summary>
             <form method="POST" action="{{ route('admin.content.booklet', $exam) }}" enctype="multipart/form-data" class="mt-2 space-y-2">
                 @csrf
                 <div class="grid grid-cols-2 gap-2">
@@ -92,7 +92,7 @@ document.getElementById('btn-validate').addEventListener('click', async (e) => {
             <h2 class="font-semibold">Redação</h2>
             @if($exam->essayPrompt)<p class="mt-1 text-sm">{{ $exam->essayPrompt->theme }} <span class="badge-{{ $exam->essayPrompt->review_status === 'VERIFIED' ? 'success' : 'warning' }}">{{ $exam->essayPrompt->review_status }}</span></p>@else<p class="mt-1 text-sm text-muted">Nenhuma proposta cadastrada.</p>@endif
             @if($isAdmin)
-            <details class="mt-2"><summary class="cursor-pointer text-sm text-[#c4b5fd]">Registrar proposta oficial</summary>
+            <details class="mt-2"><summary class="cursor-pointer text-sm text-primary">Registrar proposta oficial</summary>
                 <form method="POST" action="{{ route('admin.content.essay_prompt', $exam) }}" class="mt-2 space-y-2">
                     @csrf
                     <div><label class="label">Tema (exatamente como no documento oficial)</label><input class="input" name="theme" required></div>
@@ -109,7 +109,7 @@ document.getElementById('btn-validate').addEventListener('click', async (e) => {
             <h2 class="font-semibold">Regras de nota zero — ENEM {{ $exam->edition->year }}</h2>
             <ul class="mt-2 text-sm">@forelse($exam->edition->zeroRules as $r)<li class="flex justify-between border-b border-border py-1"><span><code>{{ $r->code }}</code> {{ $r->description }}</span><span class="badge-{{ $r->review_status === 'VERIFIED' ? 'success' : 'warning' }}">{{ $r->review_status }}</span></li>@empty<li class="text-muted">Nenhuma regra cadastrada para esta edição — a correção só aplicará regras cadastradas e verificadas.</li>@endforelse</ul>
             @if($isAdmin)
-            <details class="mt-2"><summary class="cursor-pointer text-sm text-[#c4b5fd]">Cadastrar regras (com fonte oficial)</summary>
+            <details class="mt-2"><summary class="cursor-pointer text-sm text-primary">Cadastrar regras (com fonte oficial)</summary>
                 <form method="POST" action="{{ route('admin.content.zero_rules', $exam->edition->year) }}" class="mt-2 space-y-2">
                     @csrf
                     @foreach(['EM_BRANCO', 'INSUFICIENTE', 'FUGA_TEMA', 'NAO_DISSERTATIVO', 'IDENTIFICACAO', 'LINGUA_ESTRANGEIRA', 'ANULACAO_DELIBERADA', 'DESCONECTADO'] as $i => $code)

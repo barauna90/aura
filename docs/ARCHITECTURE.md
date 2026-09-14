@@ -44,4 +44,4 @@ Sessões com cookie `HttpOnly`, CSRF (exceto webhook, protegido por token e comp
 
 ## Acessibilidade e design
 
-Tema escuro (referências: navy profundo, gradiente roxo→azul, acentos ciano/rosa) com tema claro opcional e escala de fonte por usuário (`data-theme`, `--font-scale`), foco visível, skip link, HTML semântico, `aria-pressed` no cartão-resposta, gráficos SVG com tabela oculta para leitores de tela, `prefers-reduced-motion`. Layout responsivo: sidebar no desktop, menu no mobile; o runner recomenda tela maior mas não bloqueia.
+Tema claro por padrão (fundo branco, grafite, gradiente roxo→azul e acentos ciano/rosa das referências) com tema escuro opcional e escala de fonte por usuário (`data-theme`, `--font-scale`), foco visível, skip link, HTML semântico, `aria-pressed` no cartão-resposta, gráficos SVG com tabela oculta para leitores de tela, `prefers-reduced-motion`. Layout responsivo: sidebar no desktop, menu no mobile; o runner recomenda tela maior mas não bloqueia.

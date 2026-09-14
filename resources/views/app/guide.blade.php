@@ -23,7 +23,7 @@
                         @if($t->verified_count > 0)<span class="badge-success">{{ $t->verified_count }} questões oficiais — {{ $recurrent }}</span>@endif
                         @if($t->matrix_skill)<span class="badge-primary">{{ $t->matrix_skill }} — {{ $matrix }}</span>@endif
                     </div>
-                    @if($t->materials->isNotEmpty())<ul class="mt-2 text-sm text-[#c4b5fd]">@foreach($t->materials as $m)<li>{{ $m->title }}</li>@endforeach</ul>@endif
+                    @if($t->materials->isNotEmpty())<ul class="mt-2 text-sm text-primary">@foreach($t->materials as $m)<li>{{ $m->title }}</li>@endforeach</ul>@endif
                 </div>
             @endforeach
         </div>

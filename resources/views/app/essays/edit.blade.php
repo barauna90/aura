@@ -20,7 +20,7 @@
                 <p class="mt-2 whitespace-pre-wrap">{{ $t['body'] }}</p>
             </article>
         @endforeach
-        <p class="text-xs text-muted">Proposta transcrita do documento oficial: <a href="{{ $p->source->source_url }}" target="_blank" rel="noreferrer" class="text-[#c4b5fd] underline">fonte Inep</a></p>
+        <p class="text-xs text-muted">Proposta transcrita do documento oficial: <a href="{{ $p->source->source_url }}" target="_blank" rel="noreferrer" class="text-primary underline">fonte Inep</a></p>
     </div>
 
     <div data-panel="rascunho" hidden class="card mt-4">

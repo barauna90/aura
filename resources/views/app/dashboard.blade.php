@@ -21,7 +21,7 @@
     <div class="card mt-5">
         <h2 class="font-semibold">Comece por aqui</h2>
         <ol class="mt-3 grid gap-2 text-sm md:grid-cols-2">
-            @foreach($start_here as $i => $s)<li class="flex gap-2"><span class="font-semibold text-[#c4b5fd]">{{ $i + 1 }}.</span> {{ $s }}</li>@endforeach
+            @foreach($start_here as $i => $s)<li class="flex gap-2"><span class="font-semibold text-primary">{{ $i + 1 }}.</span> {{ $s }}</li>@endforeach
         </ol>
         <a href="{{ route('exams.index') }}" class="btn-primary mt-4">Fazer meu primeiro diagnóstico</a>
     </div>
@@ -63,14 +63,14 @@
     <div class="card">
         <h2 class="font-semibold">Seu plano de hoje</h2>
         @if($today_tasks->isEmpty())
-            <p class="mt-2 text-sm text-muted">Nenhuma tarefa para hoje. <a href="{{ route('study.plan') }}" class="text-[#c4b5fd] underline">Gerar plano de estudos</a>.</p>
+            <p class="mt-2 text-sm text-muted">Nenhuma tarefa para hoje. <a href="{{ route('study.plan') }}" class="text-primary underline">Gerar plano de estudos</a>.</p>
         @else
             <ul class="mt-3 space-y-2 text-sm">
                 @foreach($today_tasks as $t)
                     <li class="flex items-center justify-between rounded-xl border border-border px-3 py-2"><span class="{{ $t->status === 'DONE' ? 'line-through text-muted' : '' }}"><x-icon name="check" class="mr-1 inline h-4 w-4 {{ $t->status === 'DONE' ? 'text-success' : 'text-muted' }}" />{{ $t->title }}</span><span class="text-xs text-muted">{{ $t->minutes }} min</span></li>
                 @endforeach
             </ul>
-            <a href="{{ route('study.plan') }}" class="mt-3 inline-block text-sm text-[#c4b5fd] underline">Ver plano completo</a>
+            <a href="{{ route('study.plan') }}" class="mt-3 inline-block text-sm text-primary underline">Ver plano completo</a>
         @endif
     </div>
     <div class="card">

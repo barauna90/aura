@@ -30,7 +30,7 @@
                 <div class="flex items-center gap-3">
                     @if($e->finalResult)<span class="font-semibold">{{ $e->finalResult->total }}</span>@endif
                     <span class="badge-{{ $e->status === 'EVALUATED' ? 'success' : ($e->status === 'FAILED' ? 'danger' : 'primary') }}">{{ $e->status }}</span>
-                    <a href="{{ $e->status === 'DRAFT' ? route('essays.edit', $e) : route('essays.report', $e) }}" class="text-[#c4b5fd] underline">{{ $e->status === 'DRAFT' ? 'Continuar' : 'Relatório' }}</a>
+                    <a href="{{ $e->status === 'DRAFT' ? route('essays.edit', $e) : route('essays.report', $e) }}" class="text-primary underline">{{ $e->status === 'DRAFT' ? 'Continuar' : 'Relatório' }}</a>
                 </div>
             </li>
         @endforeach

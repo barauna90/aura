@@ -15,7 +15,7 @@
     <h2 class="pt-2 font-semibold">Acessibilidade</h2>
     <div class="grid gap-3 sm:grid-cols-2">
         <div><label class="label" for="font_scale">Tamanho da fonte</label><select class="input" id="font_scale" name="font_scale">@foreach([90, 100, 115, 130, 150] as $v)<option value="{{ $v }}" @selected($user->font_scale == $v)>{{ $v }}%</option>@endforeach</select></div>
-        <div><label class="label" for="theme">Tema</label><select class="input" id="theme" name="theme"><option value="dark" @selected($user->theme === 'dark')>Escuro</option><option value="light" @selected($user->theme === 'light')>Claro</option></select></div>
+        <div><label class="label" for="theme">Tema</label><select class="input" id="theme" name="theme"><option value="light" @selected($user->theme === 'light')>Claro</option><option value="dark" @selected($user->theme === 'dark')>Escuro</option></select></div>
     </div>
     <p class="text-xs text-muted">As opções de acessibilidade alteram apenas a interface; o conteúdo original das provas (PDF) nunca é modificado.</p>
     <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="marketing_email" value="1" @checked($consents->firstWhere('type', 'marketing_email')?->granted)> Aceito receber e-mails sobre plano de estudos, metas e promoções</label>

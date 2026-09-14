@@ -56,7 +56,7 @@
                         <td>{{ $h->result?->correct }}/{{ $h->result?->total_questions }} ({{ $h->result?->percent }}%)</td>
                         <td>{{ $h->essay?->finalResult?->total ?? '—' }}</td>
                         <td class="text-muted">{{ $h->device ?? '—' }}</td>
-                        <td><a href="{{ route('sessions.result', $h) }}" class="text-[#c4b5fd] underline">Ver</a></td>
+                        <td><a href="{{ route('sessions.result', $h) }}" class="text-primary underline">Ver</a></td>
                     </tr>
                 @endforeach
             </tbody>

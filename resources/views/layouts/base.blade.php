@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="{{ auth()->user()?->theme ?? 'dark' }}" style="--font-scale: {{ auth()->user()?->font_scale ?? 100 }}%">
+<html lang="pt-BR" data-theme="{{ auth()->user()?->theme ?? 'light' }}" style="--font-scale: {{ auth()->user()?->font_scale ?? 100 }}%">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">

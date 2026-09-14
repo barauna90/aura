@@ -65,7 +65,7 @@
             <li class="flex flex-wrap items-center justify-between gap-2 py-2">
                 <span>{{ $p->created_at->format('d/m/Y') }} · {{ $p->billing_type }}@if($p->due_date) · vence {{ $p->due_date->format('d/m/Y') }}@endif</span>
                 <span class="flex items-center gap-2">{{ $brl($p->amount_cents - $p->discount_cents) }} <span class="badge-{{ $p->status === 'CONFIRMED' ? 'success' : ($p->status === 'PENDING' ? 'warning' : 'danger') }}">{{ $p->status }}</span>
-                    @if($p->status === 'PENDING')<a href="{{ route('subscription.payment', $p) }}" class="text-[#c4b5fd] underline">Pagar</a>@endif</span>
+                    @if($p->status === 'PENDING')<a href="{{ route('subscription.payment', $p) }}" class="text-primary underline">Pagar</a>@endif</span>
             </li>
         @empty
             <li class="py-2 text-muted">Nenhum pagamento.</li>

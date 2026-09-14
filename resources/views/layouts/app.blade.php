@@ -20,7 +20,7 @@
         </nav>
         <div class="border-t border-border p-4 text-xs text-muted">
             <p class="truncate font-medium text-text">{{ $user->name }}</p>
-            <form method="POST" action="{{ route('logout') }}">@csrf<button class="mt-1 text-[#c4b5fd] hover:underline">Sair</button></form>
+            <form method="POST" action="{{ route('logout') }}">@csrf<button class="mt-1 text-primary hover:underline">Sair</button></form>
         </div>
     </aside>
 
@@ -36,7 +36,7 @@
                 @endforeach
                 @if($user->isStaff())<a href="{{ route('admin.dashboard') }}" class="nav-link"><x-icon name="cog" /> Administração</a>@endif
             </nav>
-            <form method="POST" action="{{ route('logout') }}" class="px-3 pt-2">@csrf<button class="text-sm text-[#c4b5fd]">Sair</button></form>
+            <form method="POST" action="{{ route('logout') }}" class="px-3 pt-2">@csrf<button class="text-sm text-primary">Sair</button></form>
         </div>
 
         <main id="conteudo" class="flex-1 px-4 py-6 md:px-8 md:py-8">

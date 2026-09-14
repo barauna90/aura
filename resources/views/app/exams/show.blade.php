@@ -71,7 +71,7 @@
 
     <div class="card space-y-3 text-sm">
         <h2 class="font-semibold">Proveniência</h2>
-        <p><span class="text-muted">Fonte:</span> <a href="{{ $exam->source->source_url }}" target="_blank" rel="noreferrer" class="text-[#c4b5fd] underline">Inep/MEC</a></p>
+        <p><span class="text-muted">Fonte:</span> <a href="{{ $exam->source->source_url }}" target="_blank" rel="noreferrer" class="text-primary underline">Inep/MEC</a></p>
         <p><span class="text-muted">Versão do documento:</span> {{ $exam->source->document_version }}</p>
         <p class="break-all"><span class="text-muted">Checksum:</span> {{ substr($exam->source->checksum, 0, 16) }}…</p>
         <p><span class="text-muted">Status:</span> <span class="badge-success">Verificada</span></p>

@@ -13,5 +13,5 @@
     <label class="flex items-start gap-2 text-xs text-muted"><input type="checkbox" name="accept_terms" value="1" required class="mt-0.5"> Li e aceito os <a href="{{ route('landing') }}#termos" class="underline">termos de uso</a> e a <a href="{{ route('landing') }}#privacidade" class="underline">política de privacidade</a> (LGPD).</label>
     <button class="btn-primary w-full">Criar conta</button>
 </form>
-<p class="mt-4 text-center text-sm text-muted">Já tem conta? <a href="{{ route('login') }}" class="text-[#c4b5fd] hover:underline">Entrar</a></p>
+<p class="mt-4 text-center text-sm text-muted">Já tem conta? <a href="{{ route('login') }}" class="text-primary hover:underline">Entrar</a></p>
 @endsection

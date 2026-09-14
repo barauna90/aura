@@ -44,18 +44,18 @@
             </ul>
         </div>
         <div class="relative">
-            <div class="absolute -inset-6 -z-10 rounded-full bg-gradient-to-br from-[#7c5cff]/40 via-[#3b82f6]/20 to-[#ec4899]/30 blur-3xl"></div>
+            <div class="absolute -inset-6 -z-10 rounded-full bg-gradient-to-br from-[#7c5cff]/25 via-[#3b82f6]/15 to-[#ec4899]/20 blur-3xl"></div>
             <img src="{{ asset('images/hero-student.png') }}" alt="Estudante sorrindo com moletom escrito Sonho, Estudo, Conquista" class="mx-auto max-h-[520px] w-auto drop-shadow-2xl" width="1070" height="1425" fetchpriority="high">
-            <div class="absolute left-0 top-8 hidden rounded-2xl border border-white/10 bg-bg-2/80 px-4 py-3 text-sm shadow-xl backdrop-blur md:block">
+            <div class="absolute left-0 top-8 hidden rounded-2xl border border-border bg-surface/90 px-4 py-3 text-sm shadow-xl backdrop-blur md:block">
                 <p class="flex items-center gap-2 font-medium"><x-icon name="file" class="h-4 w-4 text-accent" /> Provas anteriores</p>
             </div>
-            <div class="absolute bottom-24 left-0 hidden rounded-2xl border border-white/10 bg-bg-2/80 px-4 py-3 text-sm shadow-xl backdrop-blur md:block">
-                <p class="flex items-center gap-2 font-medium"><x-icon name="grid" class="h-4 w-4 text-[#c4b5fd]" /> Cartão-resposta</p>
+            <div class="absolute bottom-24 left-0 hidden rounded-2xl border border-border bg-surface/90 px-4 py-3 text-sm shadow-xl backdrop-blur md:block">
+                <p class="flex items-center gap-2 font-medium"><x-icon name="grid" class="h-4 w-4 text-primary" /> Cartão-resposta</p>
             </div>
-            <div class="absolute right-0 top-24 hidden rounded-2xl border border-white/10 bg-bg-2/80 px-4 py-3 text-sm shadow-xl backdrop-blur md:block">
+            <div class="absolute right-0 top-24 hidden rounded-2xl border border-border bg-surface/90 px-4 py-3 text-sm shadow-xl backdrop-blur md:block">
                 <p class="flex items-center gap-2 font-medium"><x-icon name="pen" class="h-4 w-4 text-pink" /> Redação</p>
             </div>
-            <div class="absolute bottom-8 right-0 hidden rounded-2xl border border-white/10 bg-bg-2/80 px-4 py-3 text-sm shadow-xl backdrop-blur md:block">
+            <div class="absolute bottom-8 right-0 hidden rounded-2xl border border-border bg-surface/90 px-4 py-3 text-sm shadow-xl backdrop-blur md:block">
                 <p class="flex items-center gap-2 font-medium"><x-icon name="check" class="h-4 w-4 text-success" /> Correção automática</p>
             </div>
         </div>
@@ -74,8 +74,8 @@
                 ['tag', 'Promoções e bolsas', 'Cupons, campanhas e programa de bolsas para quem precisa.'],
                 ['users', 'Indique e ganhe comissões', 'Chame amigos e ganhe enquanto eles estudam.'],
             ] as [$icon, $t, $desc])
-                <div class="flex gap-3 rounded-2xl border border-white/5 bg-white/[0.03] p-4">
-                    <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/20 text-[#c4b5fd]"><x-icon :name="$icon" /></span>
+                <div class="flex gap-3 rounded-2xl border border-border bg-surface p-4">
+                    <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/20 text-primary"><x-icon :name="$icon" /></span>
                     <div><p class="text-sm font-semibold">{{ $t }}</p><p class="mt-0.5 text-xs text-muted">{{ $desc }}</p></div>
                 </div>
             @endforeach
@@ -95,28 +95,28 @@
             </ul>
         </div>
         <div class="card-glass overflow-hidden p-0">
-            <div class="flex items-center justify-between border-b border-white/10 px-4 py-2 text-xs text-muted">
-                <span>Caderno oficial · página 12 de 32</span><span class="font-mono text-warning">⏱ 02:17:26</span><span class="rounded-md bg-white/10 px-2 py-0.5">Encerrar prova</span>
+            <div class="flex items-center justify-between border-b border-border px-4 py-2 text-xs text-muted">
+                <span>Caderno oficial · página 12 de 32</span><span class="font-mono text-warning">⏱ 02:17:26</span><span class="rounded-md bg-surface-2 px-2 py-0.5">Encerrar prova</span>
             </div>
             <div class="grid gap-0 md:grid-cols-[1.3fr_1fr]">
-                <div class="space-y-2 border-r border-white/10 p-4 text-xs text-muted">
-                    <div class="h-3 w-3/4 rounded bg-white/10"></div><div class="h-3 w-full rounded bg-white/10"></div><div class="h-3 w-5/6 rounded bg-white/10"></div>
-                    <div class="mt-3 h-24 rounded-lg bg-white/5"></div>
-                    <div class="h-3 w-2/3 rounded bg-white/10"></div><div class="h-3 w-full rounded bg-white/10"></div>
+                <div class="space-y-2 border-r border-border p-4 text-xs text-muted">
+                    <div class="h-3 w-3/4 rounded bg-surface-2"></div><div class="h-3 w-full rounded bg-surface-2"></div><div class="h-3 w-5/6 rounded bg-surface-2"></div>
+                    <div class="mt-3 h-24 rounded-lg bg-surface-2/60"></div>
+                    <div class="h-3 w-2/3 rounded bg-surface-2"></div><div class="h-3 w-full rounded bg-surface-2"></div>
                     <p class="pt-2 text-[11px]">O PDF publicado pelo Inep é exibido sem OCR, sem reescrita e sem IA.</p>
                 </div>
                 <div class="p-4">
                     <p class="mb-2 text-xs font-medium">Cartão-resposta</p>
                     @foreach([[1,'B'],[2,'D'],[3,'A'],[4,null],[5,'E'],[6,'C']] as [$n,$m])
                         <div class="mb-1.5 flex items-center gap-1.5 text-xs"><span class="w-4 text-muted">{{ $n }}</span>
-                            @foreach(['A','B','C','D','E'] as $o)<span class="grid h-6 w-6 place-items-center rounded-full border {{ $m === $o ? 'border-accent bg-accent text-[#062b33] font-semibold' : 'border-white/15 text-muted' }}">{{ $o }}</span>@endforeach
+                            @foreach(['A','B','C','D','E'] as $o)<span class="grid h-6 w-6 place-items-center rounded-full border {{ $m === $o ? 'border-primary bg-primary text-white font-semibold' : 'border-border text-muted' }}">{{ $o }}</span>@endforeach
                         </div>
                     @endforeach
-                    <div class="mt-3 rounded-xl border border-white/10 bg-white/5 p-3 text-xs">
+                    <div class="mt-3 rounded-xl border border-border bg-surface-2/60 p-3 text-xs">
                         <p class="font-medium">Seu desempenho (após encerrar)</p>
                         <div class="mt-2 space-y-1.5">
                             @foreach([['Natureza',82],['Humanas',74],['Linguagens',68],['Matemática',55]] as [$a,$p])
-                                <div><div class="flex justify-between text-muted"><span>{{ $a }}</span><span>{{ $p }}%</span></div><div class="h-1.5 rounded-full bg-white/10"><div class="h-1.5 rounded-full bg-gradient-to-r from-[#7c5cff] to-[#22d3ee]" style="width: {{ $p }}%"></div></div></div>
+                                <div><div class="flex justify-between text-muted"><span>{{ $a }}</span><span>{{ $p }}%</span></div><div class="h-1.5 rounded-full bg-surface-2"><div class="h-1.5 rounded-full bg-gradient-to-r from-[#7c5cff] to-[#22d3ee]" style="width: {{ $p }}%"></div></div></div>
                             @endforeach
                         </div>
                     </div>
@@ -133,7 +133,7 @@
             <p class="mt-2 text-muted">Conhecimento de qualidade a um preço que cabe no seu bolso. Sem taxas escondidas, sem renovação enganosa.</p>
             <div class="mt-6 grid gap-4 md:grid-cols-3">
                 @foreach($plans as $plan)
-                    <div class="rounded-2xl border {{ $plan->code === 'ESTUDANTE' ? 'border-primary bg-primary/10' : 'border-white/10 bg-white/[0.03]' }} p-4">
+                    <div class="rounded-2xl border {{ $plan->code === 'ESTUDANTE' ? 'border-primary bg-primary/10' : 'border-border bg-surface' }} p-4">
                         <p class="text-sm font-semibold">{{ $plan->name }}</p>
                         <p class="mt-2 text-3xl font-bold">
                             @if($plan->price_cents === 0) Grátis @else R$ {{ number_format($plan->price_cents / 100, 2, ',', '.') }}<span class="text-sm font-normal text-muted">/mês</span> @endif
@@ -166,7 +166,7 @@
             </div>
             <div class="grid gap-3 sm:grid-cols-3">
                 @foreach([['file','Provas oficiais','Cadernos e gabaritos do Inep, com fonte e versão'],['shield','Fidelidade total','Nada é reescrito, resumido ou inventado por IA'],['gift','Baixo custo','Mensalidade acessível, cupons e bolsas']] as [$i,$t,$s])
-                    <div class="rounded-2xl border border-white/5 bg-white/[0.03] p-4"><x-icon :name="$i" class="h-6 w-6 text-accent" /><p class="mt-2 font-semibold">{{ $t }}</p><p class="text-xs text-muted">{{ $s }}</p></div>
+                    <div class="rounded-2xl border border-border bg-surface p-4"><x-icon :name="$i" class="h-6 w-6 text-accent" /><p class="mt-2 font-semibold">{{ $t }}</p><p class="text-xs text-muted">{{ $s }}</p></div>
                 @endforeach
             </div>
         </div>

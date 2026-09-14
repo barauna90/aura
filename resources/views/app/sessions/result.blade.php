@@ -51,7 +51,7 @@
             <p class="mt-2 text-sm text-muted">Agora que a prova foi encerrada, sua redação pode ser escrita e enviada para avaliação simulada.</p>
             <form method="POST" action="{{ route('essays.from_session', $session) }}" class="mt-3">@csrf<button class="btn-primary">Abrir minha redação</button></form>
         @endif
-        <a href="{{ route('help') }}?session={{ $session->id }}" class="mt-4 block text-xs text-[#c4b5fd] underline">Perguntar ao Professor IA por que errei</a>
+        <a href="{{ route('help') }}?session={{ $session->id }}" class="mt-4 block text-xs text-primary underline">Perguntar ao Professor IA por que errei</a>
     </div>
 </div>
 
@@ -79,7 +79,7 @@
                         <td><span class="badge-{{ $status[$q['status']][1] }}">{{ $status[$q['status']][0] }}</span></td>
                         <td class="text-muted">{{ $q['topic'] ?? '—' }}@if($q['skill']) <span class="text-xs">· {{ $q['skill'] }}</span>@endif</td>
                         <td>
-                            <details><summary class="cursor-pointer text-xs text-[#c4b5fd]">Resolução</summary>
+                            <details><summary class="cursor-pointer text-xs text-primary">Resolução</summary>
                                 <p class="mt-1 whitespace-pre-wrap text-sm {{ $q['resolution'] ? '' : 'text-muted' }}">{{ $q['resolution'] ?? $q['resolution_notice'] }}</p>
                             </details>
                         </td>

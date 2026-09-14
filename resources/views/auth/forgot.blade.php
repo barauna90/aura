@@ -8,5 +8,5 @@
     <div><label class="label" for="email">E-mail</label><input class="input" id="email" name="email" type="email" required autofocus></div>
     <button class="btn-primary w-full">Enviar link</button>
 </form>
-<p class="mt-4 text-center text-sm"><a href="{{ route('login') }}" class="text-[#c4b5fd] hover:underline">Voltar para entrar</a></p>
+<p class="mt-4 text-center text-sm"><a href="{{ route('login') }}" class="text-primary hover:underline">Voltar para entrar</a></p>
 @endsection

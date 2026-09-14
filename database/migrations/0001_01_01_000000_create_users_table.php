@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('main_difficulty', 200)->nullable();
             $table->boolean('onboarding_done')->default(false);
             $table->unsignedSmallInteger('font_scale')->default(100);
-            $table->string('theme', 10)->default('dark');
+            $table->string('theme', 10)->default('light');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
