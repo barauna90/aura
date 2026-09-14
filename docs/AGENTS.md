@@ -1,42 +1,37 @@
 # ENEM ORCHESTRATOR e agentes
 
-O **ENEM ORCHESTRATOR** é a composição raiz da API (`apps/api/src/app.module.ts`). Cada "agente" da especificação é um módulo NestJS com responsabilidade única; a comunicação entre eles é por injeção de dependência e transações no banco — nunca por escrita direta em conteúdo oficial fora do guardião.
+O orquestrador é a composição da aplicação Laravel (`bootstrap/app.php`, `AppServiceProvider`, rotas com middleware `auth`/`role`). Cada "agente" da especificação é um serviço com responsabilidade única; nenhum deles escreve em conteúdo oficial fora do guardião.
 
-| Agente (spec) | Módulo | Responsabilidade | Regras que ele garante |
-|---|---|---|---|
-| ENEM ORCHESTRATOR | `app.module.ts` + guards globais | Autenticação, RBAC, rate limit, composição | JWT → Roles → Throttler em toda rota |
-| ENEM OFFICIAL CONTENT GUARDIAN / OFFICIAL CONTENT AGENT | `content/guardian.*` | Integridade, versionamento, fluxo de auditoria | Só `VERIFIED+PUBLISHED+OFFICIAL_INEP` aparece; checksum de PDF e gabarito; dois revisores distintos |
-| Importação (CMS) | `content/content-import.service.ts` | Cadastro de provas, cadernos, gabaritos, propostas, regras de zero | Tudo entra `PENDING/IMPORTED`; checksum calculado na importação |
-| EXAM ENGINE AGENT | `exam-engine/exam-engine.service.ts` | Sessões, modos, cronômetro do servidor, encerramento automático | Prova Real: sem pausa/extensão; expiração pelo servidor + cron por minuto |
-| ANSWER SHEET AGENT | `exam-engine` (`saveAnswers`) | Cartão-resposta com autosave e contagem de alterações | Só o cartão é corrigido; bloqueado após encerramento |
-| OBJECTIVE GRADING AGENT | `exam-engine/grading.rules.ts` | Correção pelo gabarito oficial, por área/disciplina | Idioma escolhido; anuladas; nunca "nota ENEM" |
-| ESSAY AGENT | `essays/essays.service.ts` | Folha/rascunho sem IA, envio pós-prova, relatório | Prova Real: envio só após encerrar |
-| REDACTION EVALUATION ORCHESTRATOR | `essays/essay-evaluation.orchestrator.ts` | ZERO SCORE VALIDATOR → AVALIADOR A ∥ B → AVALIADOR C → CONSISTENCY AUDITOR → agregação | A e B independentes; C por divergência configurável; zero semântico só com maioria |
-| STUDY PLAN AGENT / STUDY PLAN ORCHESTRATOR | `study/study-plan.*` | Plano regular e intensivo, calendário, metas | Priorização determinística por desempenho real; só questões oficiais |
-| Caderno de erros | `study/error-notebook.service.ts` | Erros automáticos, anotações, repetição espaçada | — |
-| ANALYTICS AGENT | `analytics/analytics.service.ts` | Dashboard, mapa de desempenho, séries, tópicos fracos | Números nunca "suavizados" |
-| SUBSCRIPTION AGENT | `subscriptions/*` | Planos configuráveis, checkout, cancelamento, acesso | Acesso premium só com `TRIALING/ACTIVE` confirmados por webhook |
-| PAYMENT AGENT | `payments/*` | Provider abstrato + webhooks assinados e idempotentes | Nunca confia no retorno do navegador |
-| REFERRAL AGENT | `referrals/*` | Códigos, cliques, comissões, saques, antifraude | Ciclo `PENDING→…→PAID`; bloqueio por autoindicação/CPF/instrumento/chargeback |
-| PROMOTION AGENT | `promotions/*` | Cupons e campanhas | Vigência, limites, planos permitidos |
-| Bolsas | `scholarships/*` | Bolsas por prazo, acesso integral, patrocinadores com vagas | — |
-| NOTIFICATION | `notifications/*` | In-app; e-mail/push respeitam consentimento; anti-spam | 1 notificação do mesmo tipo/dia |
-| PROFESSOR ENEM IA | `tutor/*` | Tutor pós-prova com resultado + resoluções verificadas + base oficial | Bloqueado durante Prova Real; não inventa regras |
-| RAG / BASE OFICIAL | `knowledge-base/*` | Busca em documentos oficiais versionados | Sem resultado → frase fixa |
-| AI provider | `ai/*` | Provider abstrato (`mock`, `anthropic`), registro de uso/custo | IA sem escrita em conteúdo oficial |
-| SECURITY AGENT | `common/guards`, `main.ts`, `auth/*` | Helmet, CORS, JWT + refresh rotativo, bcrypt, throttling, validação de DTO | — |
-| COMPLIANCE AGENT (LGPD) | `users/*` | Consentimentos, exportação, exclusão/anonimização | Minimização (CPF só como hash) |
-| ADMIN SERVICE | `admin/*` | Dashboard (usuários, MRR, churn, alertas, uso de IA), logs | — |
-| AUDIT SERVICE | `audit/*` (global) | `AuditLog` e `SystemAlert` | Registros nunca removidos |
-| QA AGENT | `*.spec.ts` | Testes das regras puras | Regra de ouro: guardião + checksum |
-| PRODUCT AGENT | `apps/web` | Experiência do aluno e do admin | Disclaimers de `@sip-enem/shared` |
+| Agente (spec) | Implementação | Garante |
+|---|---|---|
+| ENEM OFFICIAL CONTENT GUARDIAN / OFFICIAL CONTENT AGENT | `Services/Content/GuardianRules`, `GuardianService` | Só `VERIFIED+PUBLISHED+OFFICIAL_INEP` aparece; checksum de PDF e gabarito; dois revisores distintos; alteração versionada despublica |
+| Importação (CMS) | `Services/Content/ContentImportService`, `Admin/ContentController` | Tudo entra `PENDING/IMPORTED`; checksum na importação |
+| EXAM ENGINE AGENT | `Services/Exam/ExamEngineService`, `TimerRules` | Cronômetro do servidor, sem pausa/extensão na Prova Real, expiração por estado/autosave/cron |
+| ANSWER SHEET AGENT | `ExamEngineService::saveAnswers`, `resources/js/exam-runner.js` | Só o cartão é corrigido; autosave; bloqueio após encerramento |
+| OBJECTIVE GRADING AGENT | `Services/Exam/GradingRules` | Idioma, anuladas, por área/disciplina, nunca "nota ENEM" |
+| ESSAY AGENT | `Services/Essay/EssayService`, `essay-editor.js` | Folha sem IA; envio só após encerrar a Prova Real; limite de linhas da folha |
+| REDACTION EVALUATION ORCHESTRATOR | `Services/Essay/EssayEvaluationOrchestrator` + `ZeroScoreRules` + `ScoringRules` + `EvaluatorPrompts` + job `EvaluateEssay` | Zero determinístico por regra da edição → A ∥ B independentes → C por divergência configurável → auditor de consistência → agregação |
+| STUDY PLAN AGENT | `Services/Study/StudyPlanRules`, `StudyPlanService` | Priorização determinística por desempenho; só questões oficiais |
+| Caderno de erros | `Services/Study/ErrorNotebookService` | Erros automáticos, anotações, repetição espaçada |
+| ANALYTICS AGENT | `Services/AnalyticsService` | Dashboard, mapa por área, séries, tópicos fracos — nada suavizado |
+| SUBSCRIPTION AGENT | `Services/Billing/SubscriptionService`, `AccessService` | Planos do banco; acesso premium só com status confirmado por webhook |
+| PAYMENT AGENT | `Services/Billing/PaymentGateway`, `AsaasGateway`, `AsaasWebhookHandler` | Chave configurável no painel; webhook com token, idempotente |
+| REFERRAL AGENT | `Services/Referral/CommissionRules`, `ReferralService` | Ciclo `PENDING→…→PAID`; antifraude |
+| PROMOTION AGENT | `Services/Promotion/CouponRules`, `PromotionService` | Vigência, limites, planos permitidos |
+| Bolsas | `Services/ScholarshipService` | Prazo/integral, patrocinadores com vagas |
+| NOTIFICATION | `notifications` in-app (`Notification` model) | Pagamento confirmado, bolsa concedida |
+| PROFESSOR ENEM IA + RAG | `Services/TutorService` | Contexto do aluno + resoluções verificadas + base oficial; bloqueado na Prova Real |
+| AI provider | `Services/Ai/*` | Provider abstrato; registro de uso; sem escrita em conteúdo |
+| SECURITY / COMPLIANCE | middleware `EnsureRole`, `ProfileController` (LGPD), `SettingsService` (criptografia) | RBAC, exportação/anonimização, segredos |
+| ADMIN / AUDIT | `Admin/*Controllers`, `Services/AuditService` | Dashboard, alertas, `audit_logs` |
+| QA AGENT | `tests/Unit/RulesTest.php`, `tests/Feature/*` | Regra de ouro: guardião + checksum + fluxo completo |
 
-## Fluxos principais
+## Fluxos
 
-**Prova (Modo Prova Real)**: `POST /sessions` (verifica acesso, idioma, cria cartão com as questões aplicáveis) → `POST /sessions/:id/start` (grava `startedAt` e `expectedEndAt`) → cliente faz autosave em `POST /sessions/:id/answers` e reconcilia `GET /sessions/:id` a cada 30 s → `POST /sessions/:id/finish` ou expiração (cron) → correção → `GET /sessions/:id/result` → redação liberada para envio.
+**Prova**: `POST /provas/{exam}/iniciar` → `/sessao/{id}` (tela de início) → `POST …/iniciar` → runner (autosave `POST …/respostas`, `GET …/estado`) → `POST …/encerrar` ou expiração → `/sessao/{id}/resultado` → redação liberada.
 
-**Redação**: `POST /essays` (sessão ou proposta) → `PUT /essays/:id/draft` (autosave) → `POST /essays/:id/submit` (fila) → orquestrador de avaliação → `GET /essays/:id/report`.
+**Redação**: `POST /redacao/proposta/{prompt}` ou `/redacao/sessao/{session}` → editor (`PUT …/rascunho`) → `POST …/enviar` → job → `/redacao/{id}/relatorio`.
 
-**Publicação de conteúdo**: importação → `GET /admin/content/exams/:id/validate` → `POST …/stage` por etapa → `PUBLISHED` propaga `VERIFIED` para cadernos, questões, gabaritos e fontes.
+**Publicação**: importação → `GET /admin/conteudo/{exam}/validar` → `POST …/etapa` por etapa → `PUBLISHED` propaga `VERIFIED`.
 
-**Assinatura**: `POST /subscriptions/checkout` (cupom opcional) → provider cria cobrança → webhook assinado `POST /payments/webhook/:provider` → `ACTIVE` → comissão de indicação (`PENDING`) → cron diário libera após validação.
+**Assinatura**: `POST /assinatura/assinar` → Asaas cria assinatura/cobrança → `/assinatura/pagamento/{id}` → webhook `POST /webhooks/asaas` → `ACTIVE` → comissão → cron libera após validação.

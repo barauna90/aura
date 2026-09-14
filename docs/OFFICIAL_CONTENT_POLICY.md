@@ -1,43 +1,34 @@
 # Política de conteúdo oficial (ENEM OFFICIAL CONTENT GUARDIAN)
 
-Este documento é a referência normativa da seção 1 do projeto: **o sistema não inventa** questões, alternativas, gabaritos, textos motivadores, temas de redação, durações, notas oficiais, parâmetros da TRI nem regras atribuídas ao Inep.
+Referência normativa da seção 1 do projeto: **o sistema não inventa** questões, alternativas, gabaritos, textos motivadores, temas, durações, notas oficiais, parâmetros da TRI nem regras atribuídas ao Inep.
 
-## O que é conteúdo oficial
+## Proveniência obrigatória
 
-Somente registros com `sourceType = OFFICIAL_INEP` provenientes de cadernos, gabaritos e documentos publicados pelo Inep/MEC. Cada `ContentSource` guarda:
+Somente registros com `source_type = OFFICIAL_INEP` provenientes de cadernos, gabaritos e documentos publicados pelo Inep/MEC. Cada `content_sources` guarda `source_type`, `source_url`, `source_year`, `document_version`, `import_date`, `last_validation`, `checksum` (SHA-256 do documento) e `review_status` (`PENDING → VALIDATING → VERIFIED | REJECTED`).
 
-| Campo | Significado |
-|---|---|
-| `SOURCE_TYPE` | `OFFICIAL_INEP` (obrigatório para provas) · `EDITORIAL` · `AI_GENERATED_EDUCATIONAL` |
-| `SOURCE_URL` | URL do documento no site do Inep |
-| `SOURCE_YEAR` / `DOCUMENT_VERSION` | Edição e versão do documento |
-| `IMPORT_DATE` / `LAST_VALIDATION` | Datas de importação e última validação |
-| `CHECKSUM` | SHA-256 do PDF original (ou do gabarito canônico) |
-| `REVIEW_STATUS` | `PENDING` → `VALIDATING` → `VERIFIED` / `REJECTED` |
-
-Cada questão está ligada a: edição, ano, aplicação, dia, área, caderno, cor, número original, alternativas (A–E), gabarito oficial (ou anulação), origem, versão e status.
+Cada questão está ligada a edição, ano, aplicação, dia, área, caderno, cor, número original, alternativas A–E, gabarito oficial (ou anulação), origem, versão e status.
 
 ## Como o guardião impede erros
 
-Implementado em `apps/api/src/modules/content/guardian.rules.ts` (regras puras, testadas) e `guardian.service.ts` (persistência).
+Implementado em `app/Services/Content/GuardianRules.php` (regras puras, testadas) e `GuardianService.php`.
 
-1. **Exibição fiel** — o aluno vê o **PDF oficial inalterado** (tela dividida: caderno à esquerda, cartão-resposta à direita). Nada de OCR, IA, reconstrução ou reformatação no conteúdo da prova. Opções de acessibilidade agem só na interface.
-2. **Filtro de visibilidade no banco** — o catálogo (`OFFICIAL_VISIBLE_WHERE`) só retorna `reviewStatus = VERIFIED` **e** `pipelineStage = PUBLISHED` **e** fonte `OFFICIAL_INEP` verificada.
-3. **Validação estrutural** (`validateExamForPublication`) — fonte oficial com URL e checksum, duração cadastrada por edição (nunca universal), caderno com páginas e questões, gabarito verificado, cada questão com resposta ou anulação oficial, nenhuma questão `AI_GENERATED` dentro de prova oficial.
-4. **Verificação de integridade** (`verifyIntegrity`) — recomputa o SHA-256 do PDF em storage e compara com o registrado; recomputa o checksum canônico do gabarito (`número:letra|…`) e exige que coincida com um `OfficialAnswerSet` importado. Qualquer divergência bloqueia a publicação e gera `SystemAlert` (regra de ouro de QA, seção 65).
-5. **Fluxo de auditoria** — `IMPORTED → AUTO_VALIDATED → HUMAN_REVIEW_1 → HUMAN_REVIEW_2 → PUBLISHED`, sem pular etapas; as revisões humanas devem ser de pessoas distintas; publicar exige perfil ADMIN.
-6. **Nada muda em silêncio** — alterar gabarito ou metadados exige motivo, gera `ContentVersion` (versão anterior + nova + autor + data), grava `AuditLog` e devolve a prova a `PENDING/IMPORTED`, retirando-a do catálogo até nova auditoria.
-7. **IA sem escrita** — nenhum serviço de IA possui referência aos repositórios de `Question`, `OfficialAnswer`, `Exam` ou `EssayPrompt`. A IA só lê resultados, resoluções `VERIFIED` e a base RAG de documentos oficiais.
+1. **Exibição fiel** — o aluno vê o **PDF oficial inalterado** (`/cadernos/{id}/pdf`, só cadernos verificados de provas publicadas) em tela dividida: caderno à esquerda, cartão-resposta à direita. Sem OCR, IA ou reconstrução. Acessibilidade age só na interface.
+2. **Filtro no banco** — `Exam::officialVisible()` exige `review_status = VERIFIED`, `pipeline_stage = PUBLISHED` e fonte `OFFICIAL_INEP` verificada. Catálogo, início de sessão, PDF e propostas de redação usam o mesmo escopo.
+3. **Validação estrutural** (`validateExamForPublication`) — fonte oficial com URL e checksum, duração cadastrada por edição, caderno com páginas e questões, gabarito importado, cada questão com resposta ou anulação, nenhuma questão não oficial.
+4. **Verificação de integridade** (`verifyIntegrity`) — recomputa o SHA-256 do PDF no disco `official` e compara com o registrado; recomputa o checksum canônico do gabarito (`número:letra|…`) e exige coincidência com um `official_answer_sets` importado. Divergência bloqueia a publicação e gera `system_alerts` (regra de ouro de QA).
+5. **Fluxo de auditoria** — `IMPORTED → AUTO_VALIDATED → HUMAN_REVIEW_1 → HUMAN_REVIEW_2 → PUBLISHED`, sem pular etapas; revisões humanas por pessoas distintas (checado no `audit_logs`); publicar exige `ADMIN`.
+6. **Nada muda em silêncio** — alterar gabarito ou metadados exige motivo, grava `content_versions` (anterior/novo/autor/data), `audit_logs`, e devolve a prova a `PENDING/IMPORTED` — ela some do catálogo até nova auditoria (teste `test_changing_an_official_answer_requires_reason_and_unpublishes_the_exam`).
+7. **IA sem escrita** — `AiService`/providers não recebem modelos de conteúdo; só leem resultados, resoluções `VERIFIED` e a base de documentos oficiais.
 
 ## Correção e notas
 
-- A correção compara **somente o cartão-resposta** com o gabarito oficial; anuladas não contam.
-- Apresentamos **acertos oficiais pelo gabarito**. **Nunca** calculamos `acertos × valor = nota ENEM`. Se um dia houver estimativa pedagógica, ela carrega o aviso `DISCLAIMERS.SCORE_ESTIMATE` e nunca é chamada de nota oficial.
-- A redação recebe `Nota estimada da correção simulada` com o aviso `DISCLAIMERS.ESSAY_EVALUATION`. As regras de nota zero são cadastradas **por edição** com URL da fonte e só valem se `VERIFIED`.
+- Só o **cartão-resposta** é comparado ao gabarito oficial; anuladas não contam; língua estrangeira filtrada pela escolha do aluno.
+- Exibimos **acertos oficiais pelo gabarito**. Nunca `acertos × valor = nota ENEM`. Qualquer estimativa leva `Disclaimers::SCORE_ESTIMATE`.
+- Redação: `Nota estimada da correção simulada` + `Disclaimers::ESSAY_EVALUATION`. Regras de nota zero cadastradas **por edição** com URL da fonte; só valem se `VERIFIED`; sem regras cadastradas, nenhuma é aplicada.
 
 ## Conteúdo não oficial
 
-- Classificações pedagógicas, resoluções e materiais do guia são `EDITORIAL` e só aparecem quando `VERIFIED`. Sem resolução validada, a interface mostra exatamente: "Resolução detalhada ainda não disponível."
-- Simulados autorais ou gerados por IA vivem na seção separada **Simulados de Treinamento** (`AI_GENERATED_EDUCATIONAL`) e nunca são apresentados como questões do ENEM.
-- Sobre regras do ENEM, a IA consulta primeiro a base de documentos oficiais; sem resultado, responde exatamente: "Nenhuma informação oficial validada foi encontrada na base."
+- Classificações, resoluções e materiais do guia são `EDITORIAL` e só aparecem quando `VERIFIED`; sem resolução validada, a interface mostra "Resolução detalhada ainda não disponível."
+- Simulados autorais/IA vivem em **Simulados de Treinamento** (rota separada) e nunca são apresentados como questões do ENEM.
+- Sobre regras do ENEM, o Professor IA consulta a base oficial; sem resultado responde "Nenhuma informação oficial validada foi encontrada na base."
 - O guia usa "conteúdo recorrente nas provas analisadas" e "habilidade importante na Matriz de Referência" — nunca "vai cair".

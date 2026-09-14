@@ -2,52 +2,46 @@
 
 ## Stack
 
-- **Frontend**: Next.js 15 (App Router, React 19, TypeScript), Tailwind 4 com tokens CSS (tema claro/escuro, escala de fonte), sem bibliotecas de UI. PDF oficial exibido pelo visualizador nativo do navegador a partir de um blob autenticado.
-- **Backend**: NestJS 11, Prisma 6, PostgreSQL 16. Redis/BullMQ opcional para a fila de correção de redação (fallback in-process). Object storage compatível com S3 via interface `ObjectStorage` (implementação padrão em disco).
-- **Autenticação**: JWT de acesso (15 min) + refresh rotativo (30 dias, hash em banco, revogação), bcrypt (custo 12), RBAC hierárquico (`STUDENT < REVIEWER < ADMIN < SUPER_ADMIN`).
-- **IA**: provider abstrato (`AiProvider`). `mock` para desenvolvimento/testes; `anthropic` usa o SDK oficial com adaptive thinking, fallback server-side e cache de prompt. Modelo configurável (`AI_ESSAY_MODEL`, padrão `claude-opus-5`).
-- **Pagamentos**: provider abstrato (`PaymentProvider`) com `mock`; um gateway brasileiro é adicionado implementando `createCharge`, `cancelRecurring` e `verifyAndParseWebhook` (assinatura obrigatória).
+- **PHP 8.3 · Laravel 13** (Blade + Vite + Tailwind 4, JavaScript vanilla para o runner da prova, folha de redação e checkout).
+- **MySQL 8** em produção (`DB_CONNECTION=mysql`); SQLite em desenvolvimento/testes. Migrations usam tipos portáveis (`json`, `string` para enums).
+- **Fila**: `QUEUE_CONNECTION=database` (job `EvaluateEssay`); `php artisan queue:work`.
+- **Agendador**: `routes/console.php` (expira provas por minuto, assinaturas por hora, libera comissões diariamente).
+- **Storage**: disco `official` (`storage/app/official`, nunca público) para PDFs do Inep, servidos por rota autenticada com `ETag` = checksum.
+- **Pagamentos**: contrato `PaymentGateway` com implementação `AsaasGateway` (bind em `AppServiceProvider`).
+- **IA**: contrato `AiProvider` (`MockAiProvider`, `AnthropicAiProvider` via Messages API com adaptive thinking, cache de prompt e fallback server-side). Provedor, chave e modelo configuráveis no painel.
+- **Configurações**: `SettingsService` (banco → `.env` → padrão); segredos criptografados com `APP_KEY`.
 
-## Módulos (serviços independentes)
+## Estrutura
 
 ```
-auth · users · content (import + guardian + catálogo + storage) · exam-engine · essays
-study (plano, caderno de erros, guia, metas, calendário) · analytics · subscriptions (+ access)
-payments · referrals · promotions · scholarships · notifications · ai · knowledge-base · tutor
-admin · audit
+app/Support/            Disclaimers (textos obrigatórios), Enem (constantes de domínio)
+app/Services/Content/   GuardianRules, GuardianService, ContentImportService
+app/Services/Exam/      TimerRules, GradingRules, ExamEngineService
+app/Services/Essay/     ZeroScoreRules, ScoringRules, EvaluatorPrompts, EssayEvaluationOrchestrator, EssayService
+app/Services/Billing/   PaymentGateway, AsaasGateway, SubscriptionService, AsaasWebhookHandler, AccessService
+app/Services/Referral/  CommissionRules, ReferralService
+app/Services/Promotion/ CouponRules, PromotionService
+app/Services/Study/     StudyPlanRules, StudyPlanService, ErrorNotebookService
+app/Services/           AnalyticsService, TutorService (Professor IA + base oficial), ScholarshipService, SettingsService, AuditService
+app/Http/Controllers/   área do aluno · Admin/ (conteúdo, planos, cupons, indicações, bolsas, usuários, configurações) · WebhookController
+resources/views/        landing, auth/, app/ (aluno), admin/, layouts/, components/
+resources/js/           exam-runner.js, essay-editor.js, subscription.js
 ```
 
-Cada módulo pode ser extraído para um serviço próprio: a comunicação é por interfaces de serviço e pelo banco, sem estado em memória compartilhado (exceto a fila).
+Regras de negócio ficam em classes `*Rules` puras (sem banco) — testadas em `tests/Unit/RulesTest.php`; os `*Service` orquestram persistência e auditoria.
 
-## Modelo de dados
+## Modelo de dados (54 tabelas)
 
-`apps/api/prisma/schema.prisma` — 57 tabelas, incluindo todas as entidades da seção 42: `users, profiles, roles (enum), plans, subscriptions, payments, coupons, promotions, referrals (ReferralSettings/User.referredBy), referral_clicks, commissions, withdrawals, exams, exam_editions, exam_booklets, exam_pages, questions, question_options, official_answers (+ official_answer_sets), exam_sessions, answer_sheets, answers, essays, essay_evaluations, essay_competencies (EssayCompetencyScore), study_topics, study_plans, study_tasks, error_notebook, favorites, achievements, notifications, content_sources, content_versions, audit_logs, scholarships, support_tickets` — mais `EssayFinalResult`, `EssayZeroRule` (regras de zero por edição), `OfficialDocument/Chunk` (RAG), `WebhookEvent` (idempotência), `Sponsor`, `Goal`, `SessionNote`, `SessionResult`, `AiUsage`, `SystemAlert`, `Consent`, `RefreshToken`.
+Usuários/acesso (`users` com perfil e onboarding, `consents`, `settings`, `audit_logs`, `system_alerts`, `ai_usages`) · Conteúdo oficial (`content_sources`, `exam_editions`, `exams`, `exam_booklets`, `exam_pages`, `questions`, `question_options`, `official_answer_sets`, `official_answers`, `question_classifications`, `question_resolutions`, `essay_prompts`, `essay_zero_rules`, `official_documents(+chunks)`, `content_versions`, `study_topics`) · Execução (`exam_sessions`, `answer_sheets`, `answers`, `session_notes`, `session_results`) · Redação (`essays`, `essay_evaluations`, `essay_competency_scores`, `essay_final_results`) · Estudo (`study_materials`, `study_plans`, `study_tasks`, `error_notebook_entries`, `favorites`, `goals`, `achievements`, `user_achievements`) · Financeiro (`plans`, `subscriptions`, `payments`, `webhook_events`, `coupons`, `coupon_plan`, `coupon_usages`, `promotions`) · Indicação (`referral_settings`, `referral_clicks`, `commissions`, `withdrawals`) · Social (`sponsors`, `scholarships`) · `notifications`, `support_tickets`.
 
-## Cronômetro
+## Cronômetro e resiliência
 
-Fonte da verdade: `ExamSession.startedAt` + `Exam.durationMinutes` (cadastrada por edição) → `expectedEndAt`. O cliente apenas exibe `remainingSeconds` calculado pelo servidor e reconcilia a cada 30 s; o autosave devolve o restante; um cron por minuto expira sessões abandonadas. Pausa só no Modo Estudo, deslocando `expectedEndAt` pelo tempo pausado.
-
-## Autosave e resiliência
-
-- Cartão-resposta: lote a cada 4 s, `visibilitychange`/`beforeunload`, reenfileiramento em falha e cópia local em `localStorage`. Nada é perdido por queda de conexão.
-- Redação: rascunho salvo a cada 5 s no servidor e no `localStorage`.
-- Retornar à sessão no Modo Prova Real nunca reinicia o tempo.
+Fonte da verdade: `exam_sessions.started_at + exams.duration_minutes → expected_end_at`. O cliente exibe o restante, envia o cartão em lote a cada 4 s (e em `visibilitychange`/`beforeunload`), reconcilia `GET /sessao/{id}/estado` a cada 30 s e guarda cópia em `localStorage`. Expiração é aplicada no servidor (no estado, no autosave e por cron). Pausa só no modo estudo (desloca `expected_end_at`). Retornar à sessão nunca reinicia o tempo.
 
 ## Segurança
 
-Helmet, CORS restrito, validação/whitelist de DTOs, rate limit global (120/min) e específico em login/registro, senhas bcrypt, refresh rotativo com revogação, RBAC, webhooks HMAC com comparação em tempo constante e idempotência por `eventId`, CPF e chaves PIX apenas como hash, auditoria de ações sensíveis, cabeçalhos de segurança no Next. MFA opcional está modelado (`mfaEnabled/mfaSecret`) e é um item do roadmap.
+Sessões com cookie `HttpOnly`, CSRF (exceto webhook, protegido por token e comparação em tempo constante), bcrypt, throttling em login/cadastro, RBAC hierárquico (`role:REVIEWER|ADMIN`), validação de todos os formulários, PDFs fora do document root, CPF e chave PIX apenas como hash, segredos criptografados, auditoria de ações sensíveis, cabeçalhos do Laravel padrão. MFA está modelado (roadmap).
 
-## Observabilidade
+## Acessibilidade e design
 
-`AiUsage` (tokens, latência, custo, sucesso por finalidade), `SystemAlert` (falhas de webhook, correção, integridade, fraude), `AuditLog` (autor, ação, entidade, IP), `WebhookEvent` (payload, erro). O dashboard admin exibe alertas abertos e uso de IA do mês.
-
-## Performance
-
-PDF entregue com `ETag` = checksum e cache privado imutável; cliente carrega o PDF uma vez por sessão; catálogo filtrado no banco com índices; correção de redação em fila; páginas do Next pré-renderizadas onde não há parâmetros.
-
-## Extensões previstas
-
-- **RAG vetorial**: trocar a busca lexical de `KnowledgeBaseService.search` por pgvector mantendo o contrato.
-- **Páginas como imagem**: `ExamPage.imageKey` está pronto para servir páginas renderizadas quando o navegador não exibir PDF.
-- **E-mail/Push**: `NotificationsService.notify` já respeita consentimento; falta o transporte.
-- **Gateway de pagamento**: implementar `PaymentProvider` (PIX, cartão recorrente, boleto) em `payments/providers`.
+Tema escuro (referências: navy profundo, gradiente roxo→azul, acentos ciano/rosa) com tema claro opcional e escala de fonte por usuário (`data-theme`, `--font-scale`), foco visível, skip link, HTML semântico, `aria-pressed` no cartão-resposta, gráficos SVG com tabela oculta para leitores de tela, `prefers-reduced-motion`. Layout responsivo: sidebar no desktop, menu no mobile; o runner recomenda tela maior mas não bloqueia.

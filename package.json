@@ -1,24 +1,19 @@
 {
-  "name": "sip-enem",
-  "private": true,
-  "version": "0.1.0",
-  "description": "Plataforma SaaS intensiva de preparação para o ENEM baseada exclusivamente em provas oficiais do Inep.",
-  "workspaces": [
-    "packages/*",
-    "apps/*"
-  ],
-  "scripts": {
-    "dev": "npm run dev --workspaces --if-present",
-    "dev:api": "npm run dev -w @sip-enem/api",
-    "dev:web": "npm run dev -w @sip-enem/web",
-    "build": "npm run build --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present",
-    "db:migrate": "npm run prisma:migrate -w @sip-enem/api",
-    "db:seed": "npm run prisma:seed -w @sip-enem/api",
-    "db:generate": "npm run prisma:generate -w @sip-enem/api"
-  },
-  "engines": {
-    "node": ">=20"
-  }
+    "$schema": "https://www.schemastore.org/package.json",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "^4.0.0",
+        "concurrently": "^10.0.3",
+        "laravel-vite-plugin": "^3.1",
+        "tailwindcss": "^4.0.0",
+        "vite": "^8.0.0"
+    },
+    "optionalDependencies": {
+        "@laravel/multiplex": "^0.4.1"
+    }
 }
