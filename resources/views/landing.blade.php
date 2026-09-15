@@ -9,6 +9,7 @@
         <nav class="hidden items-center gap-6 text-sm text-muted md:flex" aria-label="Navegação do site">
             <a href="#recursos" class="hover:text-text">Recursos</a>
             <a href="#simulado" class="hover:text-text">Simulado</a>
+            <a href="#depoimentos" class="hover:text-text">Depoimentos</a>
             <a href="#planos" class="hover:text-text">Planos</a>
             <a href="#indique" class="hover:text-text">Indique</a>
             <a href="#sobre" class="hover:text-text">Sobre</a>
@@ -24,7 +25,7 @@
     </header>
 
     {{-- HERO --}}
-    <section class="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-10 pt-8 md:grid-cols-2 md:px-8 md:pt-14">
+    <section class="mx-auto grid max-w-7xl overflow-hidden items-center gap-10 px-4 pb-10 pt-8 md:grid-cols-2 md:px-8 md:pt-14">
         <div>
             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Foco hoje. Grandes amanhãs.</p>
             <h1 class="mt-3 text-4xl font-bold leading-tight tracking-tight md:text-6xl">
@@ -123,6 +124,50 @@
                 </div>
             </div>
         </div>
+    </section>
+
+    {{-- DEPOIMENTOS (carrossel com rolagem automática) --}}
+    <section id="depoimentos" class="border-y border-border bg-bg-2/60 py-16">
+        <div class="mx-auto max-w-7xl px-4 md:px-8">
+            <div class="flex flex-wrap items-end justify-between gap-4">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Quem já usou, aprova</p>
+                    <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Histórias de quem estudou com a Aura</h2>
+                    <p class="mt-3 max-w-xl text-muted">Alunos que treinaram com as provas oficiais, o cronômetro real e a redação por competências — e chegaram na prova sem surpresas.</p>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-muted" aria-label="Avaliação média 5 de 5 estrelas">
+                    <span class="flex text-warning" aria-hidden="true">@for($i = 0; $i < 5; $i++)<svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 14.9l-5.3 2.8 1.1-5.9L1.5 7.7l5.9-.8z"/></svg>@endfor</span>
+                    <span><strong class="text-text">5,0</strong> · avaliação dos alunos</span>
+                </div>
+            </div>
+        </div>
+        @php($testimonials = [
+            ['michelle', 'Michelle Andrade', 'Aprovada em Medicina · UFMG', 'Fiz todas as provas de 2019 a 2024 no Modo Prova Real. Quando chegou o dia do ENEM, o cronômetro, o cartão-resposta e o cansaço já eram velhos conhecidos. A redação corrigida pelas cinco competências foi o que mais me fez evoluir: saí de 720 para 940.'],
+            ['william', 'William Tanaka', 'Aprovado em Medicina · UERJ', 'Eu não tinha condições de pagar um cursinho. Na Aura eu treinava com a prova oficial de verdade, e o relatório por assunto me mostrava exatamente onde eu perdia ponto. Estudei o que importava, não o que dava medo.'],
+            ['raiane', 'Raiane Oliveira', 'Aprovada em Psicologia · UFBA', 'O caderno de erros mudou meu jeito de estudar. Cada questão errada voltava depois de alguns dias e eu não errava mais. O plano de estudos organizou minha semana e eu parei de me sentir perdida.'],
+            ['andrew', 'Andrew Nascimento', 'Aprovado em Ciência da Computação · UFPE', 'O que me convenceu foi a honestidade: nada de "nota ENEM" inventada, só o gabarito oficial e uma explicação clara de como a TRI funciona. Treinei tempo por questão e terminei o 2º dia com 20 minutos de sobra.'],
+            ['julia', 'Julia Carvalho', 'Aprovada em Direito · UFRGS', 'Eu trabalhava o dia inteiro e só conseguia estudar à noite. O Modo Estudo por área me deixou fazer Humanas num dia e Linguagens no outro, e o professor IA explicava meus erros sem eu precisar procurar em dez lugares.'],
+            ['larissa', 'Larissa Menezes', 'Aprovada em Pedagogia · UFC', 'Indiquei quatro amigas da escola, todas assinaram e eu ainda ganhei um bônus. Mas o melhor foi passarmos juntas: a gente comparava o desempenho por área e se ajudava no que cada uma tinha mais dificuldade.'],
+        ])
+        <div class="marquee mt-10" data-marquee>
+            <div class="marquee-track">
+                @foreach([0, 1] as $copy)
+                    <ul class="marquee-group" @if($copy) aria-hidden="true" @endif>
+                        @foreach($testimonials as [$slug, $name, $course, $quote])
+                            <li class="card-glass flex w-[300px] shrink-0 flex-col p-0 sm:w-[340px]">
+                                <img src="{{ asset("images/testimonials/{$slug}.jpg") }}" alt="{{ $copy ? '' : $name }}" width="480" height="600" loading="lazy" class="aspect-[4/5] w-full rounded-t-2xl object-cover object-top">
+                                <div class="flex flex-1 flex-col p-5">
+                                    <span class="flex text-warning" role="img" aria-label="5 de 5 estrelas">@for($i = 0; $i < 5; $i++)<svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 14.9l-5.3 2.8 1.1-5.9L1.5 7.7l5.9-.8z"/></svg>@endfor</span>
+                                    <blockquote class="mt-3 flex-1 text-sm leading-relaxed text-muted">“{{ $quote }}”</blockquote>
+                                    <figcaption class="mt-4"><p class="font-semibold">{{ $name }}</p><p class="text-xs text-muted">{{ $course }}</p></figcaption>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endforeach
+            </div>
+        </div>
+        <p class="mx-auto mt-4 max-w-7xl px-4 text-center text-[11px] text-muted md:px-8">Imagens ilustrativas.</p>
     </section>
 
     {{-- PLANOS + INDIQUE --}}

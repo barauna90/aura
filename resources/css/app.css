@@ -203,9 +203,44 @@ body {
     }
 }
 
+/* Carrossel de depoimentos: faixa duplicada rolando por CSS; pausa no hover/foco. */
+.marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 60s linear infinite;
+}
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+}
+.marquee-group {
+    display: flex;
+    gap: 1.25rem;
+    padding: 0 0.625rem;
+    list-style: none;
+    margin: 0;
+}
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
 @media (prefers-reduced-motion: reduce) {
     * {
         animation: none !important;
         transition: none !important;
+    }
+    .marquee {
+        overflow-x: auto;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+    .marquee-group[aria-hidden='true'] {
+        display: none;
     }
 }
