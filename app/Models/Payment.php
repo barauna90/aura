@@ -28,8 +28,8 @@ class Payment extends Model
         return $this->belongsTo(Subscription::class);
     }
 
-    public function commissions()
+    public function referralConversion()
     {
-        return $this->hasMany(Commission::class);
+        return $this->hasOne(ReferralConversion::class);
     }
 }

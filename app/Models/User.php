@@ -89,6 +89,11 @@ class User extends Authenticatable
         return $this->hasMany(Commission::class, 'affiliate_id');
     }
 
+    public function referralConversions()
+    {
+        return $this->hasMany(ReferralConversion::class, 'affiliate_id');
+    }
+
     public function consents()
     {
         return $this->hasMany(Consent::class);

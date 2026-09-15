@@ -11,8 +11,11 @@ class ReferralSetting extends Model
     protected function casts(): array
     {
         return [
-            'recurring' => 'boolean',
-            'first_payment_only' => 'boolean',
+            'milestone_referrals' => 'integer',
+            'milestone_reward_cents' => 'integer',
+            'referred_discount_cents' => 'integer',
+            'validation_days' => 'integer',
+            'min_withdrawal_cents' => 'integer',
             'payout_methods' => 'array',
         ];
     }

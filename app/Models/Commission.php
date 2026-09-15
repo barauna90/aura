@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/** Bônus do indicador: gerado a cada N indicações validadas (ReferralConversion). */
 class Commission extends Model
 {
     protected $guarded = [];
@@ -11,8 +12,8 @@ class Commission extends Model
     protected function casts(): array
     {
         return [
-            'available_at' => 'datetime',
-            'fraud_flags' => 'array',
+            'amount_cents' => 'integer',
+            'conversions_count' => 'integer',
         ];
     }
 
@@ -21,19 +22,10 @@ class Commission extends Model
         return $this->belongsTo(User::class, 'affiliate_id');
     }
 
-    public function referredUser()
+    /** Indicações validadas que compõem este bônus. */
+    public function conversions()
     {
-        return $this->belongsTo(User::class, 'referred_user_id');
-    }
-
-    public function subscription()
-    {
-        return $this->belongsTo(Subscription::class);
-    }
-
-    public function payment()
-    {
-        return $this->belongsTo(Payment::class);
+        return $this->hasMany(ReferralConversion::class);
     }
 
     public function withdrawal()

@@ -72,7 +72,7 @@
                 ['pen', 'Redação por competências', 'Avaliação simulada com base nos critérios oficiais do ENEM.'],
                 ['compass', 'Guia do que estudar', 'Roteiro personalizado com base no seu desempenho.'],
                 ['tag', 'Promoções e bolsas', 'Cupons, campanhas e programa de bolsas para quem precisa.'],
-                ['users', 'Indique e ganhe comissões', 'Chame amigos e ganhe enquanto eles estudam.'],
+                ['users', 'Indique e resgate bônus', 'A cada '.$referral->milestone_referrals.' amigos que assinam, você resgata R$ '.number_format($referral->milestone_reward_cents / 100, 0, ',', '.').' via PIX.'],
             ] as [$icon, $t, $desc])
                 <div class="flex gap-3 rounded-2xl border border-border bg-surface p-4">
                     <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/20 text-primary"><x-icon :name="$icon" /></span>
@@ -149,8 +149,8 @@
         </div>
         <div id="indique" class="card-glass relative overflow-hidden">
             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Indique amigos</p>
-            <h2 class="mt-2 text-2xl font-bold tracking-tight">Indique amigos e ganhe comissões</h2>
-            <p class="mt-2 text-sm text-muted">Seu amigo ganha R$ {{ number_format($referral->referred_discount_cents / 100, 2, ',', '.') }} de desconto na assinatura e você recebe {{ $referral->model === 'FIXED' ? 'R$ '.number_format($referral->value / 100, 2, ',', '.') : $referral->value.'%' }} de comissão quando o pagamento for confirmado. Todos saem vencendo.</p>
+            <h2 class="mt-2 text-2xl font-bold tracking-tight">Indique {{ $referral->milestone_referrals }} amigos e resgate R$ {{ number_format($referral->milestone_reward_cents / 100, 2, ',', '.') }}</h2>
+            <p class="mt-2 text-sm text-muted">Seu amigo ganha R$ {{ number_format($referral->referred_discount_cents / 100, 2, ',', '.') }} de desconto na assinatura. A cada {{ $referral->milestone_referrals }} indicados que assinarem e tiverem o pagamento confirmado, você resgata R$ {{ number_format($referral->milestone_reward_cents / 100, 2, ',', '.') }} via PIX. Todos saem vencendo.</p>
             <img src="{{ asset('images/referral-friends.png') }}" alt="Dois estudantes sorrindo apontando para a frente" class="mx-auto mt-4 max-h-64 w-auto" width="1125" height="1425" loading="lazy">
             <a href="{{ route('register') }}" class="btn-secondary mt-4 w-full">Quero indicar agora →</a>
         </div>

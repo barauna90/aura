@@ -16,7 +16,7 @@ O orquestrador é a composição da aplicação Laravel (`bootstrap/app.php`, `A
 | ANALYTICS AGENT | `Services/AnalyticsService` | Dashboard, mapa por área, séries, tópicos fracos — nada suavizado |
 | SUBSCRIPTION AGENT | `Services/Billing/SubscriptionService`, `AccessService` | Planos do banco; acesso premium só com status confirmado por webhook |
 | PAYMENT AGENT | `Services/Billing/PaymentGateway`, `AsaasGateway`, `AsaasWebhookHandler` | Chave configurável no painel; webhook com token, idempotente |
-| REFERRAL AGENT | `Services/Referral/CommissionRules`, `ReferralService` | Ciclo `PENDING→…→PAID`; antifraude |
+| REFERRAL AGENT | `Services/Referral/CommissionRules`, `ReferralService` | Meta de indicações: indicação `PENDING→VALIDATED`, bônus a cada N validadas `AVAILABLE→REQUESTED→PAID`; antifraude |
 | PROMOTION AGENT | `Services/Promotion/CouponRules`, `PromotionService` | Vigência, limites, planos permitidos |
 | Bolsas | `Services/ScholarshipService` | Prazo/integral, patrocinadores com vagas |
 | NOTIFICATION | `notifications` in-app (`Notification` model) | Pagamento confirmado, bolsa concedida |

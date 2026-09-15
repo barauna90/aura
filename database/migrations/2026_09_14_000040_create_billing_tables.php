@@ -122,15 +122,13 @@ return new class extends Migration
 
         Schema::create('referral_settings', function (Blueprint $table) {
             $table->id();
-            // Padrão do produto: R$ 10 de desconto para o indicado na assinatura, R$ 10 de comissão
-            // fixa para o indicador (só com pagamento confirmado), bloqueada por 7 dias.
-            $table->string('model', 8)->default('FIXED'); // PERCENT | FIXED
-            $table->unsignedInteger('value')->default(1000);
+            // Padrão do produto: R$ 10 de desconto para o indicado na assinatura; o indicador
+            // resgata R$ 40 a cada 4 indicações com pagamento confirmado e validadas por 7 dias.
+            $table->unsignedSmallInteger('milestone_referrals')->default(4);
+            $table->unsignedInteger('milestone_reward_cents')->default(4000);
             $table->unsignedInteger('referred_discount_cents')->default(1000);
-            $table->boolean('recurring')->default(false);
-            $table->boolean('first_payment_only')->default(true);
             $table->unsignedSmallInteger('validation_days')->default(7);
-            $table->unsignedInteger('min_withdrawal_cents')->default(5000);
+            $table->unsignedInteger('min_withdrawal_cents')->default(4000);
             $table->json('payout_methods');
             $table->timestamps();
         });
@@ -155,20 +153,33 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        // Bônus do indicador: um registro a cada N indicações validadas (agrupa referral_conversions).
         Schema::create('commissions', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('affiliate_id')->constrained('users')->cascadeOnDelete();
+            $table->unsignedInteger('amount_cents');
+            $table->unsignedSmallInteger('conversions_count');
+            $table->string('status', 10)->default('AVAILABLE'); // AVAILABLE | REQUESTED | PAID | CANCELED | REVERSED
+            $table->string('blocked_reason', 300)->nullable();
+            $table->foreignId('withdrawal_id')->nullable()->constrained()->nullOnDelete();
+            $table->timestamps();
+            $table->index(['affiliate_id', 'status']);
+        });
+
+        // Indicação efetivada: primeiro pagamento CONFIRMADO de um indicado; validada após o prazo de bloqueio.
+        Schema::create('referral_conversions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('affiliate_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('referred_user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('subscription_id')->constrained()->cascadeOnDelete();
             $table->foreignId('payment_id')->constrained()->cascadeOnDelete();
-            $table->unsignedInteger('amount_cents');
-            $table->string('status', 10)->default('PENDING'); // PENDING | APPROVED | AVAILABLE | REQUESTED | PAID | CANCELED | REVERSED
+            $table->string('status', 10)->default('PENDING'); // PENDING | VALIDATED | CANCELED | REVERSED
             $table->timestamp('available_at')->nullable();
             $table->json('fraud_flags')->nullable();
             $table->string('blocked_reason', 300)->nullable();
-            $table->foreignId('withdrawal_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('commission_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
-            $table->unique(['payment_id', 'affiliate_id']);
+            $table->unique('referred_user_id'); // cada indicado conta uma única vez
             $table->index(['affiliate_id', 'status']);
         });
 
@@ -221,7 +232,7 @@ return new class extends Migration
     public function down(): void
     {
         foreach ([
-            'support_tickets', 'notifications', 'scholarships', 'sponsors', 'commissions', 'withdrawals', 'referral_clicks',
+            'support_tickets', 'notifications', 'scholarships', 'sponsors', 'referral_conversions', 'commissions', 'withdrawals', 'referral_clicks',
             'referral_settings', 'coupon_usages', 'coupon_plan', 'coupons', 'promotions', 'webhook_events', 'payments',
             'subscriptions', 'plans',
         ] as $t) {

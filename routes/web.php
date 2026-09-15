@@ -127,6 +127,7 @@ Route::middleware(['auth', 'role:REVIEWER'])->prefix('admin')->name('admin.')->g
         Route::get('/indicacoes', [Admin\ReferralController::class, 'index'])->name('referrals.index');
         Route::put('/indicacoes', [Admin\ReferralController::class, 'update'])->name('referrals.update');
         Route::post('/indicacoes/comissoes/{commission}/bloquear', [Admin\ReferralController::class, 'block'])->name('referrals.block');
+        Route::post('/indicacoes/{conversion}/bloquear', [Admin\ReferralController::class, 'blockConversion'])->name('referrals.block_conversion');
         Route::post('/indicacoes/saques/{withdrawal}/pagar', [Admin\ReferralController::class, 'pay'])->name('referrals.pay');
 
         Route::get('/bolsas', [Admin\ScholarshipController::class, 'index'])->name('scholarships.index');

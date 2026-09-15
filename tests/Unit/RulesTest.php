@@ -189,15 +189,20 @@ class RulesTest extends TestCase
 
     public function test_commissions_and_fraud(): void
     {
-        $s = ['model' => 'PERCENT', 'value' => 20, 'recurring' => false, 'first_payment_only' => true];
-        $this->assertSame(398, CommissionRules::computeCents(1990, $s));
-        $this->assertSame(500, CommissionRules::computeCents(1990, ['model' => 'FIXED', 'value' => 500]));
-        $this->assertTrue(CommissionRules::isCommissionable(1, $s));
-        $this->assertFalse(CommissionRules::isCommissionable(2, $s));
-        $this->assertTrue(CommissionRules::isCommissionable(2, ['recurring' => true, 'first_payment_only' => false]));
+        // Meta de indicações: bônus a cada N indicações validadas; só o 1º pagamento de cada indicado conta.
+        $this->assertSame(0, CommissionRules::milestonesReady(3, 4));
+        $this->assertSame(1, CommissionRules::milestonesReady(4, 4));
+        $this->assertSame(2, CommissionRules::milestonesReady(9, 4));
+        $this->assertSame(0, CommissionRules::milestonesReady(9, 0));
+        $this->assertSame(['done' => 1, 'missing' => 3, 'per_milestone' => 4], CommissionRules::progress(5, 4));
+        $this->assertTrue(CommissionRules::isConversion(1, false));
+        $this->assertFalse(CommissionRules::isConversion(2, false));
+        $this->assertFalse(CommissionRules::isConversion(1, true));
         $this->assertSame('2026-01-31', CommissionRules::availableAt(CarbonImmutable::parse('2026-01-01'), 30)->toDateString());
-        $this->assertTrue(CommissionRules::canTransition('PENDING', 'APPROVED'));
+        $this->assertTrue(CommissionRules::canTransition('AVAILABLE', 'REQUESTED'));
         $this->assertFalse(CommissionRules::canTransition('AVAILABLE', 'PAID'));
+        $this->assertTrue(CommissionRules::canTransitionConversion('PENDING', 'VALIDATED'));
+        $this->assertFalse(CommissionRules::canTransitionConversion('CANCELED', 'VALIDATED'));
         $none = ['same_user' => false, 'same_cpf' => false, 'same_instrument' => false, 'same_ip_recent' => false, 'signups_24h' => 0, 'referred_cancellations' => 0, 'chargebacks' => 0];
         $this->assertFalse(CommissionRules::assessFraud($none)['block']);
         $this->assertTrue(CommissionRules::assessFraud(['same_user' => true] + $none)['block']);

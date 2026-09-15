@@ -33,10 +33,10 @@ A tela mostra a URL do webhook a cadastrar no Asaas (`POST /webhooks/asaas`) e o
 
 | Evento | Efeito |
 |---|---|
-| `PAYMENT_CONFIRMED`, `PAYMENT_RECEIVED` | `payments.status = CONFIRMED`; assinatura `ACTIVE`, período estendido em `interval_months`; notificação ao aluno; `ReferralService::onPaymentConfirmed` cria a comissão (`PENDING`, antifraude). |
+| `PAYMENT_CONFIRMED`, `PAYMENT_RECEIVED` | `payments.status = CONFIRMED`; assinatura `ACTIVE`, período estendido em `interval_months`; notificação ao aluno; `ReferralService::onPaymentConfirmed` registra a indicação efetivada (`referral_conversions`, `PENDING`, antifraude) — só o 1º pagamento de cada indicado. |
 | `PAYMENT_OVERDUE` | `OVERDUE`; assinatura `PAST_DUE` se o período já venceu. |
-| `PAYMENT_REFUNDED` | `REFUNDED`; assinatura `REFUNDED`; comissões canceladas/revertidas. |
-| `PAYMENT_CHARGEBACK_REQUESTED`, `PAYMENT_CHARGEBACK_DISPUTE` | `CHARGEBACK`; assinatura `SUSPENDED`; comissões revertidas. |
+| `PAYMENT_REFUNDED` | `REFUNDED`; assinatura `REFUNDED`; indicação `REVERSED` (bônus não pago é cancelado e as demais indicações voltam a contar). |
+| `PAYMENT_CHARGEBACK_REQUESTED`, `PAYMENT_CHARGEBACK_DISPUTE` | `CHARGEBACK`; assinatura `SUSPENDED`; indicação `REVERSED` (idem). |
 | `PAYMENT_DELETED` | cobrança pendente → `FAILED`. |
 | demais | apenas registrados. |
 
@@ -47,8 +47,9 @@ Falhas geram `system_alerts` (visíveis no dashboard admin) e ficam em `webhook_
 Configurável em `Administração → Indicações` (`referral_settings`), com os padrões:
 
 - **Indicado:** R$ 10,00 de desconto (`referred_discount_cents`) na primeira cobrança de quem se cadastrou com um código.
-- **Indicador:** comissão fixa de R$ 10,00 (`model = FIXED`, `value = 1000`), criada **somente** quando o webhook confirma o pagamento.
-- **Bloqueio:** a comissão fica `PENDING` por 7 dias (`validation_days`). Se nesse prazo o indicado cancelar, houver estorno ou chargeback, ela vira `CANCELED` e não é efetivada; caso contrário o job diário a torna `AVAILABLE` para saque.
+- **Indicador (meta de indicações):** a cada **4 indicados** (`milestone_referrals`) com pagamento confirmado pelo webhook e validados, resgata **R$ 40,00** (`milestone_reward_cents`). Não há valor por indicação isolada.
+- **Validação:** cada indicação fica `PENDING` por 7 dias (`validation_days`). Se nesse prazo o indicado cancelar, houver estorno ou chargeback, ela vira `CANCELED`/`REVERSED` e não conta; caso contrário o job diário a torna `VALIDATED`. Ao completar 4 validadas ainda não usadas, `grantMilestones` cria o bônus (`commissions`, `AVAILABLE`) e vincula as 4 (`referral_conversions.commission_id`).
+- **Saque:** mínimo R$ 40,00 (`min_withdrawal_cents`) via PIX; o admin marca como pago em `Administração → Indicações`. Estorno de um indicado cujo bônus ainda não foi pago cancela o bônus e devolve as outras indicações à contagem; bônus já pago fica `REVERSED`.
 
 ## Cancelamento e expiração
 

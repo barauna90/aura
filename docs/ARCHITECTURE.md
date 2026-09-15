@@ -5,7 +5,7 @@
 - **PHP 8.3 · Laravel 13** (Blade + Vite + Tailwind 4, JavaScript vanilla para o runner da prova, folha de redação e checkout).
 - **MySQL 8** em produção (`DB_CONNECTION=mysql`); SQLite em desenvolvimento/testes. Migrations usam tipos portáveis (`json`, `string` para enums).
 - **Fila**: `QUEUE_CONNECTION=database` (job `EvaluateEssay`); `php artisan queue:work`.
-- **Agendador**: `routes/console.php` (expira provas por minuto, assinaturas por hora, libera comissões diariamente).
+- **Agendador**: `routes/console.php` (expira provas por minuto, assinaturas por hora, valida indicações e gera bônus diariamente).
 - **Storage**: disco `official` (`storage/app/official`, nunca público) para PDFs do Inep, servidos por rota autenticada com `ETag` = checksum.
 - **Pagamentos**: contrato `PaymentGateway` com implementação `AsaasGateway` (bind em `AppServiceProvider`).
 - **IA**: contrato `AiProvider` (`MockAiProvider`, `AnthropicAiProvider` via Messages API com adaptive thinking, cache de prompt e fallback server-side). Provedor, chave e modelo configuráveis no painel.
@@ -30,9 +30,9 @@ resources/js/           exam-runner.js, essay-editor.js, subscription.js
 
 Regras de negócio ficam em classes `*Rules` puras (sem banco) — testadas em `tests/Unit/RulesTest.php`; os `*Service` orquestram persistência e auditoria.
 
-## Modelo de dados (54 tabelas)
+## Modelo de dados (55 tabelas)
 
-Usuários/acesso (`users` com perfil e onboarding, `consents`, `settings`, `audit_logs`, `system_alerts`, `ai_usages`) · Conteúdo oficial (`content_sources`, `exam_editions`, `exams`, `exam_booklets`, `exam_pages`, `questions`, `question_options`, `official_answer_sets`, `official_answers`, `question_classifications`, `question_resolutions`, `essay_prompts`, `essay_zero_rules`, `official_documents(+chunks)`, `content_versions`, `study_topics`) · Execução (`exam_sessions`, `answer_sheets`, `answers`, `session_notes`, `session_results`) · Redação (`essays`, `essay_evaluations`, `essay_competency_scores`, `essay_final_results`) · Estudo (`study_materials`, `study_plans`, `study_tasks`, `error_notebook_entries`, `favorites`, `goals`, `achievements`, `user_achievements`) · Financeiro (`plans`, `subscriptions`, `payments`, `webhook_events`, `coupons`, `coupon_plan`, `coupon_usages`, `promotions`) · Indicação (`referral_settings`, `referral_clicks`, `commissions`, `withdrawals`) · Social (`sponsors`, `scholarships`) · `notifications`, `support_tickets`.
+Usuários/acesso (`users` com perfil e onboarding, `consents`, `settings`, `audit_logs`, `system_alerts`, `ai_usages`) · Conteúdo oficial (`content_sources`, `exam_editions`, `exams`, `exam_booklets`, `exam_pages`, `questions`, `question_options`, `official_answer_sets`, `official_answers`, `question_classifications`, `question_resolutions`, `essay_prompts`, `essay_zero_rules`, `official_documents(+chunks)`, `content_versions`, `study_topics`) · Execução (`exam_sessions`, `answer_sheets`, `answers`, `session_notes`, `session_results`) · Redação (`essays`, `essay_evaluations`, `essay_competency_scores`, `essay_final_results`) · Estudo (`study_materials`, `study_plans`, `study_tasks`, `error_notebook_entries`, `favorites`, `goals`, `achievements`, `user_achievements`) · Financeiro (`plans`, `subscriptions`, `payments`, `webhook_events`, `coupons`, `coupon_plan`, `coupon_usages`, `promotions`) · Indicação (`referral_settings`, `referral_clicks`, `referral_conversions`, `commissions`, `withdrawals`) · Social (`sponsors`, `scholarships`) · `notifications`, `support_tickets`.
 
 ## Cronômetro e resiliência
 

@@ -5,33 +5,47 @@ namespace App\Services\Referral;
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
 
-/** REFERRAL AGENT — regras puras de comissionamento e antifraude. */
+/**
+ * REFERRAL AGENT — regras puras do programa de indicação (meta de indicações) e antifraude.
+ *
+ * Indicação (ReferralConversion): PENDING → VALIDATED | CANCELED | REVERSED
+ * Bônus (Commission):             AVAILABLE → REQUESTED → PAID | CANCELED | REVERSED
+ */
 final class CommissionRules
 {
+    private const CONVERSION_TRANSITIONS = [
+        'PENDING' => ['VALIDATED', 'CANCELED', 'REVERSED'],
+        'VALIDATED' => ['CANCELED', 'REVERSED'],
+        'CANCELED' => [],
+        'REVERSED' => [],
+    ];
+
     private const TRANSITIONS = [
-        'PENDING' => ['APPROVED', 'CANCELED', 'REVERSED'],
-        'APPROVED' => ['AVAILABLE', 'CANCELED', 'REVERSED'],
-        'AVAILABLE' => ['REQUESTED', 'REVERSED', 'CANCELED'],
-        'REQUESTED' => ['PAID', 'AVAILABLE', 'CANCELED'],
+        'AVAILABLE' => ['REQUESTED', 'CANCELED', 'REVERSED'],
+        'REQUESTED' => ['PAID', 'AVAILABLE', 'CANCELED', 'REVERSED'],
         'PAID' => ['REVERSED'],
         'CANCELED' => [],
         'REVERSED' => [],
     ];
 
-    /** @param array{model:string, value:int} $s */
-    public static function computeCents(int $amountPaidCents, array $s): int
+    /** Quantos bônus completos cabem em N indicações validadas ainda não usadas. */
+    public static function milestonesReady(int $validatedUnused, int $perMilestone): int
     {
-        if ($amountPaidCents <= 0) {
-            return 0;
-        }
-
-        return $s['model'] === 'FIXED' ? min($s['value'], $amountPaidCents) : (int) floor($amountPaidCents * $s['value'] / 100);
+        return $perMilestone <= 0 ? 0 : intdiv(max(0, $validatedUnused), $perMilestone);
     }
 
-    /** @param array{recurring:bool, first_payment_only:bool} $s */
-    public static function isCommissionable(int $paymentOrdinal, array $s): bool
+    /** Progresso para o próximo bônus: [validadas nesta meta, faltam]. */
+    public static function progress(int $validatedUnused, int $perMilestone): array
     {
-        return $paymentOrdinal <= 1 || ($s['recurring'] && ! $s['first_payment_only']);
+        $done = $perMilestone <= 0 ? 0 : max(0, $validatedUnused) % $perMilestone;
+
+        return ['done' => $done, 'missing' => max(0, $perMilestone - $done), 'per_milestone' => $perMilestone];
+    }
+
+    /** Só o PRIMEIRO pagamento confirmado de cada indicado conta como indicação efetivada. */
+    public static function isConversion(int $paymentOrdinal, bool $alreadyConverted): bool
+    {
+        return $paymentOrdinal <= 1 && ! $alreadyConverted;
     }
 
     public static function availableAt(CarbonInterface $confirmedAt, int $validationDays): CarbonImmutable
@@ -42,6 +56,11 @@ final class CommissionRules
     public static function canTransition(string $from, string $to): bool
     {
         return in_array($to, self::TRANSITIONS[$from] ?? [], true);
+    }
+
+    public static function canTransitionConversion(string $from, string $to): bool
+    {
+        return in_array($to, self::CONVERSION_TRANSITIONS[$from] ?? [], true);
     }
 
     /**

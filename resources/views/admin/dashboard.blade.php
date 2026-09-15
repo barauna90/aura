@@ -19,7 +19,7 @@
 <div class="mt-4 grid gap-4 md:grid-cols-3">
     <div class="card"><h2 class="font-semibold">Provas por status</h2><ul class="mt-2 text-sm">@forelse($exams as $s => $n)<li class="flex justify-between py-1"><span>{{ $s }}</span><span>{{ $n }}</span></li>@empty<li class="text-muted">Nenhuma prova.</li>@endforelse</ul></div>
     <div class="card"><h2 class="font-semibold">Redações por status</h2><ul class="mt-2 text-sm">@forelse($essays as $s => $n)<li class="flex justify-between py-1"><span>{{ $s }}</span><span>{{ $n }}</span></li>@empty<li class="text-muted">Nenhuma redação.</li>@endforelse</ul></div>
-    <div class="card"><h2 class="font-semibold">Comissões</h2><ul class="mt-2 text-sm">@forelse($commissions as $c)<li class="flex justify-between py-1"><span>{{ $c->status }}</span><span>{{ $c->n }} · {{ $brl($c->total) }}</span></li>@empty<li class="text-muted">Nenhuma comissão.</li>@endforelse</ul></div>
+    <div class="card"><h2 class="font-semibold">Bônus de indicação</h2><ul class="mt-2 text-sm">@forelse($commissions as $c)<li class="flex justify-between py-1"><span>{{ $c->status }}</span><span>{{ $c->n }} · {{ $brl($c->total) }}</span></li>@empty<li class="text-muted">Nenhum bônus.</li>@endforelse</ul></div>
 </div>
 <div class="card mt-4">
     <h2 class="font-semibold">Alertas do sistema</h2>

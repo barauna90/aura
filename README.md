@@ -1,6 +1,6 @@
 # Aura Simulados — Preparação intensiva para o ENEM
 
-Plataforma SaaS (PHP 8.3 · Laravel 13 · MySQL 8) para estudantes que não podem pagar um cursinho: provas oficiais anteriores exibidas **exatamente como o Inep publicou**, cronômetro real, cartão-resposta digital, correção pelo gabarito oficial, redação avaliada pelas cinco competências (dois avaliadores independentes + terceiro em divergência), plano de estudos adaptativo, caderno de erros, assinatura mensal via **Asaas** com liberação automática de acesso, programa de indicação com comissões e bolsas.
+Plataforma SaaS (PHP 8.3 · Laravel 13 · MySQL 8) para estudantes que não podem pagar um cursinho: provas oficiais anteriores exibidas **exatamente como o Inep publicou**, cronômetro real, cartão-resposta digital, correção pelo gabarito oficial, redação avaliada pelas cinco competências (dois avaliadores independentes + terceiro em divergência), plano de estudos adaptativo, caderno de erros, assinatura mensal via **Asaas** com liberação automática de acesso, programa de indicação (R$ 40 a cada 4 indicados pagantes) e bolsas.
 
 > **Princípio inegociável:** o sistema nunca inventa questões, alternativas, gabaritos, textos motivadores, temas, durações, notas oficiais ou regras do Inep. Todo conteúdo oficial guarda fonte, versão, checksum e status de auditoria, e só aparece como "prova oficial" quando `VERIFIED` + `PUBLISHED`. Veja [docs/OFFICIAL_CONTENT_POLICY.md](docs/OFFICIAL_CONTENT_POLICY.md).
 
@@ -22,7 +22,7 @@ npm install && npm run build    # gera public/build
 php artisan serve               # http://localhost:8000
 ```
 
-Em produção: `php artisan queue:work` (fila `database` para a correção de redação) e `php artisan schedule:run` no cron a cada minuto (encerramento de provas expiradas, expiração de assinaturas, liberação de comissões). Aponte o document root para `public/`.
+Em produção: `php artisan queue:work` (fila `database` para a correção de redação) e `php artisan schedule:run` no cron a cada minuto (encerramento de provas expiradas, expiração de assinaturas, validação de indicações e geração de bônus). Aponte o document root para `public/`.
 
 Credenciais do seed (troque em produção): `admin@aura.local / Admin123!Troque` e `revisor@aura.local / Revisor123!Troque`.
 
@@ -30,7 +30,7 @@ Credenciais do seed (troque em produção): `admin@aura.local / Admin123!Troque`
 
 1. Em **Administração → Configurações** informe o ambiente (sandbox/produção), a **chave de API** (fica criptografada no banco) e um **token do webhook**.
 2. No painel do Asaas cadastre o webhook com a URL mostrada na tela (`/webhooks/asaas`), o mesmo token, API v3, fila sequencial e os eventos `PAYMENT_CONFIRMED`, `PAYMENT_RECEIVED`, `PAYMENT_OVERDUE`, `PAYMENT_REFUNDED`, `PAYMENT_CHARGEBACK_REQUESTED`, `PAYMENT_DELETED`.
-3. O aluno assina em **Minha assinatura** (PIX, cartão recorrente ou boleto). A assinatura fica `PENDING` até o webhook confirmar; então vira `ACTIVE`, o período é estendido, o aluno é notificado e a comissão do indicador é gerada. Estorno/chargeback revoga o acesso e cancela comissões. Detalhes em [docs/ASAAS.md](docs/ASAAS.md).
+3. O aluno assina em **Minha assinatura** (PIX, cartão recorrente ou boleto). A assinatura fica `PENDING` até o webhook confirmar; então vira `ACTIVE`, o período é estendido, o aluno é notificado e a indicação do indicador é registrada (a cada 4 validadas, bônus de R$ 40). Estorno/chargeback revoga o acesso e invalida a indicação. Detalhes em [docs/ASAAS.md](docs/ASAAS.md).
 
 ## Provas oficiais 2019–2024 (importação automática)
 
@@ -66,7 +66,7 @@ O comando calcula os checksums, cria as questões (1–5 em inglês **e** espanh
 php artisan test
 ```
 
-22 testes / 230+ asserções: guardião (fonte oficial, checksum do gabarito, revisores distintos, alteração versionada que despublica a prova), cronômetro (sem pausa na Prova Real, expiração, retomada no modo estudo), correção (idioma, anuladas, em branco, por área/disciplina, nunca "nota ENEM"), fluxo completo de prova via HTTP, marcações do caderno salvas sem entrar na correção, redação (rascunho sem IA, limite de linhas, A/B, zero por regra da edição, limite do plano), checkout no Asaas + webhook (token, idempotência, ativação, comissão, estorno), configurações criptografadas, cupons, comissões/antifraude, plano de estudos e repetição espaçada.
+23 testes / 270+ asserções: guardião (fonte oficial, checksum do gabarito, revisores distintos, alteração versionada que despublica a prova), cronômetro (sem pausa na Prova Real, expiração, retomada no modo estudo), correção (idioma, anuladas, em branco, por área/disciplina, nunca "nota ENEM"), fluxo completo de prova via HTTP, marcações do caderno salvas sem entrar na correção, redação (rascunho sem IA, limite de linhas, A/B, zero por regra da edição, limite do plano), checkout no Asaas + webhook (token, idempotência, ativação, indicação efetivada, estorno), meta de indicações (bônus de R$ 40 a cada 4 validadas, desistência no prazo, estorno cancela bônus não pago, saque e pagamento), configurações criptografadas, cupons, antifraude, plano de estudos e repetição espaçada.
 
 ## Avisos institucionais
 
