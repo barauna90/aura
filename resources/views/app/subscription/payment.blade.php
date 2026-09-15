@@ -5,6 +5,9 @@
 <h1 class="text-2xl font-semibold">Conclua o pagamento</h1>
 <p class="text-sm text-muted">{{ $payment->subscription?->plan->name }} · {{ $brl($payment->amount_cents - $payment->discount_cents) }}@if($payment->discount_cents > 0) <span class="text-success">(desconto de {{ $brl($payment->discount_cents) }})</span>@endif @if($payment->due_date)· vencimento {{ $payment->due_date->format('d/m/Y') }}@endif</p>
 
+@if(session('status'))<div class="notice-success mt-4">{{ session('status') }}</div>@endif
+@if($errors->any())<div class="notice-danger mt-4">{{ $errors->first() }}</div>@endif
+
 @if($payment->status === 'CONFIRMED')
     <div class="notice-success mt-5"><strong>Pagamento confirmado.</strong> Seu acesso premium está liberado. <a href="{{ route('dashboard') }}" class="underline">Ir para o início</a></div>
 @elseif($payment->status === 'PENDING')
@@ -33,6 +36,25 @@
             <p class="mt-2 text-xs text-muted">Status atual: aguardando pagamento. Você também pode acompanhar em <a href="{{ route('subscription.index') }}" class="underline">Minha assinatura</a>.</p>
         </div>
     </div>
+    @if($otherPlans->isNotEmpty())
+        <div class="card mt-4">
+            <h2 class="font-semibold">Quer trocar de plano?</h2>
+            <p class="text-sm text-muted">Você ainda não pagou, então pode mudar. Esta cobrança é cancelada e uma nova é gerada com o valor do plano escolhido{{ $referralDiscount > 0 ? ' (o desconto de indicação de '.$brl($referralDiscount).' continua valendo)' : '' }}.</p>
+            <div class="mt-3 grid gap-3 md:grid-cols-{{ min(3, $otherPlans->count()) }}">
+                @foreach($otherPlans as $p)
+                    <form method="POST" action="{{ route('subscription.change_plan') }}" class="flex flex-col rounded-2xl border border-border p-4" data-confirm="Trocar para o {{ $p->name }}? A cobrança atual será cancelada e uma nova, de {{ $brl(max(0, $p->price_cents - $referralDiscount)) }}, será gerada.">
+                        @csrf
+                        <input type="hidden" name="plan" value="{{ $p->code }}">
+                        <p class="font-medium">{{ $p->name }} @if($p->badge)<span class="badge-warning">{{ $p->badge }}</span>@endif</p>
+                        <p class="text-2xl font-semibold">{{ $brl($p->price_cents) }}<span class="text-xs font-normal text-muted">/mês</span></p>
+                        @if($referralDiscount > 0)<p class="text-xs text-success">Primeira cobrança: {{ $brl(max(0, $p->price_cents - $referralDiscount)) }}</p>@endif
+                        <ul class="mt-2 flex-1 text-xs text-muted">@foreach($p->benefits as $b)<li>• {{ $b }}</li>@endforeach</ul>
+                        <button class="btn-secondary mt-3 px-3 py-1.5 text-xs">Trocar para {{ $p->name }}</button>
+                    </form>
+                @endforeach
+            </div>
+        </div>
+    @endif
 @else
     <div class="notice-danger mt-5">Esta cobrança está com status <strong>{{ $payment->status }}</strong>. <a href="{{ route('subscription.index') }}" class="underline">Voltar</a></div>
 @endif

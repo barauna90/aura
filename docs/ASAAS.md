@@ -51,6 +51,10 @@ Configurável em `Administração → Indicações` (`referral_settings`), com o
 - **Validação:** cada indicação fica `PENDING` por 7 dias (`validation_days`). Se nesse prazo o indicado cancelar, houver estorno ou chargeback, ela vira `CANCELED`/`REVERSED` e não conta; caso contrário o job diário a torna `VALIDATED`. Ao completar 4 validadas ainda não usadas, `grantMilestones` cria o bônus (`commissions`, `AVAILABLE`) e vincula as 4 (`referral_conversions.commission_id`).
 - **Saque:** mínimo R$ 40,00 (`min_withdrawal_cents`) via PIX; o admin marca como pago em `Administração → Indicações`. Estorno de um indicado cujo bônus ainda não foi pago cancela o bônus e devolve as outras indicações à contagem; bônus já pago fica `REVERSED`.
 
+## Troca de plano antes do pagamento
+
+Na página de pagamento (cobrança `PENDING`) o aluno pode escolher outro plano: `SubscriptionService::changePendingPlan` faz `DELETE /subscriptions/{id}` no Asaas, marca a assinatura e a cobrança locais como `CANCELED`, devolve o uso do cupom e chama `checkout` de novo com o novo plano (mesma forma de pagamento, mesmo cupom, desconto de indicação recalculado). No formulário de assinatura o resumo do pedido (`resources/js/subscription.js`) recalcula o valor ao trocar o plano ou aplicar cupom.
+
 ## Cancelamento e expiração
 
 `POST /assinatura/cancelar` chama `DELETE /subscriptions/{id}` no Asaas e marca `cancel_at_period_end`; o acesso continua até `current_period_end`. O agendador (`routes/console.php`, a cada hora) muda `ACTIVE/TRIALING` vencidos para `CANCELED`, `EXPIRED` ou `PAST_DUE`.

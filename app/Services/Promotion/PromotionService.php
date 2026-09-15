@@ -33,4 +33,10 @@ class PromotionService
     {
         CouponUsage::create(['coupon_id' => $couponId, 'user_id' => $user->id]);
     }
+
+    /** Devolve um uso (cobrança cancelada antes do pagamento). */
+    public function release(int $couponId, User $user): void
+    {
+        CouponUsage::where('coupon_id', $couponId)->where('user_id', $user->id)->latest('id')->first()?->delete();
+    }
 }

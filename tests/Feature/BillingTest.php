@@ -25,16 +25,23 @@ class BillingTest extends TestCase
     {
         parent::setUp();
         Plan::create(['code' => 'ESTUDANTE', 'name' => 'Estudante', 'price_cents' => 2990, 'trial_days' => 0, 'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 8, 'studyPlan' => true, 'tutor' => true], 'benefits' => []]);
+        Plan::create(['code' => 'INTENSIVO', 'name' => 'Intensivo', 'price_cents' => 4990, 'trial_days' => 0, 'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 15, 'studyPlan' => true, 'tutor' => true], 'benefits' => []]);
         $settings = app(SettingsService::class);
         $settings->set('asaas.environment', 'sandbox');
         $settings->set('asaas.api_key', 'test-key');
         $settings->set('asaas.webhook_token', 'webhook-secret');
 
+        $payments = 0;
         Http::fake([
             'api-sandbox.asaas.com/v3/customers' => Http::response(['id' => 'cus_123']),
             'api-sandbox.asaas.com/v3/subscriptions' => Http::response(['id' => 'sub_abc', 'status' => 'ACTIVE']),
-            'api-sandbox.asaas.com/v3/subscriptions/sub_abc/payments' => Http::response(['data' => [['id' => 'pay_1', 'status' => 'PENDING', 'value' => 29.9, 'dueDate' => '2026-09-15', 'invoiceUrl' => 'https://sandbox.asaas.com/i/pay_1', 'bankSlipUrl' => null]]]),
-            'api-sandbox.asaas.com/v3/payments/pay_1/pixQrCode' => Http::response(['encodedImage' => 'AAA', 'payload' => '00020126PIX', 'expirationDate' => '2026-09-15 23:59:59']),
+            // Cada nova assinatura no gateway gera uma cobrança com id diferente (pay_1, pay_2, ...).
+            'api-sandbox.asaas.com/v3/subscriptions/sub_abc/payments' => function () use (&$payments) {
+                $id = 'pay_'.(++$payments);
+
+                return Http::response(['data' => [['id' => $id, 'status' => 'PENDING', 'value' => 29.9, 'dueDate' => '2026-09-15', 'invoiceUrl' => "https://sandbox.asaas.com/i/{$id}", 'bankSlipUrl' => null]]]);
+            },
+            'api-sandbox.asaas.com/v3/payments/*/pixQrCode' => Http::response(['encodedImage' => 'AAA', 'payload' => '00020126PIX', 'expirationDate' => '2026-09-15 23:59:59']),
         ]);
     }
 
@@ -166,6 +173,39 @@ class BillingTest extends TestCase
         $this->withHeaders(['asaas-access-token' => 'webhook-secret'])->postJson('/webhooks/asaas', ['id' => "evt_$gatewayPay", 'event' => 'PAYMENT_CONFIRMED', 'payment' => ['id' => $gatewayPay, 'subscription' => $gatewaySub, 'value' => 19.9]])->assertOk();
 
         return $sub;
+    }
+
+    public function test_user_can_change_plan_before_paying_and_the_amount_is_recalculated(): void
+    {
+        $referrer = User::factory()->create();
+        $user = User::factory()->create(['referred_by_id' => $referrer->id]);
+        $this->actingAs($user)->get('/assinatura')->assertOk()->assertSee('Resumo do pedido')->assertSee('data-price="4990"', false);
+        $this->actingAs($user)->post('/assinatura/assinar', ['plan' => 'ESTUDANTE', 'billing_type' => 'PIX', 'cpf' => '123.456.789-09'])->assertRedirect();
+        $old = Subscription::where('user_id', $user->id)->firstOrFail();
+        $oldPayment = Payment::where('subscription_id', $old->id)->firstOrFail();
+        $this->actingAs($user)->get("/assinatura/pagamento/{$oldPayment->id}")->assertOk()->assertSee('Quer trocar de plano?')->assertSee('Trocar para Intensivo');
+
+        Http::fake(['api-sandbox.asaas.com/v3/subscriptions/sub_abc' => Http::response([], 200)]); // DELETE da assinatura pendente
+        $this->actingAs($user)->post('/assinatura/trocar-plano', ['plan' => 'INTENSIVO'])->assertRedirect()->assertSessionHasNoErrors();
+        Http::assertSent(fn ($r) => $r->method() === 'DELETE' && str_ends_with($r->url(), '/subscriptions/sub_abc'));
+
+        $this->assertSame('CANCELED', $old->fresh()->status);
+        $this->assertSame('CANCELED', $oldPayment->fresh()->status);
+        $new = Subscription::where('user_id', $user->id)->where('status', 'PENDING')->firstOrFail();
+        $this->assertSame('INTENSIVO', $new->plan->code);
+        $this->assertSame('PIX', $new->billing_type);
+        $newPayment = Payment::where('subscription_id', $new->id)->firstOrFail();
+        $this->assertSame(4990, $newPayment->amount_cents);
+        $this->assertSame(1000, $newPayment->discount_cents); // desconto de indicação preservado
+        Http::assertSent(fn ($r) => $r->url() === 'https://api-sandbox.asaas.com/v3/subscriptions' && $r['value'] === 39.9);
+
+        // Mesmo plano → erro; pagamento antigo cancelado não é mais pagável.
+        $this->actingAs($user)->post('/assinatura/trocar-plano', ['plan' => 'INTENSIVO'])->assertSessionHasErrors('plan');
+        $this->actingAs($user)->get("/assinatura/pagamento/{$oldPayment->id}")->assertOk()->assertSee('CANCELED');
+
+        // Pagamento confirmado da nova cobrança ativa o plano Intensivo.
+        $this->withHeaders(['asaas-access-token' => 'webhook-secret'])->postJson('/webhooks/asaas', ['id' => 'evt_9', 'event' => 'PAYMENT_CONFIRMED', 'payment' => ['id' => 'pay_2', 'subscription' => 'sub_abc', 'value' => 39.9]])->assertOk();
+        $this->assertSame('INTENSIVO', app(AccessService::class)->resolve($user)['plan_code']);
     }
 
     public function test_recurring_payment_unknown_locally_is_linked_by_subscription(): void

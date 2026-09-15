@@ -99,6 +99,43 @@ class SubscriptionService
         });
     }
 
+    /**
+     * Troca de plano ANTES do pagamento: a cobrança pendente é cancelada no gateway e uma
+     * nova assinatura é gerada para o plano escolhido (mesma forma de pagamento, mesmo cupom).
+     *
+     * @return array{subscription:Subscription, payment:Payment, pix_image:?string, discount_cents:int, trial_days:int}
+     */
+    public function changePendingPlan(User $user, Plan $newPlan): array
+    {
+        $pending = Subscription::with('coupon')->where('user_id', $user->id)->where('status', 'PENDING')->latest()->first();
+        if (! $pending) {
+            throw ValidationException::withMessages(['plan' => 'Não há assinatura aguardando pagamento para trocar de plano.']);
+        }
+        if ($pending->plan_id === $newPlan->id) {
+            throw ValidationException::withMessages(['plan' => 'Este já é o plano escolhido.']);
+        }
+
+        $couponCode = null;
+        DB::transaction(function () use ($user, $pending, &$couponCode) {
+            if ($pending->gateway_subscription_id) {
+                $this->gateway->cancelSubscription($pending->gateway_subscription_id);
+            }
+            $pending->update(['status' => 'CANCELED', 'canceled_at' => now(), 'cancel_at_period_end' => true]);
+            Payment::where('subscription_id', $pending->id)->where('status', 'PENDING')->update(['status' => 'CANCELED']);
+            if ($pending->coupon_id) {
+                // O uso do cupom volta a valer para a nova cobrança.
+                $couponCode = $pending->coupon?->code;
+                $this->promotions->release($pending->coupon_id, $user);
+            }
+            $this->audit->log('subscription.plan_change', $user->id, 'Subscription', $pending->id, ['from_plan_id' => $pending->plan_id, 'to_plan_id' => null]);
+        });
+
+        $out = $this->checkout($user, $newPlan, $pending->billing_type ?? 'PIX', $couponCode, null, null);
+        $this->audit->log('subscription.plan_changed', $user->id, 'Subscription', $out['subscription']->id, ['from' => $pending->id, 'plan' => $newPlan->code]);
+
+        return $out;
+    }
+
     /** Cancela ao fim do período pago — sem renovação enganosa, sem perda imediata. */
     public function cancel(User $user): Subscription
     {

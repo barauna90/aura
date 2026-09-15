@@ -18,7 +18,11 @@
             <div class="text-right text-sm">
                 <span class="badge-{{ $tone[$sub->status] ?? 'neutral' }}">{{ $sub->status }}</span>
                 <p class="mt-1 text-xs text-muted">{{ $sub->plan->name }} · período até {{ $sub->current_period_end->format('d/m/Y') }}</p>
-                @if($sub->status === 'PENDING')<p class="mt-1 text-xs text-warning">Aguardando confirmação do pagamento.</p>@endif
+                @if($sub->status === 'PENDING')
+                    <p class="mt-1 text-xs text-warning">Aguardando confirmação do pagamento.</p>
+                    @php($pendingPayment = $payments->first(fn ($p) => $p->subscription_id === $sub->id && $p->status === 'PENDING'))
+                    @if($pendingPayment)<a href="{{ route('subscription.payment', $pendingPayment) }}" class="btn-primary mt-2 px-3 py-1 text-xs">Pagar ou trocar de plano</a>@endif
+                @endif
                 @if(in_array($sub->status, ['ACTIVE', 'TRIALING', 'PAST_DUE', 'PENDING']) && !$sub->cancel_at_period_end)
                     <form method="POST" action="{{ route('subscription.cancel') }}" data-confirm="Cancelar a assinatura? Você mantém o acesso até o fim do período já pago." class="mt-2">@csrf<button class="btn-secondary px-3 py-1 text-xs">Cancelar assinatura</button></form>
                 @endif
@@ -30,14 +34,15 @@
 </div>
 
 @if(!$sub || !in_array($sub->status, ['ACTIVE', 'TRIALING']))
-    <form method="POST" action="{{ route('subscription.checkout') }}" class="card mt-4 space-y-4">
+    <form method="POST" action="{{ route('subscription.checkout') }}" class="card mt-4 space-y-4" id="checkout-form" data-referral-discount="{{ $referralDiscount }}">
         @csrf
-        <h2 class="font-semibold">Assinar</h2>
+        <h2 class="font-semibold">Escolha seu plano</h2>
+        <p class="text-sm text-muted">Você pode mudar de ideia: o valor abaixo atualiza na hora e, mesmo depois de gerar a cobrança, dá para trocar de plano antes de pagar.</p>
         @unless($gatewayReady)<div class="notice-warning">O pagamento ainda não está configurado nesta plataforma. Fale com o suporte.</div>@endunless
         <div class="grid gap-3 md:grid-cols-3">
             @foreach($plans as $p)
                 <label class="relative cursor-pointer rounded-2xl border {{ $p->is_featured ? 'border-primary/60' : 'border-border' }} p-4 has-[:checked]:border-primary has-[:checked]:bg-primary/10">
-                    <input type="radio" name="plan" value="{{ $p->code }}" class="sr-only" @checked($p->is_featured || ($loop->first && !$plans->contains('is_featured', true))) required>
+                    <input type="radio" name="plan" value="{{ $p->code }}" class="sr-only" data-price="{{ $p->price_cents }}" data-name="{{ $p->name }}" @checked($p->is_featured || ($loop->first && !$plans->contains('is_featured', true))) required>
                     @if($p->badge)<span class="absolute -top-2.5 left-3 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase text-white">{{ $p->badge }}</span>@endif
                     <p class="font-medium">{{ $p->name }}</p>
                     <p class="text-2xl font-semibold">{{ $brl($p->price_cents) }}<span class="text-xs font-normal text-muted">/mês</span></p>
@@ -54,7 +59,17 @@
         </div>
         @if($referralDiscount > 0)<div class="notice-success">Você entrou por indicação: <strong>{{ $brl($referralDiscount) }} de desconto</strong> serão aplicados na primeira cobrança.</div>@endif
         <div id="coupon-result" hidden class="notice-neutral"></div>
-        <button class="btn-primary px-6 py-3 text-base" @disabled(!$gatewayReady)>Assinar e gerar cobrança</button>
+        <div id="order-summary" class="rounded-2xl border border-primary/40 bg-primary/5 p-4 text-sm" aria-live="polite">
+            <p class="text-xs font-semibold uppercase tracking-wide text-muted">Resumo do pedido</p>
+            <dl class="mt-2 space-y-1">
+                <div class="flex justify-between"><dt>Plano <span data-summary="name" class="font-medium"></span></dt><dd data-summary="price"></dd></div>
+                <div class="flex justify-between text-success" data-summary-row="referral" hidden><dt>Desconto de indicação</dt><dd data-summary="referral"></dd></div>
+                <div class="flex justify-between text-success" data-summary-row="coupon" hidden><dt>Cupom</dt><dd data-summary="coupon"></dd></div>
+                <div class="mt-2 flex justify-between border-t border-border pt-2 text-base font-semibold"><dt>Total da primeira cobrança</dt><dd data-summary="total"></dd></div>
+            </dl>
+            <p class="mt-2 text-xs text-muted">Depois, <span data-summary="recurring"></span> por mês. Cancele quando quiser.</p>
+        </div>
+        <button class="btn-primary px-6 py-3 text-base" @disabled(!$gatewayReady)>Assinar <span data-summary="button"></span> e gerar cobrança</button>
         <p class="text-xs text-muted">O acesso premium é liberado automaticamente assim que o pagamento for confirmado pelo Asaas.</p>
     </form>
 @endif

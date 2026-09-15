@@ -70,8 +70,28 @@ class SubscriptionController extends Controller
         if (! $pixImage && $payment->billing_type === 'PIX' && $payment->status === 'PENDING') {
             $pixImage = $this->asaas->pixQrCode($payment->gateway_payment_id)['image'] ?? null;
         }
+        $payment->load('subscription.plan');
 
-        return view('app.subscription.payment', ['payment' => $payment->load('subscription.plan'), 'pixImage' => $pixImage]);
+        return view('app.subscription.payment', [
+            'payment' => $payment,
+            'pixImage' => $pixImage,
+            // Antes de pagar o aluno pode trocar de plano; o valor é recalculado.
+            'otherPlans' => $payment->status === 'PENDING' && $payment->subscription?->status === 'PENDING'
+                ? Plan::where('is_active', true)->where('price_cents', '>', 0)->where('id', '!=', $payment->subscription->plan_id)->orderBy('sort_order')->get()
+                : collect(),
+            'referralDiscount' => $this->referrals->discountFor($request->user(), $payment->subscription?->plan ?? new Plan(['price_cents' => 0])),
+        ]);
+    }
+
+    /** Troca o plano de uma assinatura ainda não paga e gera a nova cobrança. */
+    public function changePlan(Request $request): RedirectResponse
+    {
+        $data = $request->validate(['plan' => ['required', 'exists:plans,code']]);
+        $plan = Plan::where('code', $data['plan'])->firstOrFail();
+        $out = $this->subscriptions->changePendingPlan($request->user(), $plan);
+        session()->flash('pix_image', $out['pix_image']);
+
+        return redirect()->route('subscription.payment', $out['payment'])->with('status', "Plano alterado para {$plan->name}. Nova cobrança gerada.");
     }
 
     public function cancel(Request $request): RedirectResponse

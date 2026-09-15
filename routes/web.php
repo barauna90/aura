@@ -88,6 +88,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/assinatura/cupom', [SubscriptionController::class, 'checkCoupon'])->name('subscription.coupon');
     Route::post('/assinatura/assinar', [SubscriptionController::class, 'checkout'])->name('subscription.checkout');
     Route::get('/assinatura/pagamento/{payment}', [SubscriptionController::class, 'payment'])->name('subscription.payment');
+    Route::post('/assinatura/trocar-plano', [SubscriptionController::class, 'changePlan'])->name('subscription.change_plan');
     Route::post('/assinatura/cancelar', [SubscriptionController::class, 'cancel'])->name('subscription.cancel');
 
     Route::get('/perfil', [ProfileController::class, 'edit'])->name('profile.edit');
