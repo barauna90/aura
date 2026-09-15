@@ -1,8 +1,8 @@
 @extends('layouts.guest')
 @section('title', 'Criar conta')
 @section('content')
-<h1 class="text-xl font-semibold">Criar conta gratuita</h1>
-<p class="mt-1 text-sm text-muted">Provas oficiais, cartão-resposta e correção. Sem cartão de crédito.</p>
+<h1 class="text-xl font-semibold">Criar conta</h1>
+<p class="mt-1 text-sm text-muted">Crie sua conta e escolha um plano a partir de R$ 29,90/mês. Pagamento por PIX, cartão ou boleto.</p>
 <form method="POST" action="{{ route('register') }}" class="mt-6 space-y-4">
     @csrf
     <div><label class="label" for="name">Nome completo</label><input class="input" id="name" name="name" value="{{ old('name') }}" required minlength="2" autocomplete="name"></div>

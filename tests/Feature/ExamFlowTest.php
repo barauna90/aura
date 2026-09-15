@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Exam;
 use App\Models\ExamBooklet;
 use App\Models\Plan;
+use App\Models\Subscription;
 use App\Models\User;
 use App\Services\Content\ContentImportService;
 use App\Services\Content\GuardianService;
@@ -26,7 +27,7 @@ class ExamFlowTest extends TestCase
     {
         parent::setUp();
         Storage::fake('official');
-        Plan::create(['code' => 'FREE', 'name' => 'Grátis', 'price_cents' => 0, 'limits' => ['fullExamsPerMonth' => 1, 'essaysPerMonth' => 1], 'benefits' => []]);
+        Plan::create(['code' => 'ESTUDANTE', 'name' => 'Estudante', 'price_cents' => 3990, 'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 8, 'studyPlan' => true, 'tutor' => true, 'errorNotebook' => true], 'benefits' => []]);
         $this->admin = User::factory()->admin()->create();
         $this->reviewer = User::factory()->reviewer()->create();
     }
@@ -161,14 +162,20 @@ class ExamFlowTest extends TestCase
         $this->assertContains('ANSWER_KEY_MISMATCH', array_column($problems, 'code'));
     }
 
-    public function test_free_plan_limits_full_exams_per_month(): void
+    public function test_without_subscription_there_is_no_free_plan_and_exams_require_a_paid_plan(): void
     {
         $exam = $this->publishExam();
         $exam->update(['is_free_sample' => false]);
         $student = User::factory()->create();
         $booklet = ExamBooklet::first();
-        $this->actingAs($student)->post("/provas/{$exam->id}/iniciar", ['booklet_id' => $booklet->id, 'mode' => 'PROVA_REAL', 'language' => 'INGLES'])->assertRedirect();
+        // Sem assinatura (não existe plano gratuito): nenhuma prova completa.
         $this->actingAs($student)->post("/provas/{$exam->id}/iniciar", ['booklet_id' => $booklet->id, 'mode' => 'PROVA_REAL', 'language' => 'INGLES'])->assertForbidden();
+        $this->actingAs($student)->get('/assinatura')->assertOk()->assertSee('Sem assinatura ativa')->assertDontSee('Grátis');
+
+        // Assinatura ACTIVE (confirmada por webhook) libera simulados ilimitados.
+        Subscription::create(['user_id' => $student->id, 'plan_id' => Plan::where('code', 'ESTUDANTE')->value('id'), 'status' => 'ACTIVE', 'current_period_start' => now(), 'current_period_end' => now()->addMonth()]);
+        $this->actingAs($student)->post("/provas/{$exam->id}/iniciar", ['booklet_id' => $booklet->id, 'mode' => 'PROVA_REAL', 'language' => 'INGLES'])->assertRedirect();
+        $this->actingAs($student)->post("/provas/{$exam->id}/iniciar", ['booklet_id' => $booklet->id, 'mode' => 'PROVA_REAL', 'language' => 'INGLES'])->assertRedirect();
         $this->actingAs($student)->post("/provas/{$exam->id}/iniciar", ['booklet_id' => $booklet->id, 'mode' => 'ESTUDO', 'language' => 'INGLES', 'areas' => ['HUMANAS']])->assertRedirect();
     }
 }

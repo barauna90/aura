@@ -18,11 +18,11 @@ A tela mostra a URL do webhook a cadastrar no Asaas (`POST /webhooks/asaas`) e o
 
 1. `POST /assinatura/assinar` (`SubscriptionController@checkout`) valida plano, forma de pagamento (`PIX`, `CREDIT_CARD`, `BOLETO`), CPF (obrigatório pelo Asaas; guardado só como hash) e cupom.
 2. `AsaasGateway::ensureCustomer` → `POST /customers` (uma vez por usuário; `users.asaas_customer_id`).
-3. Cria `subscriptions` local (`PENDING`, ou `TRIALING` se houver trial) e chama `POST /subscriptions` com `billingType`, `value`, `nextDueDate`, `cycle: MONTHLY`, `externalReference: sub:{id}`.
+3. Cria `subscriptions` local (`PENDING`; `TRIALING` só se um cupom `FREE_TRIAL` ou o plano definir dias de teste — o padrão do produto é zero) e chama `POST /subscriptions` com `billingType`, `value`, `nextDueDate`, `cycle: MONTHLY`, `externalReference: sub:{id}`.
 4. Busca a primeira cobrança em `GET /subscriptions/{id}/payments`; para PIX também `GET /payments/{id}/pixQrCode`. Grava `payments` (`PENDING`, `invoice_url`, `bank_slip_url`, `pix_payload`).
 5. A tela `/assinatura/pagamento/{payment}` mostra QR Code PIX / boleto / link da fatura hospedada pelo Asaas (dados de cartão nunca passam pela plataforma) e recarrega a cada 15 s.
 
-**O navegador nunca libera acesso.** `AccessService::resolve` só considera `subscriptions.status ∈ {TRIALING, ACTIVE}` com `current_period_end` futuro — e `ACTIVE` só é escrito pelo webhook.
+**O navegador nunca libera acesso e não existe plano gratuito.** Sem bolsa ou assinatura, `AccessService::resolve` devolve `tier = NONE` (nenhuma prova completa, nenhuma redação). `AccessService::resolve` só considera `subscriptions.status ∈ {TRIALING, ACTIVE}` com `current_period_end` futuro — e `ACTIVE` só é escrito pelo webhook.
 
 ## Webhook
 

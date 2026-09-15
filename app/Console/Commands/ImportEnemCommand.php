@@ -25,7 +25,7 @@ class ImportEnemCommand extends Command
                             {--publish : Avança IMPORTED → PUBLISHED (exige dois revisores distintos)}
                             {--admin=admin@aura.local}
                             {--reviewer=revisor@aura.local}
-                            {--free-sample=2024 : Anos marcados como amostra gratuita (separados por vírgula)}';
+                            {--free-sample= : Anos marcados como amostra (acessível sem assinatura), separados por vírgula; vazio = nenhum}';
 
     protected $description = 'Importa provas oficiais do ENEM a partir do manifesto extraído dos PDFs do Inep';
 

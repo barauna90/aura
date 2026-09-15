@@ -29,7 +29,7 @@
                         <p class="text-xs text-muted">ENEM {{ $e->edition->year }} · {{ $E::APPLICATIONS[$e->application] }} · {{ $e->day }}º dia</p>
                         <h2 class="mt-1 font-semibold">{{ $e->title }}</h2>
                     </div>
-                    @if($e->is_free_sample)<span class="badge-success">Gratuita</span>@endif
+                    @if($e->is_free_sample)<span class="badge-success">Amostra</span>@endif
                 </div>
                 <div class="mt-3 flex flex-wrap gap-1.5">
                     @foreach($e->areas as $a)<span class="badge-neutral">{{ $E::AREA_SHORT[$a] ?? $a }}</span>@endforeach

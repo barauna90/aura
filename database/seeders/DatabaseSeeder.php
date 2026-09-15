@@ -18,18 +18,19 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         foreach ([
-            ['code' => 'FREE', 'name' => 'Plano gratuito', 'description' => 'Conheça a plataforma com uma prova oficial completa por mês e uma correção de redação.', 'price_cents' => 0, 'trial_days' => 0, 'sort_order' => 0,
-                'limits' => ['fullExamsPerMonth' => 1, 'essaysPerMonth' => 1, 'studyPlan' => false, 'tutor' => false, 'errorNotebook' => true],
-                'benefits' => ['1 prova oficial completa por mês', 'Modo Estudo nas provas de amostra', '1 correção simulada de redação por mês', 'Caderno de erros']],
-            ['code' => 'ESTUDANTE', 'name' => 'Plano Estudante', 'description' => 'Assinatura mensal acessível com todas as provas oficiais e plano de estudos.', 'price_cents' => 2990, 'trial_days' => 7, 'sort_order' => 1,
-                'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 4, 'studyPlan' => true, 'tutor' => true, 'errorNotebook' => true],
-                'benefits' => ['Acesso completo a todas as provas oficiais', 'Simulados ilimitados no Modo Prova Real', '4 correções simuladas de redação por mês', 'Plano de estudos personalizado', 'Professor IA', 'Indique e ganhe comissões']],
-            ['code' => 'INTENSIVO', 'name' => 'Plano Intensivo', 'description' => 'Para quem está na reta final: mais correções de redação e rotina intensiva.', 'price_cents' => 4990, 'trial_days' => 7, 'sort_order' => 2,
-                'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 12, 'studyPlan' => true, 'tutor' => true, 'errorNotebook' => true],
-                'benefits' => ['Tudo do Estudante', '12 correções simuladas de redação por mês', 'Modo Intensivo ENEM', 'Prioridade na fila de correção']],
+            ['code' => 'REDE_PUBLICA', 'name' => 'Rede Pública', 'description' => 'Para estudantes da rede pública: acesso completo a um preço que cabe no bolso.', 'price_cents' => 2990, 'sort_order' => 1,
+                'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 4, 'studyPlan' => true, 'tutor' => true, 'errorNotebook' => true, 'intensive' => false, 'priorityEssay' => false],
+                'benefits' => ['Acesso a todas as provas oficiais', 'Simulados ilimitados no Modo Prova Real', '4 correções simuladas de redação por mês', 'Plano de estudos personalizado', 'Indique e ganhe']],
+            ['code' => 'ESTUDANTE', 'name' => 'Plano Estudante', 'description' => 'O plano mais escolhido: mais correções de redação e todos os recursos.', 'price_cents' => 3990, 'sort_order' => 2, 'badge' => 'PROMOÇÃO', 'is_featured' => true,
+                'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 8, 'studyPlan' => true, 'tutor' => true, 'errorNotebook' => true, 'intensive' => false, 'priorityEssay' => false],
+                'benefits' => ['Acesso a todas as provas oficiais', 'Simulados ilimitados no Modo Prova Real', '8 correções simuladas de redação por mês', 'Plano de estudos personalizado', 'Indique e ganhe']],
+            ['code' => 'INTENSIVO', 'name' => 'Plano Intensivo', 'description' => 'Para quem está na reta final: rotina intensiva e prioridade na correção.', 'price_cents' => 4990, 'sort_order' => 3,
+                'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 15, 'studyPlan' => true, 'tutor' => true, 'errorNotebook' => true, 'intensive' => true, 'priorityEssay' => true],
+                'benefits' => ['Acesso a todas as provas oficiais', 'Simulados ilimitados no Modo Prova Real', '15 correções simuladas de redação por mês', 'Modo Intensivo ENEM', 'Prioridade na correção', 'Indique e ganhe']],
         ] as $p) {
-            Plan::updateOrCreate(['code' => $p['code']], $p + ['interval_months' => 1, 'is_active' => true]);
+            Plan::updateOrCreate(['code' => $p['code']], $p + ['interval_months' => 1, 'trial_days' => 0, 'is_active' => true, 'badge' => null, 'is_featured' => false]);
         }
+        Plan::where('code', 'FREE')->delete();
 
         ReferralSetting::current();
 

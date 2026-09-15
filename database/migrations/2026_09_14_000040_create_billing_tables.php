@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 30)->unique(); // FREE | ESTUDANTE | INTENSIVO
+            $table->string('code', 30)->unique(); // REDE_PUBLICA | ESTUDANTE | INTENSIVO
             $table->string('name', 80);
             $table->string('description', 300)->nullable();
             $table->unsignedInteger('price_cents');
@@ -22,6 +22,8 @@ return new class extends Migration
             $table->unsignedSmallInteger('trial_days')->default(0);
             $table->json('limits');
             $table->json('benefits');
+            $table->string('badge', 30)->nullable(); // ex.: PROMOÇÃO
+            $table->boolean('is_featured')->default(false); // plano em destaque na vitrine
             $table->boolean('is_active')->default(true);
             $table->unsignedSmallInteger('sort_order')->default(0);
             $table->timestamps();

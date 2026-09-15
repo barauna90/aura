@@ -28,12 +28,16 @@ class PlanController extends Controller
             'trial_days' => ['required', 'integer', 'min:0', 'max:90'],
             'benefits' => ['nullable', 'string'],
             'limits' => ['required', 'json'],
+            'badge' => ['nullable', 'string', 'max:30'],
+            'is_featured' => ['nullable', 'boolean'],
             'is_active' => ['nullable', 'boolean'],
             'sort_order' => ['required', 'integer', 'min:0'],
         ]);
         $data['benefits'] = array_values(array_filter(array_map('trim', preg_split('/\r?\n/', (string) ($data['benefits'] ?? '')))));
         $data['limits'] = json_decode($data['limits'], true);
         $data['is_active'] = $request->boolean('is_active');
+        $data['is_featured'] = $request->boolean('is_featured');
+        $data['badge'] = $data['badge'] ?: null;
         $plan = Plan::updateOrCreate(['code' => $data['code']], $data);
         $audit->log('plan.upserted', $request->user()->id, 'Plan', $plan->id, $data);
 

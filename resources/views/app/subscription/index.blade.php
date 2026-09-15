@@ -11,8 +11,8 @@
     <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
             <p class="text-sm text-muted">Acesso atual</p>
-            <p class="text-lg font-semibold">{{ $access['plan_name'] }} <span class="badge-{{ $access['tier'] === 'PREMIUM' ? 'success' : 'neutral' }}">{{ $access['tier'] === 'PREMIUM' ? 'Premium' : 'Gratuito' }}</span></p>
-            <p class="text-xs text-muted">{{ ['SCHOLARSHIP' => 'Bolsa de estudos', 'SUBSCRIPTION' => 'Assinatura', 'FREE_PLAN' => 'Plano gratuito'][$access['source']] }}@if($access['valid_until']) · válido até {{ $access['valid_until']->format('d/m/Y') }}@endif</p>
+            <p class="text-lg font-semibold">{{ $access['plan_name'] }} <span class="badge-{{ $access['tier'] === 'PREMIUM' ? 'success' : 'warning' }}">{{ $access['tier'] === 'PREMIUM' ? 'Ativa' : 'Sem acesso' }}</span></p>
+            <p class="text-xs text-muted">{{ ['SCHOLARSHIP' => 'Bolsa de estudos', 'SUBSCRIPTION' => 'Assinatura', 'NO_SUBSCRIPTION' => 'Assine um plano para liberar as provas, simulados e correções'][$access['source']] }}@if($access['valid_until']) · válido até {{ $access['valid_until']->format('d/m/Y') }}@endif</p>
         </div>
         @if($sub)
             <div class="text-right text-sm">
@@ -36,8 +36,9 @@
         @unless($gatewayReady)<div class="notice-warning">O pagamento ainda não está configurado nesta plataforma. Fale com o suporte.</div>@endunless
         <div class="grid gap-3 md:grid-cols-3">
             @foreach($plans as $p)
-                <label class="cursor-pointer rounded-2xl border border-border p-4 has-[:checked]:border-primary has-[:checked]:bg-primary/10">
-                    <input type="radio" name="plan" value="{{ $p->code }}" class="sr-only" @checked($loop->first) required>
+                <label class="relative cursor-pointer rounded-2xl border {{ $p->is_featured ? 'border-primary/60' : 'border-border' }} p-4 has-[:checked]:border-primary has-[:checked]:bg-primary/10">
+                    <input type="radio" name="plan" value="{{ $p->code }}" class="sr-only" @checked($p->is_featured || ($loop->first && !$plans->contains('is_featured', true))) required>
+                    @if($p->badge)<span class="absolute -top-2.5 left-3 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase text-white">{{ $p->badge }}</span>@endif
                     <p class="font-medium">{{ $p->name }}</p>
                     <p class="text-2xl font-semibold">{{ $brl($p->price_cents) }}<span class="text-xs font-normal text-muted">/mês</span></p>
                     @if($p->trial_days > 0)<p class="text-xs text-success">{{ $p->trial_days }} dias grátis</p>@endif

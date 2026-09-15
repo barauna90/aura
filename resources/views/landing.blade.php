@@ -173,17 +173,15 @@
     {{-- PLANOS + INDIQUE --}}
     <section id="planos" class="mx-auto grid max-w-7xl gap-6 px-4 pb-16 md:grid-cols-[1.4fr_1fr] md:px-8">
         <div class="card-glass">
-            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Mensalidade acessível</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Planos mensais</p>
             <h2 class="mt-2 text-3xl font-bold tracking-tight">Estude muito por pouco.</h2>
-            <p class="mt-2 text-muted">Conhecimento de qualidade a um preço que cabe no seu bolso. Sem taxas escondidas, sem renovação enganosa.</p>
+            <p class="mt-2 text-muted">Três planos, todos com acesso a todas as provas oficiais e simulados ilimitados. Sem taxas escondidas, sem renovação enganosa — cancele quando quiser.</p>
             <div class="mt-6 grid gap-4 md:grid-cols-3">
                 @foreach($plans as $plan)
-                    <div class="rounded-2xl border {{ $plan->code === 'ESTUDANTE' ? 'border-primary bg-primary/10' : 'border-border bg-surface' }} p-4">
+                    <div class="relative rounded-2xl border {{ $plan->is_featured ? 'border-primary bg-primary/10 shadow-lg shadow-primary/10 md:-my-2' : 'border-border bg-surface' }} p-4">
+                        @if($plan->badge)<span class="absolute -top-3 left-4 rounded-full bg-gradient-to-r from-[#7c5cff] to-[#3b82f6] px-3 py-0.5 text-[11px] font-bold uppercase tracking-wide text-white shadow">{{ $plan->badge }}</span>@endif
                         <p class="text-sm font-semibold">{{ $plan->name }}</p>
-                        <p class="mt-2 text-3xl font-bold">
-                            @if($plan->price_cents === 0) Grátis @else R$ {{ number_format($plan->price_cents / 100, 2, ',', '.') }}<span class="text-sm font-normal text-muted">/mês</span> @endif
-                        </p>
-                        @if($plan->trial_days > 0)<span class="badge bg-warning/20 text-warning">Teste grátis {{ $plan->trial_days }} dias</span>@endif
+                        <p class="mt-2 text-3xl font-bold">R$ {{ number_format($plan->price_cents / 100, 2, ',', '.') }}<span class="text-sm font-normal text-muted">/mês</span></p>
                         <ul class="mt-3 space-y-1 text-xs text-muted">
                             @foreach($plan->benefits as $b)<li class="flex gap-1.5"><x-icon name="check" class="h-3.5 w-3.5 shrink-0 text-success" /> {{ $b }}</li>@endforeach
                         </ul>

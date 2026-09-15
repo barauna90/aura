@@ -14,13 +14,14 @@ use Illuminate\Auth\Access\AuthorizationException;
 
 /**
  * Direitos de acesso. Ordem: bolsa ativa → assinatura TRIALING/ACTIVE
- * (confirmada por webhook) → plano gratuito. Nunca confia no navegador.
+ * (confirmada por webhook) → sem acesso (não existe plano gratuito). Nunca confia no navegador.
  */
 class AccessService
 {
-    private const FREE_FALLBACK = ['fullExamsPerMonth' => 1, 'essaysPerMonth' => 1, 'studyPlan' => false, 'tutor' => false, 'errorNotebook' => true];
+    /** Sem assinatura: nada além das provas marcadas como amostra pelo admin. */
+    private const NO_ACCESS = ['fullExamsPerMonth' => 0, 'essaysPerMonth' => 0, 'studyPlan' => false, 'tutor' => false, 'errorNotebook' => false, 'intensive' => false, 'priorityEssay' => false];
 
-    /** @return array{tier:string, source:string, plan_code:string, plan_name:string, limits:array, valid_until:?CarbonInterface} */
+    /** @return array{tier:string, source:string, plan_code:?string, plan_name:string, limits:array, valid_until:?CarbonInterface} */
     public function resolve(User $user): array
     {
         $scholarship = Scholarship::where('user_id', $user->id)->where('active', true)
@@ -40,15 +41,13 @@ class AccessService
         if ($sub) {
             return [
                 'tier' => 'PREMIUM', 'source' => 'SUBSCRIPTION', 'plan_code' => $sub->plan->code, 'plan_name' => $sub->plan->name,
-                'limits' => array_merge(self::FREE_FALLBACK, $sub->plan->limits ?? []), 'valid_until' => $sub->current_period_end,
+                'limits' => array_merge(self::NO_ACCESS, $sub->plan->limits ?? []), 'valid_until' => $sub->current_period_end,
             ];
         }
 
-        $free = Plan::where('code', 'FREE')->first();
-
         return [
-            'tier' => 'FREE', 'source' => 'FREE_PLAN', 'plan_code' => 'FREE', 'plan_name' => $free?->name ?? 'Plano gratuito',
-            'limits' => array_merge(self::FREE_FALLBACK, $free?->limits ?? []), 'valid_until' => null,
+            'tier' => 'NONE', 'source' => 'NO_SUBSCRIPTION', 'plan_code' => null, 'plan_name' => 'Sem assinatura ativa',
+            'limits' => self::NO_ACCESS, 'valid_until' => null,
         ];
     }
 
@@ -69,6 +68,9 @@ class AccessService
         $used = ExamSession::where('user_id', $user->id)->where('mode', 'PROVA_REAL')
             ->where('created_at', '>=', now()->startOfMonth())
             ->whereHas('exam', fn ($q) => $q->where('is_free_sample', false))->count();
+        if ($limit === 0) {
+            throw new AuthorizationException('Assine um plano para fazer as provas oficiais completas.');
+        }
         if ($used >= $limit) {
             throw new AuthorizationException("Seu plano permite {$limit} prova(s) completa(s) por mês. Assine para liberar acesso ilimitado.");
         }
@@ -81,6 +83,9 @@ class AccessService
             return;
         }
         $used = Essay::where('user_id', $user->id)->where('submitted_at', '>=', now()->startOfMonth())->count();
+        if ($limit === 0) {
+            throw new AuthorizationException('Assine um plano para enviar redações para correção.');
+        }
         if ($used >= $limit) {
             throw new AuthorizationException("Seu plano permite {$limit} correção(ões) de redação por mês.");
         }
@@ -89,7 +94,7 @@ class AccessService
     public function assertFeature(User $user, string $feature): void
     {
         if (empty($this->resolve($user)['limits'][$feature])) {
-            throw new AuthorizationException('Este recurso está disponível nos planos pagos e para bolsistas.');
+            throw new AuthorizationException('Este recurso está disponível para assinantes e bolsistas.');
         }
     }
 }

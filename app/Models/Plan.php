@@ -14,6 +14,7 @@ class Plan extends Model
             'limits' => 'array',
             'benefits' => 'array',
             'is_active' => 'boolean',
+            'is_featured' => 'boolean',
         ];
     }
 

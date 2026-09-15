@@ -17,7 +17,7 @@ Documentação: [ARCHITECTURE](docs/ARCHITECTURE.md) · [AGENTS](docs/AGENTS.md)
 composer install
 cp .env.example .env            # ajuste DB_*, APP_URL e (opcional) ASAAS_*
 php artisan key:generate
-php artisan migrate --seed      # planos, admin, revisor, tópicos do guia — NÃO cria provas
+php artisan migrate --seed      # 3 planos pagos (Rede Pública R$ 29,90 · Estudante R$ 39,90 · Intensivo R$ 49,90), admin, revisor — NÃO cria provas
 npm install && npm run build    # gera public/build
 php artisan serve               # http://localhost:8000
 ```
@@ -25,6 +25,18 @@ php artisan serve               # http://localhost:8000
 Em produção: `php artisan queue:work` (fila `database` para a correção de redação) e `php artisan schedule:run` no cron a cada minuto (encerramento de provas expiradas, expiração de assinaturas, validação de indicações e geração de bônus). Aponte o document root para `public/`.
 
 Credenciais do seed (troque em produção): `admin@aura.local / Admin123!Troque` e `revisor@aura.local / Revisor123!Troque`.
+
+## Planos
+
+Não existe plano gratuito nem período de teste: sem assinatura ativa (ou bolsa) o aluno só acessa provas marcadas como amostra pelo admin. Os três planos são editáveis em **Administração → Planos** (preço, benefícios, limites, selo e destaque):
+
+| Plano | Preço | Correções de redação/mês | Extras |
+|---|---|---|---|
+| Rede Pública | R$ 29,90 | 4 | Plano de estudos, Indique e ganhe |
+| Plano Estudante (destaque, selo PROMOÇÃO) | R$ 39,90 | 8 | Plano de estudos, Indique e ganhe |
+| Plano Intensivo | R$ 49,90 | 15 | Modo Intensivo ENEM, prioridade na correção, Indique e ganhe |
+
+Todos incluem acesso a todas as provas oficiais e simulados ilimitados no Modo Prova Real.
 
 ## Asaas — cobrança e liberação automática
 
@@ -43,7 +55,7 @@ python tools/inep_extract.py storage/inep storage/inep/manifest.json # (opcional
 php artisan enem:import --publish                                    # importa, valida e publica pelo guardião
 ```
 
-O comando calcula os checksums, cria as questões (1–5 em inglês **e** espanhol), registra o gabarito oficial (anuladas incluídas) e percorre o fluxo `Importado → Validação automática → Revisão 1 (revisor) → Revisão 2 (admin) → Publicado`, reverificando o PDF e o gabarito antes de publicar. A edição 2024 fica marcada como amostra gratuita (`--free-sample=2024`). Sem `--publish`, as provas ficam em `IMPORTADO` aguardando a revisão humana no painel.
+O comando calcula os checksums, cria as questões (1–5 em inglês **e** espanhol), registra o gabarito oficial (anuladas incluídas) e percorre o fluxo `Importado → Validação automática → Revisão 1 (revisor) → Revisão 2 (admin) → Publicado`, reverificando o PDF e o gabarito antes de publicar. Nenhuma prova fica liberada sem assinatura, a menos que você passe `--free-sample=2024` (marca a edição como amostra acessível a quem ainda não assinou). Sem `--publish`, as provas ficam em `IMPORTADO` aguardando a revisão humana no painel.
 
 > As propostas de redação (tema e textos motivadores) **não** são importadas automaticamente — cadastre-as no painel com a transcrição fiel do caderno oficial; até lá, as provas do 1º dia funcionam sem a etapa de redação.
 

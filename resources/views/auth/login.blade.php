@@ -13,5 +13,5 @@
     </div>
     <button class="btn-primary w-full">Entrar</button>
 </form>
-<p class="mt-4 text-center text-sm text-muted">Não tem conta? <a href="{{ route('register') }}" class="text-primary hover:underline">Criar conta gratuita</a></p>
+<p class="mt-4 text-center text-sm text-muted">Não tem conta? <a href="{{ route('register') }}" class="text-primary hover:underline">Criar conta</a></p>
 @endsection

@@ -24,8 +24,7 @@ class BillingTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Plan::create(['code' => 'FREE', 'name' => 'Grátis', 'price_cents' => 0, 'limits' => ['fullExamsPerMonth' => 1, 'essaysPerMonth' => 1], 'benefits' => []]);
-        Plan::create(['code' => 'ESTUDANTE', 'name' => 'Estudante', 'price_cents' => 2990, 'trial_days' => 0, 'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 4, 'studyPlan' => true, 'tutor' => true], 'benefits' => []]);
+        Plan::create(['code' => 'ESTUDANTE', 'name' => 'Estudante', 'price_cents' => 2990, 'trial_days' => 0, 'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 8, 'studyPlan' => true, 'tutor' => true], 'benefits' => []]);
         $settings = app(SettingsService::class);
         $settings->set('asaas.environment', 'sandbox');
         $settings->set('asaas.api_key', 'test-key');
@@ -51,7 +50,7 @@ class BillingTest extends TestCase
         $this->assertSame('sub_abc', $sub->gateway_subscription_id);
         $this->assertSame('00020126PIX', $payment->pix_payload);
         $this->assertSame(1000, $payment->discount_cents); // indicado ganha R$ 10 na assinatura
-        $this->assertSame('FREE', app(AccessService::class)->resolve($user)['tier'] === 'FREE' ? 'FREE' : 'PREMIUM');
+        $this->assertSame('NONE', app(AccessService::class)->resolve($user)['tier']); // sem plano gratuito: nada até o webhook
         Http::assertSent(fn ($r) => $r->url() === 'https://api-sandbox.asaas.com/v3/subscriptions' && $r->hasHeader('access_token', 'test-key') && $r['billingType'] === 'PIX' && $r['value'] === 19.9); // R$ 10 de desconto de indicação
 
         // Webhook sem token → rejeitado, nada muda.
@@ -78,7 +77,7 @@ class BillingTest extends TestCase
         // Estorno → REFUNDED, acesso revogado, indicação estornada.
         $this->withHeaders(['asaas-access-token' => 'webhook-secret'])->postJson('/webhooks/asaas', ['id' => 'evt_2', 'event' => 'PAYMENT_REFUNDED', 'payment' => ['id' => 'pay_1']])->assertOk();
         $this->assertSame('REFUNDED', $sub->fresh()->status);
-        $this->assertSame('FREE', app(AccessService::class)->resolve($user)['tier']);
+        $this->assertSame('NONE', app(AccessService::class)->resolve($user)['tier']);
         $this->assertSame('REVERSED', $conversion->fresh()->status);
     }
 

@@ -9,6 +9,7 @@ use App\Models\EssayZeroRule;
 use App\Models\Exam;
 use App\Models\ExamEdition;
 use App\Models\Plan;
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -20,11 +21,22 @@ class EssayFlowTest extends TestCase
 
     private EssayPrompt $prompt;
 
+    private Plan $plan;
+
+    private function subscriber(): User
+    {
+        $user = User::factory()->create();
+        Subscription::create(['user_id' => $user->id, 'plan_id' => $this->plan->id, 'status' => 'ACTIVE', 'current_period_start' => now(), 'current_period_end' => now()->addMonth()]);
+
+        return $user;
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
         config(['queue.default' => 'sync']);
-        Plan::create(['code' => 'FREE', 'name' => 'Grátis', 'price_cents' => 0, 'limits' => ['fullExamsPerMonth' => 1, 'essaysPerMonth' => 2], 'benefits' => []]);
+        // Não existe plano gratuito: os testes assinam um plano com 2 correções/mês.
+        $this->plan = Plan::create(['code' => 'REDE_PUBLICA', 'name' => 'Rede Pública', 'price_cents' => 2990, 'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 2, 'studyPlan' => true, 'tutor' => true, 'errorNotebook' => true], 'benefits' => []]);
         $source = ContentSource::create(['source_type' => 'OFFICIAL_INEP', 'source_url' => 'https://download.inep.gov.br/x.pdf', 'source_year' => 2023, 'document_version' => 'v1', 'checksum' => 'abc', 'review_status' => 'VERIFIED']);
         $edition = ExamEdition::create(['year' => 2023, 'name' => 'ENEM 2023']);
         $exam = Exam::create(['exam_edition_id' => $edition->id, 'application' => 'REGULAR', 'day' => 1, 'title' => 'ENEM 2023', 'duration_minutes' => 330, 'areas' => ['REDACAO'], 'has_essay' => true, 'content_source_id' => $source->id, 'review_status' => 'VERIFIED', 'pipeline_stage' => 'PUBLISHED']);
@@ -34,7 +46,7 @@ class EssayFlowTest extends TestCase
 
     public function test_essay_is_evaluated_by_two_independent_evaluators(): void
     {
-        $user = User::factory()->create();
+        $user = $this->subscriber();
         $this->actingAs($user)->post("/redacao/proposta/{$this->prompt->id}")->assertRedirect();
         $essay = Essay::first();
         $text = implode("\n", array_fill(0, 18, 'A sociedade brasileira precisa enfrentar o problema com políticas públicas; cabe ao Estado agir com medidas concretas.'));
@@ -54,7 +66,7 @@ class EssayFlowTest extends TestCase
 
     public function test_insufficient_text_gets_zero_from_edition_rule_without_calling_evaluators(): void
     {
-        $user = User::factory()->create();
+        $user = $this->subscriber();
         $essay = Essay::create(['user_id' => $user->id, 'essay_prompt_id' => $this->prompt->id, 'draft_text' => "só\nduas linhas"]);
         $this->actingAs($user)->post("/redacao/{$essay->id}/enviar")->assertRedirect();
         $essay->refresh();
@@ -64,9 +76,13 @@ class EssayFlowTest extends TestCase
         $this->assertContains('ZERO:INSUFICIENTE', $essay->finalResult->consistency_flags);
     }
 
-    public function test_free_plan_limits_essays_per_month(): void
+    public function test_plan_limits_essays_per_month_and_no_subscription_means_no_essay(): void
     {
-        $user = User::factory()->create();
+        $nobody = User::factory()->create();
+        $e = Essay::create(['user_id' => $nobody->id, 'essay_prompt_id' => $this->prompt->id, 'draft_text' => implode("\n", array_fill(0, 10, 'linha de texto'))]);
+        $this->actingAs($nobody)->post("/redacao/{$e->id}/enviar")->assertForbidden();
+
+        $user = $this->subscriber();
         foreach ([1, 2] as $_) {
             $e = Essay::create(['user_id' => $user->id, 'essay_prompt_id' => $this->prompt->id, 'draft_text' => implode("\n", array_fill(0, 10, 'linha de texto'))]);
             $this->actingAs($user)->post("/redacao/{$e->id}/enviar")->assertRedirect();
