@@ -82,9 +82,15 @@ class ExamEngineService
             $this->finalize($session, 'EXPIRED');
             $session->refresh();
         }
-        $answers = Answer::where('answer_sheet_id', $session->answerSheet->id)->orderBy('question_number')
-            ->get(['question_id', 'question_number', 'option', 'change_count']);
+        $answers = Answer::with('question:id,page_number,area,foreign_language')->where('answer_sheet_id', $session->answerSheet->id)->orderBy('question_number')
+            ->get(['question_id', 'question_number', 'option', 'draft_option', 'change_count'])
+            ->map(fn (Answer $a) => [
+                'question_id' => $a->question_id, 'question_number' => $a->question_number, 'option' => $a->option,
+                'draft_option' => $a->draft_option, 'change_count' => $a->change_count, 'page' => $a->question?->page_number, 'area' => $a->question?->area,
+            ]);
         $answered = $answers->whereNotNull('option')->count();
+        $drafted = $answers->whereNotNull('draft_option')->count();
+        $untransferred = $answers->filter(fn ($a) => $a['draft_option'] && $a['option'] !== $a['draft_option'])->count();
 
         return [
             'id' => $session->id,
@@ -93,7 +99,7 @@ class ExamEngineService
             'language' => $session->language,
             'remaining_seconds' => TimerRules::remainingSeconds($this->timer($session)),
             'server_time' => now()->toIso8601String(),
-            'answer_sheet' => ['answered' => $answered, 'blank' => $answers->count() - $answered, 'total' => $answers->count(), 'answers' => $answers],
+            'answer_sheet' => ['answered' => $answered, 'blank' => $answers->count() - $answered, 'total' => $answers->count(), 'drafted' => $drafted, 'untransferred' => $untransferred, 'answers' => $answers->values()],
             'finished' => $session->isFinished(),
             'notices' => [
                 'answer_sheet_only' => Disclaimers::ANSWER_SHEET_ONLY,
@@ -102,7 +108,12 @@ class ExamEngineService
         ];
     }
 
-    /** @param array<int, array{question_id:int, option:?string, time_spent_sec?:?int}> $entries */
+    /**
+     * Salva marcações. `option` = cartão-resposta (corrigido); `draft_option` = marcação no caderno
+     * (rascunho, nunca corrigida). Cada chave só é alterada quando presente na entrada.
+     *
+     * @param array<int, array{question_id:int, option?:?string, draft_option?:?string, time_spent_sec?:?int}> $entries
+     */
     public function saveAnswers(ExamSession $session, array $entries): array
     {
         if ($session->status === 'CREATED') {
@@ -126,13 +137,15 @@ class ExamEngineService
                 if (! $row) {
                     continue;
                 }
-                $option = $e['option'] ?: null;
-                $row->update([
-                    'option' => $option,
-                    'change_count' => $row->change_count + ($row->option !== $option ? 1 : 0),
-                    'answered_at' => $option ? now() : null,
-                    'time_spent_sec' => $e['time_spent_sec'] ?? $row->time_spent_sec,
-                ]);
+                $data = ['time_spent_sec' => $e['time_spent_sec'] ?? $row->time_spent_sec];
+                if (array_key_exists('option', $e)) {
+                    $option = $e['option'] ?: null;
+                    $data += ['option' => $option, 'change_count' => $row->change_count + ($row->option !== $option ? 1 : 0), 'answered_at' => $option ? now() : null];
+                }
+                if (array_key_exists('draft_option', $e)) {
+                    $data['draft_option'] = $e['draft_option'] ?: null;
+                }
+                $row->update($data);
             }
         });
 
@@ -246,7 +259,7 @@ class ExamEngineService
 
             return [
                 'question_id' => $q->id, 'number' => $q->original_number, 'area' => $q->area, 'page' => $q->page_number,
-                'marked' => $a->option, 'official' => $official?->correct, 'annulled' => $annulled, 'status' => $status,
+                'marked' => $a->option, 'draft' => $a->draft_option, 'official' => $official?->correct, 'annulled' => $annulled, 'status' => $status,
                 'change_count' => $a->change_count, 'time_spent_sec' => $a->time_spent_sec,
                 'topic' => $cls?->topic?->name, 'discipline' => $cls?->discipline, 'skill' => $cls?->skill,
                 'resolution' => $res?->body, 'resolution_notice' => $res ? null : Disclaimers::NO_RESOLUTION,

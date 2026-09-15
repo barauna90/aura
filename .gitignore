@@ -26,3 +26,8 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 /database/*.sqlite*
+
+# PDFs oficiais do Inep (baixe com: python tools/inep_fetch.py storage/inep)
+/storage/inep/*.pdf
+/storage/app/official
+/.agents

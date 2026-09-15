@@ -112,6 +112,39 @@ class ExamFlowTest extends TestCase
         $this->actingAs($student)->get("/sessao/{$session->id}/resultado")->assertOk()->assertSee('Acertos oficiais pelo gabarito')->assertSee('Resolução detalhada ainda não disponível');
     }
 
+    public function test_booklet_marks_are_saved_but_only_the_answer_sheet_is_graded(): void
+    {
+        $exam = $this->publishExam();
+        $student = User::factory()->create();
+        $booklet = ExamBooklet::first();
+        $this->actingAs($student)->post("/provas/{$exam->id}/iniciar", ['booklet_id' => $booklet->id, 'mode' => 'PROVA_REAL', 'language' => 'INGLES'])->assertRedirect();
+        $session = $student->examSessions()->first();
+        $this->actingAs($student)->post("/sessao/{$session->id}/iniciar")->assertRedirect();
+        $this->actingAs($student)->get("/sessao/{$session->id}")->assertOk()->assertSee('id="booklet-marks"', false)->assertSee('Transferir para o cartão');
+
+        $ids = $session->answerSheet->answers()->pluck('question_id', 'question_number');
+        // Marca no caderno (rascunho) as questões 1 e 6; transfere só a 1 para o cartão.
+        $this->actingAs($student)->postJson("/sessao/{$session->id}/respostas", ['answers' => [
+            ['question_id' => $ids[1], 'draft_option' => 'A'],
+            ['question_id' => $ids[6], 'draft_option' => 'C'],
+        ]])->assertOk()->assertJsonPath('saved', 2);
+        $this->actingAs($student)->postJson("/sessao/{$session->id}/respostas", ['answers' => [['question_id' => $ids[1], 'option' => 'A']]])->assertOk();
+        $this->actingAs($student)->postJson("/sessao/{$session->id}/respostas", ['answers' => [['question_id' => $ids[6], 'draft_option' => 'X']]])->assertStatus(422);
+
+        $state = $this->actingAs($student)->getJson("/sessao/{$session->id}/estado")->assertOk()->json('answer_sheet');
+        $this->assertSame(1, $state['answered']);
+        $this->assertSame(2, $state['drafted']);
+        $this->assertSame(1, $state['untransferred']);
+        $this->assertDatabaseHas('answers', ['question_id' => $ids[6], 'draft_option' => 'C', 'option' => null]);
+
+        $this->actingAs($student)->postJson("/sessao/{$session->id}/encerrar")->assertOk();
+        $session->refresh();
+        // A questão 6 estava certa no caderno, mas em branco no cartão: não conta como acerto.
+        $this->assertSame(1, $session->result->correct);
+        $this->assertSame(2, $session->result->blank);
+        $this->actingAs($student)->get("/sessao/{$session->id}/resultado")->assertOk()->assertSee('<th>Caderno</th>', false);
+    }
+
     public function test_changing_an_official_answer_requires_reason_and_unpublishes_the_exam(): void
     {
         $exam = $this->publishExam();

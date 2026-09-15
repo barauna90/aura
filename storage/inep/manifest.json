@@ -1,0 +1,9248 @@
+[
+ {
+  "year": 2019,
+  "day": 1,
+  "application": "REGULAR",
+  "title": "ENEM 2019 — 1º dia (Linguagens, Humanas e Redação)",
+  "duration_minutes": 330,
+  "areas": [
+   "LINGUAGENS",
+   "HUMANAS",
+   "REDACAO"
+  ],
+  "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
+  "booklet": {
+   "color": "AZUL",
+   "label": "Caderno 1 — Azul",
+   "file": "2019_PV_impresso_D1_CD1.pdf",
+   "page_count": 32,
+   "source_url": "https://download.inep.gov.br/educacao_basica/enem/provas/2019/2019_PV_impresso_D1_CD1.pdf"
+  },
+  "answer_key": {
+   "file": "2019_GB_impresso_D1_CD1.pdf",
+   "source_url": "https://download.inep.gov.br/educacao_basica/enem/gabaritos/2019/gabarito_1_dia_caderno_1_azul_aplicacao_regular.pdf",
+   "answers": [
+    {
+     "number": 1,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 1,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 2,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 2,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 3,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 3,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 4,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 4,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 5,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 5,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 6,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 7,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 8,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 9,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 10,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 11,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 12,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 13,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 14,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 15,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 16,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 17,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 18,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 19,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 20,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 21,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 22,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 23,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 24,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 25,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 26,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 27,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 28,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 29,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 30,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 31,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 32,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 33,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 34,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 35,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 36,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 37,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 38,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 39,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 40,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 41,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 42,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 43,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 44,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 45,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 46,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 47,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 48,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 49,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 50,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 51,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 52,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 53,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 54,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 55,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 56,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 57,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 58,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 59,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 60,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 61,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 62,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 63,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 64,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 65,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 66,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 67,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 68,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 69,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 70,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 71,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 72,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 73,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 74,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 75,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 76,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 77,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 78,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 79,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 80,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 81,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 82,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 83,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 84,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 85,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 86,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 87,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 88,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 89,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 90,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    }
+   ]
+  },
+  "stats": {
+   "answers": 95,
+   "annulled": 0,
+   "pages_mapped": 95
+  }
+ },
+ {
+  "year": 2019,
+  "day": 2,
+  "application": "REGULAR",
+  "title": "ENEM 2019 — 2º dia (Natureza e Matemática)",
+  "duration_minutes": 300,
+  "areas": [
+   "NATUREZA",
+   "MATEMATICA"
+  ],
+  "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
+  "booklet": {
+   "color": "AMARELO",
+   "label": "Caderno 5 — Amarelo",
+   "file": "2019_PV_impresso_D2_CD5.pdf",
+   "page_count": 32,
+   "source_url": "https://download.inep.gov.br/educacao_basica/enem/provas/2019/2019_PV_impresso_D2_CD5.pdf"
+  },
+  "answer_key": {
+   "file": "2019_GB_impresso_D2_CD5.pdf",
+   "source_url": "https://download.inep.gov.br/educacao_basica/enem/gabaritos/2019/gabarito_2_dia_caderno_5_amarelo_aplicacao_regular.pdf",
+   "answers": [
+    {
+     "number": 91,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 92,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 93,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 94,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 95,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 96,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 97,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 98,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 99,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 100,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 101,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 102,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 103,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 104,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 105,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 106,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 107,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 108,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 109,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 110,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 111,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 112,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 113,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 114,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 115,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 116,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 117,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 118,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 119,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 120,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 121,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 122,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 123,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 124,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 125,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 126,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 127,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 128,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 129,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 130,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 131,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 132,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 133,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 134,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 135,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 136,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 137,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 138,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 139,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 140,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 141,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 142,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 143,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 144,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 145,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 146,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 147,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 148,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 149,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 150,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 151,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 152,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 153,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 154,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 155,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 156,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 157,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 158,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 159,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 160,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 161,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 162,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 163,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 164,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 165,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 166,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 167,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 168,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 169,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 170,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 171,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 172,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 173,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 174,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 175,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 176,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 177,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 178,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 179,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 180,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    }
+   ]
+  },
+  "stats": {
+   "answers": 90,
+   "annulled": 0,
+   "pages_mapped": 90
+  }
+ },
+ {
+  "year": 2020,
+  "day": 1,
+  "application": "REGULAR",
+  "title": "ENEM 2020 — 1º dia (Linguagens, Humanas e Redação)",
+  "duration_minutes": 330,
+  "areas": [
+   "LINGUAGENS",
+   "HUMANAS",
+   "REDACAO"
+  ],
+  "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
+  "booklet": {
+   "color": "AZUL",
+   "label": "Caderno 1 — Azul",
+   "file": "2020_PV_impresso_D1_CD1.pdf",
+   "page_count": 32,
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2020_PV_impresso_D1_CD1.pdf"
+  },
+  "answer_key": {
+   "file": "2020_GB_impresso_D1_CD1.pdf",
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2020_GB_impresso_D1_CD1.pdf",
+   "answers": [
+    {
+     "number": 1,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 1,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 2,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 2,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 3,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 3,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 4,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 4,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 5,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 5,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 6,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 7,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 8,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 9,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 10,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 11,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 12,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 13,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 14,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 15,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 16,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 17,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 18,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 19,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 20,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 21,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 22,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 23,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 24,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 25,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 26,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 27,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 28,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 29,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 30,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 31,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 32,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 33,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 34,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 35,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 36,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 37,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 38,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 39,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 40,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 41,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 42,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 43,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 44,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 45,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 46,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 47,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 48,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 49,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 50,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 51,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 52,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 53,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 54,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 55,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 56,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 57,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 58,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 59,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 60,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 61,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 62,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 63,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 64,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 65,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 66,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 67,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 68,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 69,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 70,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 71,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 72,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 73,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 74,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 75,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 76,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 77,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 78,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 79,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 80,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 81,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 82,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 83,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 84,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 85,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 86,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 87,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 88,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 89,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 90,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    }
+   ]
+  },
+  "stats": {
+   "answers": 95,
+   "annulled": 0,
+   "pages_mapped": 95
+  }
+ },
+ {
+  "year": 2020,
+  "day": 2,
+  "application": "REGULAR",
+  "title": "ENEM 2020 — 2º dia (Natureza e Matemática)",
+  "duration_minutes": 300,
+  "areas": [
+   "NATUREZA",
+   "MATEMATICA"
+  ],
+  "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
+  "booklet": {
+   "color": "AMARELO",
+   "label": "Caderno 5 — Amarelo",
+   "file": "2020_PV_impresso_D2_CD5.pdf",
+   "page_count": 32,
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2020_PV_impresso_D2_CD5.pdf"
+  },
+  "answer_key": {
+   "file": "2020_GB_impresso_D2_CD5.pdf",
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2020_GB_impresso_D2_CD5.pdf",
+   "answers": [
+    {
+     "number": 91,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 92,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 93,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 94,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 95,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 96,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 97,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 98,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 99,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 100,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 101,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 102,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 103,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 104,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 105,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 106,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 107,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 108,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 109,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 110,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 111,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 112,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 113,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 114,
+     "area": "NATUREZA",
+     "correct": null,
+     "annulled": true,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 115,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 116,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 117,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 118,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 119,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 120,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 121,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 122,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 123,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 124,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 125,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 126,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 127,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 128,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 129,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 130,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 131,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 132,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 133,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 134,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 135,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 136,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 137,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 138,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 139,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 140,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 141,
+     "area": "MATEMATICA",
+     "correct": null,
+     "annulled": true,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 142,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 143,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 144,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 145,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 146,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 147,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 148,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 149,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 150,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 151,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 152,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 153,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 154,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 155,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 156,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 157,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 158,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 159,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 160,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 161,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 162,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 163,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 164,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 165,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 166,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 167,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 168,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 169,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 170,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 171,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 172,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 173,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 174,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 175,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 176,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 177,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 178,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 179,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 180,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    }
+   ]
+  },
+  "stats": {
+   "answers": 90,
+   "annulled": 2,
+   "pages_mapped": 90
+  }
+ },
+ {
+  "year": 2021,
+  "day": 1,
+  "application": "REGULAR",
+  "title": "ENEM 2021 — 1º dia (Linguagens, Humanas e Redação)",
+  "duration_minutes": 330,
+  "areas": [
+   "LINGUAGENS",
+   "HUMANAS",
+   "REDACAO"
+  ],
+  "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
+  "booklet": {
+   "color": "AZUL",
+   "label": "Caderno 1 — Azul",
+   "file": "2021_PV_impresso_D1_CD1.pdf",
+   "page_count": 32,
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_impresso_D1_CD1.pdf"
+  },
+  "answer_key": {
+   "file": "2021_GB_impresso_D1_CD1.pdf",
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2021_GB_impresso_D1_CD1.pdf",
+   "answers": [
+    {
+     "number": 1,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 1,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 2,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 2,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 3,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 3,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 4,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 4,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 5,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 5,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 6,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 7,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 8,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 9,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 10,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 11,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 12,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 13,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 14,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 15,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 16,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 17,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 18,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 19,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 20,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 21,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 22,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 23,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 24,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 25,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 26,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 27,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 28,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 29,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 30,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 31,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 32,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 33,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 34,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 35,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 36,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 37,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 38,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 39,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 40,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 41,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 42,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 43,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 44,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 45,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 46,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 47,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 48,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 49,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 50,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 51,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 52,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 53,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 54,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 55,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 56,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 57,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 58,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 59,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 60,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 61,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 62,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 63,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 64,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 65,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 66,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 67,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 68,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 69,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 70,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 71,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 72,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 73,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 74,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 75,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 76,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 77,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 78,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 79,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 80,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 81,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 82,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 83,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 84,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 85,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 86,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 87,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 88,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 89,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 90,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    }
+   ]
+  },
+  "stats": {
+   "answers": 95,
+   "annulled": 0,
+   "pages_mapped": 95
+  }
+ },
+ {
+  "year": 2021,
+  "day": 2,
+  "application": "REGULAR",
+  "title": "ENEM 2021 — 2º dia (Natureza e Matemática)",
+  "duration_minutes": 300,
+  "areas": [
+   "NATUREZA",
+   "MATEMATICA"
+  ],
+  "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
+  "booklet": {
+   "color": "AMARELO",
+   "label": "Caderno 5 — Amarelo",
+   "file": "2021_PV_impresso_D2_CD5.pdf",
+   "page_count": 32,
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2021_PV_impresso_D2_CD5.pdf"
+  },
+  "answer_key": {
+   "file": "2021_GB_impresso_D2_CD5.pdf",
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2021_GB_impresso_D2_CD5.pdf",
+   "answers": [
+    {
+     "number": 91,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 92,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 93,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 94,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 95,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 96,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 97,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 98,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 99,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 100,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 101,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 102,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 103,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 104,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 105,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 106,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 107,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 108,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 109,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 110,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 111,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 112,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 113,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 114,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 115,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 116,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 117,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 118,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 119,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 120,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 121,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 122,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 123,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 124,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 125,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 126,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 127,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 128,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 129,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 130,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 131,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 132,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 133,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 134,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 135,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 136,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 137,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 138,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 139,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 140,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 141,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 142,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 143,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 144,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 145,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 146,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 147,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 148,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 149,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 150,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 151,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 152,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 153,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 154,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 155,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 156,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 157,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 158,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 159,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 160,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 161,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 162,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 163,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 164,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 165,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 166,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 167,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 168,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 169,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 170,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 171,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 172,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 173,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 174,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 175,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 176,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 177,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 178,
+     "area": "MATEMATICA",
+     "correct": null,
+     "annulled": true,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 179,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 180,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    }
+   ]
+  },
+  "stats": {
+   "answers": 90,
+   "annulled": 1,
+   "pages_mapped": 90
+  }
+ },
+ {
+  "year": 2022,
+  "day": 1,
+  "application": "REGULAR",
+  "title": "ENEM 2022 — 1º dia (Linguagens, Humanas e Redação)",
+  "duration_minutes": 330,
+  "areas": [
+   "LINGUAGENS",
+   "HUMANAS",
+   "REDACAO"
+  ],
+  "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
+  "booklet": {
+   "color": "AZUL",
+   "label": "Caderno 1 — Azul",
+   "file": "2022_PV_impresso_D1_CD1.pdf",
+   "page_count": 32,
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2022_PV_impresso_D1_CD1.pdf"
+  },
+  "answer_key": {
+   "file": "2022_GB_impresso_D1_CD1.pdf",
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2022_GB_impresso_D1_CD1.pdf",
+   "answers": [
+    {
+     "number": 1,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 1,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 2,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 2,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 3,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 3,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 4,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 4,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 5,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 5,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 6,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 7,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 8,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 9,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 10,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 11,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 12,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 13,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 14,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 15,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 16,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 17,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 18,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 19,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 20,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 21,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 22,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 23,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 24,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 25,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 26,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 27,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 28,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 29,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 30,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 31,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 32,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 33,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 34,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 35,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 36,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 37,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 38,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 39,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 40,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 41,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 42,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 43,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 44,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 45,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 46,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 47,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 48,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 49,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 50,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 51,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 52,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 53,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 54,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 55,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 56,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 57,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 58,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 59,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 60,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 61,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 62,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 63,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 64,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 65,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 66,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 67,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 68,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 69,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 70,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 71,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 72,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 73,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 74,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 75,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 76,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 77,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 78,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 79,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 80,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 81,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 82,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 83,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 84,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 85,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 86,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 87,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 88,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 89,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 90,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    }
+   ]
+  },
+  "stats": {
+   "answers": 95,
+   "annulled": 0,
+   "pages_mapped": 95
+  }
+ },
+ {
+  "year": 2022,
+  "day": 2,
+  "application": "REGULAR",
+  "title": "ENEM 2022 — 2º dia (Natureza e Matemática)",
+  "duration_minutes": 300,
+  "areas": [
+   "NATUREZA",
+   "MATEMATICA"
+  ],
+  "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
+  "booklet": {
+   "color": "AMARELO",
+   "label": "Caderno 5 — Amarelo",
+   "file": "2022_PV_impresso_D2_CD5.pdf",
+   "page_count": 32,
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2022_PV_impresso_D2_CD5.pdf"
+  },
+  "answer_key": {
+   "file": "2022_GB_impresso_D2_CD5.pdf",
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2022_GB_impresso_D2_CD5.pdf",
+   "answers": [
+    {
+     "number": 91,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 92,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 93,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 94,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 95,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 96,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 97,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 98,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 99,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 100,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 101,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 102,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 103,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 104,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 105,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 106,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 107,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 108,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 109,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 110,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 111,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 112,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 113,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 114,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 115,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 116,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 117,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 118,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 119,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 120,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 121,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 122,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 123,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 124,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 125,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 126,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 127,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 128,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 129,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 130,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 131,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 132,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 133,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 134,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 135,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 136,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 137,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 138,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 139,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 140,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 141,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 142,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 143,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 144,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 145,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 146,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 147,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 148,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 149,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 150,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 151,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 152,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 153,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 154,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 155,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 156,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 157,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 158,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 159,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 160,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 161,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 162,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 163,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 164,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 165,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 166,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 167,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 168,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 169,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 170,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 171,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 172,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 173,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 174,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 175,
+     "area": "MATEMATICA",
+     "correct": null,
+     "annulled": true,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 176,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 177,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 178,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 179,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 180,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    }
+   ]
+  },
+  "stats": {
+   "answers": 90,
+   "annulled": 1,
+   "pages_mapped": 90
+  }
+ },
+ {
+  "year": 2023,
+  "day": 1,
+  "application": "REGULAR",
+  "title": "ENEM 2023 — 1º dia (Linguagens, Humanas e Redação)",
+  "duration_minutes": 330,
+  "areas": [
+   "LINGUAGENS",
+   "HUMANAS",
+   "REDACAO"
+  ],
+  "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
+  "booklet": {
+   "color": "AZUL",
+   "label": "Caderno 1 — Azul",
+   "file": "2023_PV_impresso_D1_CD1.pdf",
+   "page_count": 32,
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2023_PV_impresso_D1_CD1.pdf"
+  },
+  "answer_key": {
+   "file": "2023_GB_impresso_D1_CD1.pdf",
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2023_GB_impresso_D1_CD1.pdf",
+   "answers": [
+    {
+     "number": 1,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 1,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 2,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 2,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 3,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 3,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 4,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 4,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 5,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 5,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 6,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 7,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 8,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 9,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 10,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 11,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 12,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 13,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 14,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 15,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 16,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 17,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 18,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 19,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 20,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 21,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 22,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 23,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 24,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 25,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 26,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 27,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 28,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 29,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 30,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 31,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 32,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 33,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 34,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 35,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 36,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 37,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 38,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 39,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 40,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 41,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 42,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 43,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 44,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 45,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 46,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 47,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 48,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 49,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 50,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 51,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 52,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 53,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 54,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 55,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 56,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 57,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 58,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 59,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 60,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 61,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 62,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 63,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 64,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 65,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 66,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 67,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 68,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 69,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 70,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 71,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 72,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 73,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 74,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 75,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 76,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 77,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 78,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 79,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 80,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 81,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 82,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 83,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 84,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 85,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 86,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 87,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 88,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 89,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 90,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    }
+   ]
+  },
+  "stats": {
+   "answers": 95,
+   "annulled": 0,
+   "pages_mapped": 95
+  }
+ },
+ {
+  "year": 2023,
+  "day": 2,
+  "application": "REGULAR",
+  "title": "ENEM 2023 — 2º dia (Natureza e Matemática)",
+  "duration_minutes": 300,
+  "areas": [
+   "NATUREZA",
+   "MATEMATICA"
+  ],
+  "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
+  "booklet": {
+   "color": "AMARELO",
+   "label": "Caderno 5 — Amarelo",
+   "file": "2023_PV_impresso_D2_CD5.pdf",
+   "page_count": 32,
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2023_PV_impresso_D2_CD5.pdf"
+  },
+  "answer_key": {
+   "file": "2023_GB_impresso_D2_CD5.pdf",
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2023_GB_impresso_D2_CD5.pdf",
+   "answers": [
+    {
+     "number": 91,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 92,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 93,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 94,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 95,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 96,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 97,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 98,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 99,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 100,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 101,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 102,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 103,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 104,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 105,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 106,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 107,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 108,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 109,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 110,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 111,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 112,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 113,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 114,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 115,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 116,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 117,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 118,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 119,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 120,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 121,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 122,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 123,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 124,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 125,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 126,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 127,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 128,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 129,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 130,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 131,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 132,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 133,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 134,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 135,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 136,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 137,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 138,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 139,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 140,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 141,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 142,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 143,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 144,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 145,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 146,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 147,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 148,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 149,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 150,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 151,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 152,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 153,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 154,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 155,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 156,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 157,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 158,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 159,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 160,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 161,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 162,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 163,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 164,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 165,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 166,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 167,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 168,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 169,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 170,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 171,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 172,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 173,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 174,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 175,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 176,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 177,
+     "area": "MATEMATICA",
+     "correct": null,
+     "annulled": true,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 178,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 179,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 180,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    }
+   ]
+  },
+  "stats": {
+   "answers": 90,
+   "annulled": 1,
+   "pages_mapped": 90
+  }
+ },
+ {
+  "year": 2024,
+  "day": 1,
+  "application": "REGULAR",
+  "title": "ENEM 2024 — 1º dia (Linguagens, Humanas e Redação)",
+  "duration_minutes": 330,
+  "areas": [
+   "LINGUAGENS",
+   "HUMANAS",
+   "REDACAO"
+  ],
+  "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
+  "booklet": {
+   "color": "AZUL",
+   "label": "Caderno 1 — Azul",
+   "file": "2024_PV_impresso_D1_CD1.pdf",
+   "page_count": 32,
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2024_PV_impresso_D1_CD1.pdf"
+  },
+  "answer_key": {
+   "file": "2024_GB_impresso_D1_CD1.pdf",
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2024_GB_impresso_D1_CD1.pdf",
+   "answers": [
+    {
+     "number": 1,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 1,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 2,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 2,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 3,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 2
+    },
+    {
+     "number": 3,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 2
+    },
+    {
+     "number": 4,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 4,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 5,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": "ESPANHOL",
+     "page": 3
+    },
+    {
+     "number": 5,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": "INGLES",
+     "page": 3
+    },
+    {
+     "number": 6,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 7,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 8,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 9,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 10,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 11,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 12,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 13,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 14,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 15,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 16,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 17,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 18,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 19,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 20,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 21,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 22,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 23,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 24,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 25,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 26,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 27,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 28,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 29,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 30,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 31,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 32,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 33,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 34,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 35,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 36,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 37,
+     "area": "LINGUAGENS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 38,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 39,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 40,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 41,
+     "area": "LINGUAGENS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 42,
+     "area": "LINGUAGENS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 43,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 44,
+     "area": "LINGUAGENS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 45,
+     "area": "LINGUAGENS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 46,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 47,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 48,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 49,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 50,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 51,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 52,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 53,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 54,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 55,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 56,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 57,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 58,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 59,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 60,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 61,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 62,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 63,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 64,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 65,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 66,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 67,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 68,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 69,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 70,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 71,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 72,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 73,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 74,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 75,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 76,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 77,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 78,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 79,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 80,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 81,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 82,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 83,
+     "area": "HUMANAS",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 84,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 85,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 86,
+     "area": "HUMANAS",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 87,
+     "area": "HUMANAS",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 88,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 89,
+     "area": "HUMANAS",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 90,
+     "area": "HUMANAS",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    }
+   ]
+  },
+  "stats": {
+   "answers": 95,
+   "annulled": 0,
+   "pages_mapped": 95
+  }
+ },
+ {
+  "year": 2024,
+  "day": 2,
+  "application": "REGULAR",
+  "title": "ENEM 2024 — 2º dia (Natureza e Matemática)",
+  "duration_minutes": 300,
+  "areas": [
+   "NATUREZA",
+   "MATEMATICA"
+  ],
+  "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
+  "booklet": {
+   "color": "AMARELO",
+   "label": "Caderno 5 — Amarelo",
+   "file": "2024_PV_impresso_D2_CD5.pdf",
+   "page_count": 32,
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2024_PV_impresso_D2_CD5.pdf"
+  },
+  "answer_key": {
+   "file": "2024_GB_impresso_D2_CD5.pdf",
+   "source_url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2024_GB_impresso_D2_CD5.pdf",
+   "answers": [
+    {
+     "number": 91,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 92,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 93,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 94,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 2
+    },
+    {
+     "number": 95,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 96,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 97,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 3
+    },
+    {
+     "number": 98,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 99,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 100,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 4
+    },
+    {
+     "number": 101,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 102,
+     "area": "NATUREZA",
+     "correct": null,
+     "annulled": true,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 103,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 5
+    },
+    {
+     "number": 104,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 105,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 106,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 6
+    },
+    {
+     "number": 107,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 108,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 7
+    },
+    {
+     "number": 109,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 110,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 111,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 8
+    },
+    {
+     "number": 112,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 113,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 114,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 115,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 9
+    },
+    {
+     "number": 116,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 117,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 118,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 10
+    },
+    {
+     "number": 119,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 120,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 121,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 11
+    },
+    {
+     "number": 122,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 123,
+     "area": "NATUREZA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 12
+    },
+    {
+     "number": 124,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 125,
+     "area": "NATUREZA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 126,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 127,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 13
+    },
+    {
+     "number": 128,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 129,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 130,
+     "area": "NATUREZA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 131,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 132,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 14
+    },
+    {
+     "number": 133,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 134,
+     "area": "NATUREZA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 135,
+     "area": "NATUREZA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 15
+    },
+    {
+     "number": 136,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 137,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 138,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 139,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 16
+    },
+    {
+     "number": 140,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 141,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 142,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 17
+    },
+    {
+     "number": 143,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 144,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 145,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 18
+    },
+    {
+     "number": 146,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 19
+    },
+    {
+     "number": 147,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 148,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 20
+    },
+    {
+     "number": 149,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 150,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 21
+    },
+    {
+     "number": 151,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 152,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 22
+    },
+    {
+     "number": 153,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 23
+    },
+    {
+     "number": 154,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 155,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 156,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 24
+    },
+    {
+     "number": 157,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 158,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 159,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 160,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 25
+    },
+    {
+     "number": 161,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 162,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 26
+    },
+    {
+     "number": 163,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 164,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 165,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 27
+    },
+    {
+     "number": 166,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 167,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 168,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 28
+    },
+    {
+     "number": 169,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 170,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 171,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 172,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 29
+    },
+    {
+     "number": 173,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 174,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 175,
+     "area": "MATEMATICA",
+     "correct": "A",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 176,
+     "area": "MATEMATICA",
+     "correct": "D",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 30
+    },
+    {
+     "number": 177,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 178,
+     "area": "MATEMATICA",
+     "correct": "B",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 179,
+     "area": "MATEMATICA",
+     "correct": "C",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    },
+    {
+     "number": 180,
+     "area": "MATEMATICA",
+     "correct": "E",
+     "annulled": false,
+     "foreign_language": null,
+     "page": 31
+    }
+   ]
+  },
+  "stats": {
+   "answers": 90,
+   "annulled": 1,
+   "pages_mapped": 90
+  }
+ }
+]

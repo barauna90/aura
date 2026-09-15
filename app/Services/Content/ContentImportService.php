@@ -103,17 +103,18 @@ class ContentImportService
     {
         $numbers = [];
         foreach ($answers as $a) {
-            if (isset($numbers[$a['number']])) {
+            $key = $a['number'].'/'.($a['foreign_language'] ?? '');
+            if (isset($numbers[$key])) {
                 throw ValidationException::withMessages(['answers' => "Questão {$a['number']} duplicada."]);
             }
-            $numbers[$a['number']] = true;
+            $numbers[$key] = true;
             $annulled = (bool) ($a['annulled'] ?? false);
             if (! $annulled && ! in_array($a['correct'] ?? null, Enem::OPTIONS, true)) {
                 throw ValidationException::withMessages(['answers' => "Questão {$a['number']} sem alternativa correta."]);
             }
         }
         $checksum = GuardianRules::answerKeyChecksum(array_map(fn ($a) => [
-            'number' => (int) $a['number'], 'correct' => $a['correct'] ?? null, 'annulled' => (bool) ($a['annulled'] ?? false),
+            'number' => (int) $a['number'], 'correct' => $a['correct'] ?? null, 'annulled' => (bool) ($a['annulled'] ?? false), 'foreign_language' => $a['foreign_language'] ?? null,
         ], $answers));
 
         $pdfPath = null;
@@ -137,8 +138,8 @@ class ContentImportService
             foreach ($answers as $a) {
                 $annulled = (bool) ($a['annulled'] ?? false);
                 $question = Question::updateOrCreate(
-                    ['exam_booklet_id' => $booklet->id, 'original_number' => (int) $a['number']],
-                    ['area' => $a['area'], 'foreign_language' => $a['foreign_language'] ?? null, 'page_number' => $a['page'] ?? null],
+                    ['exam_booklet_id' => $booklet->id, 'original_number' => (int) $a['number'], 'foreign_language' => $a['foreign_language'] ?? null],
+                    ['area' => $a['area'], 'page_number' => $a['page'] ?? null],
                 );
                 if ($question->wasRecentlyCreated) {
                     $question->options()->createMany(array_map(fn ($l) => ['letter' => $l], Enem::OPTIONS));

@@ -197,6 +197,10 @@ body {
     .bubble[aria-pressed='true'] {
         @apply border-primary bg-primary text-white;
     }
+    /* marcação do caderno (rascunho): estilo distinto do cartão */
+    .bubble.draft[aria-pressed='true'] {
+        @apply border-accent bg-accent/15 text-accent;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

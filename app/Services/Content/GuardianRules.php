@@ -18,13 +18,14 @@ final class GuardianRules
     /**
      * Checksum determinístico de um gabarito (número → letra) para detectar alterações.
      *
-     * @param  array<int, array{number:int, correct:?string, annulled?:bool}>  $answers
+     * @param  array<int, array{number:int, correct:?string, annulled?:bool, foreign_language?:?string}>  $answers
      */
     public static function answerKeyChecksum(array $answers): string
     {
-        usort($answers, fn ($a, $b) => $a['number'] <=> $b['number']);
+        $key = fn ($a) => $a['number'].(! empty($a['foreign_language']) ? '/'.$a['foreign_language'] : '');
+        usort($answers, fn ($a, $b) => [$a['number'], $a['foreign_language'] ?? ''] <=> [$b['number'], $b['foreign_language'] ?? '']);
         $canonical = implode('|', array_map(
-            fn ($a) => $a['number'].':'.(($a['annulled'] ?? false) ? 'X' : ($a['correct'] ?? '-')),
+            fn ($a) => $key($a).':'.(($a['annulled'] ?? false) ? 'X' : ($a['correct'] ?? '-')),
             $answers,
         ));
 

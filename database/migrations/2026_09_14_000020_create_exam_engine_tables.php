@@ -41,7 +41,8 @@ return new class extends Migration
             $table->foreignId('answer_sheet_id')->constrained()->cascadeOnDelete();
             $table->foreignId('question_id')->constrained();
             $table->unsignedSmallInteger('question_number');
-            $table->char('option', 1)->nullable();
+            $table->char('option', 1)->nullable(); // marcada no CARTÃO-RESPOSTA (única considerada na correção)
+            $table->char('draft_option', 1)->nullable(); // marcada no CADERNO (rascunho, não corrigida)
             $table->unsignedSmallInteger('change_count')->default(0);
             $table->timestamp('answered_at')->nullable();
             $table->unsignedInteger('time_spent_sec')->nullable();

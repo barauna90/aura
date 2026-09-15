@@ -48,7 +48,8 @@ class SessionController extends Controller
         $data = $request->validate([
             'answers' => ['required', 'array', 'max:200'],
             'answers.*.question_id' => ['required', 'integer'],
-            'answers.*.option' => ['nullable', Rule::in(['A', 'B', 'C', 'D', 'E'])],
+            'answers.*.option' => ['sometimes', 'nullable', Rule::in(['A', 'B', 'C', 'D', 'E'])],
+            'answers.*.draft_option' => ['sometimes', 'nullable', Rule::in(['A', 'B', 'C', 'D', 'E'])],
             'answers.*.time_spent_sec' => ['nullable', 'integer', 'min:0'],
         ]);
 

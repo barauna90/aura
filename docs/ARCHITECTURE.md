@@ -36,7 +36,7 @@ Usuários/acesso (`users` com perfil e onboarding, `consents`, `settings`, `audi
 
 ## Cronômetro e resiliência
 
-Fonte da verdade: `exam_sessions.started_at + exams.duration_minutes → expected_end_at`. O cliente exibe o restante, envia o cartão em lote a cada 4 s (e em `visibilitychange`/`beforeunload`), reconcilia `GET /sessao/{id}/estado` a cada 30 s e guarda cópia em `localStorage`. Expiração é aplicada no servidor (no estado, no autosave e por cron). Pausa só no modo estudo (desloca `expected_end_at`). Retornar à sessão nunca reinicia o tempo.
+Fonte da verdade: `exam_sessions.started_at + exams.duration_minutes → expected_end_at`. O cliente exibe o restante, envia as marcações (caderno = `draft_option`, cartão = `option`) em lote a cada 4 s (e em `visibilitychange`/`beforeunload`), reconcilia `GET /sessao/{id}/estado` a cada 30 s e guarda cópia em `localStorage`. Expiração é aplicada no servidor (no estado, no autosave e por cron). Pausa só no modo estudo (desloca `expected_end_at`). Retornar à sessão nunca reinicia o tempo.
 
 ## Segurança
 

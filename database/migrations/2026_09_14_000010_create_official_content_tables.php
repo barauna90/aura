@@ -106,7 +106,8 @@ return new class extends Migration
             $table->unsignedInteger('version')->default(1);
             $table->string('checksum', 64)->nullable();
             $table->timestamps();
-            $table->unique(['exam_booklet_id', 'original_number']);
+            // Questões 1–5 existem em duas versões (inglês/espanhol) com o mesmo número.
+            $table->unique(['exam_booklet_id', 'original_number', 'foreign_language']);
             $table->index('area');
         });
 

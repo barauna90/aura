@@ -66,7 +66,7 @@
     </div>
     <div class="mt-4 overflow-x-auto">
         <table class="table">
-            <thead><tr><th>Questão</th><th>Área</th><th>Marcada</th><th>Gabarito oficial</th><th>Status</th><th>Assunto</th><th></th></tr></thead>
+            <thead><tr><th>Questão</th><th>Área</th><th>Cartão</th><th>Caderno</th><th>Gabarito oficial</th><th>Status</th><th>Assunto</th><th></th></tr></thead>
             <tbody>
                 @foreach($questions as $q)
                     @continue($filter === 'erradas' && $q['status'] !== 'WRONG')
@@ -75,6 +75,7 @@
                         <td class="font-medium">{{ $q['number'] }} @if($q['page'])<span class="text-xs text-muted">p.{{ $q['page'] }}</span>@endif</td>
                         <td>{{ $E::AREA_SHORT[$q['area']] ?? $q['area'] }}</td>
                         <td>{{ $q['marked'] ?? '—' }}</td>
+                        <td class="text-muted">{{ $q['draft'] ?? '—' }}</td>
                         <td>{{ $q['annulled'] ? 'Anulada' : ($q['official'] ?? '—') }}</td>
                         <td><span class="badge-{{ $status[$q['status']][1] }}">{{ $status[$q['status']][0] }}</span></td>
                         <td class="text-muted">{{ $q['topic'] ?? '—' }}@if($q['skill']) <span class="text-xs">· {{ $q['skill'] }}</span>@endif</td>

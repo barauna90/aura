@@ -175,6 +175,7 @@ class GuardianService
                 'number' => $q->original_number,
                 'correct' => $q->officialAnswer?->correct,
                 'annulled' => (bool) $q->officialAnswer?->annulled,
+                'foreign_language' => $q->foreign_language,
             ])->all());
             if (! $booklet->answerSets->contains('checksum', $computed)) {
                 $problems[] = ['code' => 'ANSWER_KEY_MISMATCH', 'message' => "Gabarito do caderno {$booklet->label} diverge do gabarito oficial importado."];

@@ -20,9 +20,13 @@ Implementado em `app/Services/Content/GuardianRules.php` (regras puras, testadas
 6. **Nada muda em silêncio** — alterar gabarito ou metadados exige motivo, grava `content_versions` (anterior/novo/autor/data), `audit_logs`, e devolve a prova a `PENDING/IMPORTED` — ela some do catálogo até nova auditoria (teste `test_changing_an_official_answer_requires_reason_and_unpublishes_the_exam`).
 7. **IA sem escrita** — `AiService`/providers não recebem modelos de conteúdo; só leem resultados, resoluções `VERIFIED` e a base de documentos oficiais.
 
+## Importação automática (2019–2024)
+
+`tools/inep_fetch.py` baixa os PDFs somente de `download.inep.gov.br`; `tools/inep_extract.py` lê o gabarito **do próprio PDF oficial** (letras, anuladas e notas de rodapé "Questão N anulada") e mapeia questão → página pelo texto do caderno; `php artisan enem:import` grava tudo com checksum e passa pelo mesmo fluxo de auditoria (com `--publish`, revisões atribuídas ao revisor e ao admin do seed — em produção prefira revisar no painel). Áreas por faixa de numeração e durações (5h30/5h) seguem a estrutura oficial das edições de dois dias; nada é inferido de outra fonte. Propostas de redação não são importadas automaticamente.
+
 ## Correção e notas
 
-- Só o **cartão-resposta** é comparado ao gabarito oficial; anuladas não contam; língua estrangeira filtrada pela escolha do aluno.
+- Só o **cartão-resposta** (`answers.option`) é comparado ao gabarito oficial; anuladas não contam; língua estrangeira filtrada pela escolha do aluno. A marcação feita no **caderno** (`answers.draft_option`) é rascunho: salva e exibida no relatório, nunca corrigida (teste `test_booklet_marks_are_saved_but_only_the_answer_sheet_is_graded`).
 - Exibimos **acertos oficiais pelo gabarito**. Nunca `acertos × valor = nota ENEM`. Qualquer estimativa leva `Disclaimers::SCORE_ESTIMATE`.
 - Redação: `Nota estimada da correção simulada` + `Disclaimers::ESSAY_EVALUATION`. Regras de nota zero cadastradas **por edição** com URL da fonte; só valem se `VERIFIED`; sem regras cadastradas, nenhuma é aplicada.
 
