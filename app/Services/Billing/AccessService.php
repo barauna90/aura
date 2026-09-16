@@ -13,7 +13,7 @@ use Carbon\CarbonInterface;
 use Illuminate\Auth\Access\AuthorizationException;
 
 /**
- * Direitos de acesso. Ordem: bolsa ativa → assinatura TRIALING/ACTIVE
+ * Direitos de acesso. Ordem: equipe → bolsa ativa → assinatura TRIALING/ACTIVE
  * (confirmada por webhook) → sem acesso (não existe plano gratuito). Nunca confia no navegador.
  */
 class AccessService
@@ -24,6 +24,17 @@ class AccessService
     /** @return array{tier:string, source:string, plan_code:?string, plan_name:string, limits:array, valid_until:?CarbonInterface} */
     public function resolve(User $user): array
     {
+        // Equipe (revisor/admin) tem acesso integral para testar e auditar a plataforma.
+        if ($user->isStaff()) {
+            $plan = Plan::where('code', 'INTENSIVO')->first();
+
+            return [
+                'tier' => 'PREMIUM', 'source' => 'STAFF', 'plan_code' => $plan?->code ?? 'STAFF', 'plan_name' => 'Acesso da equipe',
+                'limits' => array_merge(['fullExamsPerMonth' => -1, 'essaysPerMonth' => -1, 'studyPlan' => true, 'tutor' => true, 'errorNotebook' => true, 'intensive' => true, 'priorityEssay' => true], $plan?->limits ?? [], ['essaysPerMonth' => -1]),
+                'valid_until' => null,
+            ];
+        }
+
         $scholarship = Scholarship::where('user_id', $user->id)->where('active', true)
             ->where(fn ($q) => $q->whereNull('ends_at')->orWhere('ends_at', '>', now()))->first();
         if ($scholarship) {

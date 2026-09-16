@@ -12,7 +12,7 @@
         <div>
             <p class="text-sm text-muted">Acesso atual</p>
             <p class="text-lg font-semibold">{{ $access['plan_name'] }} <span class="badge-{{ $access['tier'] === 'PREMIUM' ? 'success' : 'warning' }}">{{ $access['tier'] === 'PREMIUM' ? 'Ativa' : 'Sem acesso' }}</span></p>
-            <p class="text-xs text-muted">{{ ['SCHOLARSHIP' => 'Bolsa de estudos', 'SUBSCRIPTION' => 'Assinatura', 'NO_SUBSCRIPTION' => 'Assine um plano para liberar as provas, simulados e correções'][$access['source']] }}@if($access['valid_until']) · válido até {{ $access['valid_until']->format('d/m/Y') }}@endif</p>
+            <p class="text-xs text-muted">{{ ['STAFF' => 'Acesso integral da equipe', 'SCHOLARSHIP' => 'Bolsa de estudos', 'SUBSCRIPTION' => 'Assinatura', 'NO_SUBSCRIPTION' => 'Assine um plano para liberar as provas, simulados e correções'][$access['source']] }}@if($access['valid_until']) · válido até {{ $access['valid_until']->format('d/m/Y') }}@endif</p>
         </div>
         @if($sub)
             <div class="text-right text-sm">

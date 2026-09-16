@@ -26,6 +26,23 @@ Em produção: `php artisan queue:work` (fila `database` para a correção de re
 
 Credenciais do seed (troque em produção): `admin@aura.local / Admin123!Troque` e `revisor@aura.local / Revisor123!Troque`.
 
+### Usuários de teste (fora de produção)
+
+`migrate --seed` também roda o `DemoUsersSeeder` (ou `php artisan db:seed --class=DemoUsersSeeder`), que cria um usuário por perfil e por plano — assinaturas já `ACTIVE` localmente, sem passar pelo Asaas. Senha de todos: **`Teste123!`**
+
+| E-mail | Perfil | Acesso |
+|---|---|---|
+| `superadmin.teste@aura.local` | SUPER_ADMIN | painel completo + acesso integral da equipe |
+| `admin.teste@aura.local` | ADMIN | painel administrativo + acesso integral da equipe |
+| `revisor.teste@aura.local` | REVIEWER | revisão de conteúdo oficial + acesso integral |
+| `aluno.redepublica@aura.local` | STUDENT | Rede Pública (4 redações/mês) |
+| `aluno.estudante@aura.local` | STUDENT | Plano Estudante (8 redações/mês) |
+| `aluno.intensivo@aura.local` | STUDENT | Plano Intensivo (15 redações/mês, Modo Intensivo, prioridade) |
+| `aluno.bolsista@aura.local` | STUDENT | Bolsa de estudos de 90 dias |
+| `aluno.semplano@aura.local` | STUDENT | sem assinatura (vê a vitrine de planos) |
+
+O seeder se recusa a rodar com `APP_ENV=production`.
+
 ## Planos
 
 Não existe plano gratuito nem período de teste: sem assinatura ativa (ou bolsa) o aluno só acessa provas marcadas como amostra pelo admin. Os três planos são editáveis em **Administração → Planos** (preço, benefícios, limites, selo e destaque):

@@ -55,5 +55,10 @@ class DatabaseSeeder extends Seeder
         ] as [$area, $discipline, $name]) {
             StudyTopic::updateOrCreate(['slug' => Str::slug($name)], ['area' => $area, 'discipline' => $discipline, 'name' => $name, 'source_type' => 'EDITORIAL', 'review_status' => 'VERIFIED']);
         }
+
+        // Usuários de teste (um por perfil e por plano) — só fora de produção.
+        if (! app()->isProduction()) {
+            $this->call(DemoUsersSeeder::class);
+        }
     }
 }
