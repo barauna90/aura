@@ -71,6 +71,19 @@ class ImportEnemCommand extends Command
                 $importer->registerAnswerKey($booklet, ['source_url' => $k['source_url'], 'document_version' => 'Inep '.$m['year'].' gabarito v1'], $k['answers'],
                     new UploadedFile("{$dir}/{$k['file']}", $k['file'], 'application/pdf', null, true), $admin->id);
                 $this->info("[ok] {$label}: prova #{$exam->id}, ".count($k['answers']).' questões, '.$b['page_count'].' páginas');
+
+                // Proposta de redação: tema e regras de nota zero extraídos do próprio caderno oficial;
+                // os textos motivadores são lidos na página da proposta (PDF inalterado).
+                if (! empty($m['essay'])) {
+                    $e = $m['essay'];
+                    $importer->registerEssayPrompt($exam, [
+                        'theme' => $e['theme'], 'motivating_texts' => [], 'max_lines' => $e['max_lines'] ?? 30,
+                        'exam_booklet_id' => $booklet->id, 'pdf_page' => $e['page'],
+                        'source_url' => $b['source_url'], 'document_version' => 'Inep '.$m['year'].' impresso v1 (p. '.$e['page'].')',
+                    ], $admin->id);
+                    $importer->registerZeroRules((int) $m['year'], array_map(fn ($r) => $r + ['source_url' => $b['source_url']], $e['zero_rules']), $admin->id, (bool) $this->option('publish'));
+                    $this->line("      redação: \"{$e['theme']}\" (p. {$e['page']}), ".count($e['zero_rules']).' regras de nota zero');
+                }
             }
 
             if ($this->option('publish') && $exam->pipeline_stage !== 'PUBLISHED') {

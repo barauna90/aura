@@ -170,6 +170,8 @@ class ContentImportService
             'theme' => $data['theme'],
             'motivating_texts' => $data['motivating_texts'],
             'max_lines' => $data['max_lines'] ?? 30,
+            'exam_booklet_id' => $data['exam_booklet_id'] ?? null,
+            'pdf_page' => $data['pdf_page'] ?? null,
             'content_source_id' => $source->id,
             'review_status' => 'PENDING',
         ]);

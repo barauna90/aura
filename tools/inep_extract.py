@@ -80,6 +80,57 @@ def parse_gabarito(path: Path, day: int) -> list[dict]:
     return out
 
 
+# --- Proposta de redação (1º dia) -------------------------------------------
+# Alguns cadernos usam fonte sem tabela Unicode: o texto sai como "/g68/g69…".
+# Para os códigos de glifo desses cadernos, o caractere ASCII = código + 29; acentos abaixo.
+GLYPH_ACCENTS = {105: "á", 106: "à", 109: "ã", 111: "ç", 112: "é", 116: "í", 123: "ô", 179: "“", 180: "”", 191: "fi"}
+# Kerning quebrado no PDF (ex.: "t ema “ Desafios p ara"): tema transcrito manualmente da MESMA página.
+THEME_FIX = {
+    2023: "Desafios para o enfrentamento da invisibilidade do trabalho de cuidado realizado pela mulher no Brasil",
+}
+# Itens 4.1–4.4 das instruções oficiais → códigos usados pelo validador de nota zero.
+ZERO_CODES = {1: ["INSUFICIENTE"], 2: ["FUGA_TEMA", "NAO_DISSERTATIVO"], 3: ["DESCONECTADO"], 4: ["IDENTIFICACAO"]}
+
+
+def deglyph(t: str) -> str:
+    def rep(m):
+        g = int(m.group(1))
+        if g in GLYPH_ACCENTS:
+            return GLYPH_ACCENTS[g]
+        c = g + 29
+        return chr(c) if 32 <= c <= 126 else "�"
+    return re.sub(r"/g(\d+)", rep, t)
+
+
+def essay_text(t: str) -> str:
+    t = re.sub(r"ENEM\d{4}", "", t)  # marca-d'água repetida
+    return re.sub(r"\s+", " ", deglyph(t).replace(" ", " "))
+
+
+def parse_essay(path: Path, year: int) -> dict | None:
+    """Página das instruções/proposta, tema entre aspas e itens de nota zero — tudo do PDF oficial."""
+    reader = PdfReader(path)
+    pages = [essay_text(p.extract_text() or "") for p in reader.pages]
+    page = next((i for i, t in enumerate(pages, start=1) if re.search(r"INSTRU..ES\s+PARA\s+A\s+REDA", t, re.I)), None)
+    if not page:
+        return None
+    full = " ".join(pages[page - 1:page + 1])
+    m = re.search(r"t\s?ema\s*[“\"]\s*(.+?)\s*[”\"]", full, re.I)
+    theme = THEME_FIX.get(year) or (m.group(1).strip() if m else None)
+    if not theme or "�" in theme:
+        raise SystemExit(f"{path.name}: tema da redação ilegível no PDF — transcreva manualmente em THEME_FIX")
+    rules = []
+    z = re.search(r"nota zero.*?que:\s*(.*?)\s*TEXTOS? (?:MOTIVADORES|I)", full, re.S | re.I)
+    if z:
+        for mm in re.finditer(r"4\.(\d)\.\s*(.+?)(?=\s*4\.\d\.|\s*$)", z.group(1), re.S):
+            desc = mm.group(2).strip().rstrip(";.").replace("insufi ciente", "insuficiente").replace("identifi cação", "identificação")
+            for code in ZERO_CODES.get(int(mm.group(1)), []):
+                rules.append({"code": code, "description": desc})
+    if len(rules) < 4:
+        raise SystemExit(f"{path.name}: regras de nota zero não encontradas na página {page}")
+    return {"page": page, "theme": theme, "max_lines": 30, "zero_rules": rules}
+
+
 def page_map(path: Path) -> tuple[int, dict[int, int]]:
     reader = PdfReader(path)
     pages: dict[int, int] = {}
@@ -116,6 +167,7 @@ def main(src: Path, out: Path):
             else:
                 pv_url = STD.format(y=y, k="PV", d=d, c=c)
                 gb_url = STD.format(y=y, k="GB", d=d, c=c)
+            essay = parse_essay(pv, y) if d == 1 else None
             manifest.append({
                 "year": y, "day": d, "application": "REGULAR",
                 "title": f"ENEM {y} — {d}º dia" + (" (Linguagens, Humanas e Redação)" if d == 1 else " (Natureza e Matemática)"),
@@ -124,6 +176,7 @@ def main(src: Path, out: Path):
                 "structure_note": "Duração conforme o edital da edição: 5h30 no 1º dia e 5h no 2º dia. Caderno impresso da aplicação regular; cadernos de outras cores têm a mesma prova em ordem diferente.",
                 "booklet": {"color": "AZUL" if d == 1 else "AMARELO", "label": f"Caderno {c} — {'Azul' if d == 1 else 'Amarelo'}", "file": pv.name, "page_count": n_pages, "source_url": pv_url},
                 "answer_key": {"file": gb.name, "source_url": gb_url, "answers": answers},
+                "essay": essay,
                 "stats": {"answers": len(answers), "annulled": sum(1 for a in answers if a["annulled"]), "pages_mapped": sum(1 for a in answers if a["page"])},
             })
             print(f"[ok] {y} D{d}: {len(answers)} respostas, {n_pages} páginas, {manifest[-1]['stats']['pages_mapped']} com página, anuladas={manifest[-1]['stats']['annulled']}")

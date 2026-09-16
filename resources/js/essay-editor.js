@@ -65,3 +65,9 @@ if (editor) {
     });
     render();
 }
+
+// Proposta oficial em PDF: carrega o iframe só depois do layout (senão o visualizador fica em branco).
+const promptPdf = document.getElementById('prompt-pdf');
+if (promptPdf) {
+    requestAnimationFrame(() => setTimeout(() => (promptPdf.src = promptPdf.dataset.src), 50));
+}

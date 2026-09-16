@@ -85,6 +85,7 @@ return new class extends Migration
             $table->string('name', 120);
             $table->string('slug', 140)->unique();
             $table->text('description')->nullable();
+            $table->json('subtopics')->nullable(); // o que estudar dentro do tema (lista)
             $table->unsignedInteger('recurrence')->default(0);
             $table->string('matrix_skill', 20)->nullable();
             $table->string('source_type', 30)->default('EDITORIAL');
@@ -165,8 +166,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('exam_id')->unique()->constrained()->cascadeOnDelete();
             $table->string('theme', 300);
-            $table->json('motivating_texts');
+            $table->json('motivating_texts'); // vazio quando os textos motivadores são lidos no caderno oficial
             $table->string('pdf_path', 255)->nullable();
+            $table->foreignId('exam_booklet_id')->nullable()->constrained()->nullOnDelete(); // caderno oficial com a proposta
+            $table->unsignedSmallInteger('pdf_page')->nullable(); // página da proposta no caderno
             $table->unsignedTinyInteger('max_lines')->default(30);
             $table->foreignId('content_source_id')->constrained();
             $table->string('review_status', 12)->default('PENDING');

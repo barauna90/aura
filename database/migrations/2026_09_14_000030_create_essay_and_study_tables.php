@@ -71,6 +71,29 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        // Vídeos de estudo por tema: cada aluno cola seus links; a equipe pode recomendar para todos.
+        Schema::create('topic_videos', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('study_topic_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('title', 160);
+            $table->string('url', 500);
+            $table->string('provider', 20)->default('LINK'); // YOUTUBE | VIMEO | LINK
+            $table->string('video_id', 60)->nullable();
+            $table->boolean('is_recommended')->default(false); // marcado pela equipe: visível a todos
+            $table->timestamps();
+            $table->index(['study_topic_id', 'user_id']);
+        });
+
+        // Progresso do aluno no Guia ENEM (tema marcado como estudado).
+        Schema::create('topic_progress', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('study_topic_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->timestamp('studied_at')->useCurrent();
+            $table->unique(['study_topic_id', 'user_id']);
+        });
+
         Schema::create('study_plans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
@@ -147,7 +170,7 @@ return new class extends Migration
     {
         foreach ([
             'user_achievements', 'achievements', 'goals', 'favorites', 'error_notebook_entries', 'study_tasks',
-            'study_plans', 'study_materials', 'essay_final_results', 'essay_competency_scores', 'essay_evaluations', 'essays',
+            'study_plans', 'topic_progress', 'topic_videos', 'study_materials', 'essay_final_results', 'essay_competency_scores', 'essay_evaluations', 'essays',
         ] as $t) {
             Schema::dropIfExists($t);
         }

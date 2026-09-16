@@ -4,10 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Plan;
 use App\Models\ReferralSetting;
-use App\Models\StudyTopic;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 /**
  * Seed de desenvolvimento. NÃO cria provas, questões nem gabaritos: conteúdo
@@ -42,19 +40,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Revisor de Conteúdo', 'password' => 'Revisor123!Troque', 'role' => 'REVIEWER', 'referral_code' => 'REVIS000', 'onboarding_done' => true,
         ]);
 
-        foreach ([
-            ['LINGUAGENS', 'Português', 'Interpretação de texto'], ['LINGUAGENS', 'Português', 'Funções da linguagem'],
-            ['LINGUAGENS', 'Literatura', 'Movimentos literários brasileiros'], ['LINGUAGENS', 'Inglês/Espanhol', 'Leitura em língua estrangeira'],
-            ['HUMANAS', 'História', 'Brasil República'], ['HUMANAS', 'Geografia', 'Urbanização e questões ambientais'],
-            ['HUMANAS', 'Filosofia', 'Filosofia moderna e contemporânea'], ['HUMANAS', 'Sociologia', 'Cidadania e movimentos sociais'],
-            ['NATUREZA', 'Biologia', 'Ecologia'], ['NATUREZA', 'Biologia', 'Genética'], ['NATUREZA', 'Física', 'Eletricidade'],
-            ['NATUREZA', 'Física', 'Mecânica'], ['NATUREZA', 'Química', 'Estequiometria'], ['NATUREZA', 'Química', 'Química orgânica'],
-            ['MATEMATICA', 'Matemática', 'Razão, proporção e porcentagem'], ['MATEMATICA', 'Matemática', 'Funções'],
-            ['MATEMATICA', 'Matemática', 'Geometria plana e espacial'], ['MATEMATICA', 'Matemática', 'Estatística e probabilidade'],
-            ['REDACAO', 'Redação', 'Estrutura dissertativo-argumentativa'], ['REDACAO', 'Redação', 'Proposta de intervenção'],
-        ] as [$area, $discipline, $name]) {
-            StudyTopic::updateOrCreate(['slug' => Str::slug($name)], ['area' => $area, 'discipline' => $discipline, 'name' => $name, 'source_type' => 'EDITORIAL', 'review_status' => 'VERIFIED']);
-        }
+        // Guia ENEM: temas detalhados por eixo e disciplina (editorial, VERIFIED).
+        $this->call(StudyTopicsSeeder::class);
 
         // Usuários de teste (um por perfil e por plano) — só fora de produção.
         if (! app()->isProduction()) {

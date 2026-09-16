@@ -14,6 +14,12 @@
 
     <div data-panel="proposta" class="card mt-4 space-y-4">
         <h2 class="text-lg font-semibold">{{ $p->theme }}</h2>
+        @if(empty($p->motivating_texts) && $p->exam_booklet_id && $p->pdf_page)
+            <p class="text-sm text-muted">Os textos motivadores estão na proposta oficial, reproduzida abaixo exatamente como no caderno (página {{ $p->pdf_page }}).</p>
+            {{-- src definido pelo JS após o layout: o visualizador de PDF não pinta quando o iframe nasce com o fragmento #page. --}}
+            <iframe id="prompt-pdf" data-src="{{ route('booklets.pdf', $p->exam_booklet_id) }}#page={{ $p->pdf_page }}&toolbar=0&navpanes=0&view=FitH" title="Proposta de redação oficial — página {{ $p->pdf_page }} do caderno" class="h-[70vh] w-full rounded-xl border border-border bg-surface-2"></iframe>
+            <p class="text-xs text-muted">Se a página não abrir, <a href="{{ route('booklets.pdf', $p->exam_booklet_id) }}#page={{ $p->pdf_page }}" target="_blank" rel="noreferrer" class="text-primary underline">abra o caderno oficial em outra aba</a> (página {{ $p->pdf_page }}).</p>
+        @endif
         @foreach($p->motivating_texts ?? [] as $i => $t)
             <article class="rounded-xl border border-border bg-surface-2/60 p-4 text-sm">
                 <h3 class="font-medium">{{ $t['title'] ?? 'Texto '.($i + 1) }}</h3>

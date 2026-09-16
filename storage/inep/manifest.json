@@ -784,6 +784,33 @@
     }
    ]
   },
+  "essay": {
+   "page": 20,
+   "theme": "Democratização do acesso ao cinema no Brasil",
+   "max_lines": 30,
+   "zero_rules": [
+    {
+     "code": "INSUFICIENTE",
+     "description": "tiver até 7 (sete) linhas escritas, sendo considerada “texto insuficiente”"
+    },
+    {
+     "code": "FUGA_TEMA",
+     "description": "fugir ao tema ou que não atender ao tipo dissertativo-argumentativo"
+    },
+    {
+     "code": "NAO_DISSERTATIVO",
+     "description": "fugir ao tema ou que não atender ao tipo dissertativo-argumentativo"
+    },
+    {
+     "code": "DESCONECTADO",
+     "description": "apresentar parte do texto deliberadamente desconectada do tema proposto"
+    },
+    {
+     "code": "IDENTIFICACAO",
+     "description": "apresentar nome, assinatura, rubrica ou outras formas de identificação no espaço destinado ao texto"
+    }
+   ]
+  },
   "stats": {
    "answers": 95,
    "annulled": 0,
@@ -1534,6 +1561,7 @@
     }
    ]
   },
+  "essay": null,
   "stats": {
    "answers": 90,
    "annulled": 0,
@@ -2325,6 +2353,29 @@
     }
    ]
   },
+  "essay": {
+   "page": 19,
+   "theme": "O estigma associado às doenças mentais na sociedade brasileira",
+   "max_lines": 30,
+   "zero_rules": [
+    {
+     "code": "INSUFICIENTE",
+     "description": "tiver até 7 (sete) linhas escritas, sendo considerada “texto insuficiente”"
+    },
+    {
+     "code": "FUGA_TEMA",
+     "description": "fugir ao tema ou que não atender ao tipo dissertativo-argumentativo"
+    },
+    {
+     "code": "NAO_DISSERTATIVO",
+     "description": "fugir ao tema ou que não atender ao tipo dissertativo-argumentativo"
+    },
+    {
+     "code": "DESCONECTADO",
+     "description": "apresentar parte do texto deliberadamente desconectada do tema proposto"
+    }
+   ]
+  },
   "stats": {
    "answers": 95,
    "annulled": 0,
@@ -3075,6 +3126,7 @@
     }
    ]
   },
+  "essay": null,
   "stats": {
    "answers": 90,
    "annulled": 2,
@@ -3866,6 +3918,33 @@
     }
    ]
   },
+  "essay": {
+   "page": 21,
+   "theme": "Invisibilidade e registro civil: garantia de acesso à cidadania no Brasil",
+   "max_lines": 30,
+   "zero_rules": [
+    {
+     "code": "INSUFICIENTE",
+     "description": "tiver até 7 (sete) linhas escritas, sendo considerada “texto insuficiente”"
+    },
+    {
+     "code": "FUGA_TEMA",
+     "description": "fugir ao tema ou que não atender ao tipo dissertativo-argumentativo"
+    },
+    {
+     "code": "NAO_DISSERTATIVO",
+     "description": "fugir ao tema ou que não atender ao tipo dissertativo-argumentativo"
+    },
+    {
+     "code": "DESCONECTADO",
+     "description": "apresentar parte do texto deliberadamente desconectada do tema proposto"
+    },
+    {
+     "code": "IDENTIFICACAO",
+     "description": "apresentar nome, assinatura, rubrica ou outras formas de identificação no espaço destinado ao texto"
+    }
+   ]
+  },
   "stats": {
    "answers": 95,
    "annulled": 0,
@@ -4616,6 +4695,7 @@
     }
    ]
   },
+  "essay": null,
   "stats": {
    "answers": 90,
    "annulled": 1,
@@ -5407,6 +5487,33 @@
     }
    ]
   },
+  "essay": {
+   "page": 20,
+   "theme": "Desafios para a valorização de comunidades e povos tradicionais no Brasil",
+   "max_lines": 30,
+   "zero_rules": [
+    {
+     "code": "INSUFICIENTE",
+     "description": "tiver até 7 (sete) linhas escritas, sendo considerada “texto insuficiente”"
+    },
+    {
+     "code": "FUGA_TEMA",
+     "description": "fugir ao tema ou não atender ao tipo dissertativo-argumentativo"
+    },
+    {
+     "code": "NAO_DISSERTATIVO",
+     "description": "fugir ao tema ou não atender ao tipo dissertativo-argumentativo"
+    },
+    {
+     "code": "DESCONECTADO",
+     "description": "apresentar parte do texto deliberadamente desconectada do tema proposto"
+    },
+    {
+     "code": "IDENTIFICACAO",
+     "description": "apresentar nome, assinatura, rubrica ou outras formas de identificação no espaço destinado ao texto. TEXTO I Você sabe quais são as comunidades e os povos tradicionais brasileiros? Talvez indígenas e quilombolas sejam os primeiros que passam pela cabeça, mas, na verdade, além deles, existem 26 reconhecidos oficialmente e muitos outros que ainda não foram incluídos na legislação. São pescadores artesanais, quebradeiras de coco babaçu, apanhadores de flores sempre-vivas, caatingueiros, extrativistas, para citar alguns, todos considerados culturalmente diferenciados, capazes de se reconhecerem entre si. Para uma pesquisadora da UnB, essas populações consideram a terra como uma mãe, e há uma relação de reciprocidade com a natureza. Nessa troca, a natureza fornece “alimento, um lugar saudável para habitar, para ter água. E elas se responsabilizam por cuidar dela, por tirar dela apenas o suficiente para viver bem e respeitam o tempo de regeneração da própria natureza”, diz. Disponível em: https:/�.globo.com. Acesso em: 17 jun. 2022 (adaptado). TEXTO II Estados com a maior concentração de famílias Povos tradicionais do Brasil Povos de terreiro BA PI CE 1.883 856 603 Fonte: Ministério Público Federal. Infográfico elaborado em: 25/10/2019. Quilombola BA MA PA 43.009 39.316 15.282 Cigano BA GO MG 1.538 643 556 Ribeirinho PA AM BA 50.314 16.507 9.670 Extrativista PA AM MA 11.826 9.772 7.190 Pescador PA MA BA 40.123 33.085 30.920 AM MS RR 43.264 21.507 15.316 Indígena Disponível em: https:/�.globo.com. Acesso em: 17 jun. 2022 (adaptado). PROPOSTA DE REDAÇÃO A partir da leitura dos"
+    }
+   ]
+  },
   "stats": {
    "answers": 95,
    "annulled": 0,
@@ -6157,6 +6264,7 @@
     }
    ]
   },
+  "essay": null,
   "stats": {
    "answers": 90,
    "annulled": 1,
@@ -6948,6 +7056,33 @@
     }
    ]
   },
+  "essay": {
+   "page": 19,
+   "theme": "Desafios para o enfrentamento da invisibilidade do trabalho de cuidado realizado pela mulher no Brasil",
+   "max_lines": 30,
+   "zero_rules": [
+    {
+     "code": "INSUFICIENTE",
+     "description": "tiver até 7 (sete) linhas escritas, sendo considerada “texto insuficiente”"
+    },
+    {
+     "code": "FUGA_TEMA",
+     "description": "fugir ao tema ou não atender ao tipo dissertativo-argumentativo"
+    },
+    {
+     "code": "NAO_DISSERTATIVO",
+     "description": "fugir ao tema ou não atender ao tipo dissertativo-argumentativo"
+    },
+    {
+     "code": "DESCONECTADO",
+     "description": "apresentar parte do texto deliberadamente desconectada do tema proposto"
+    },
+    {
+     "code": "IDENTIFICACAO",
+     "description": "apresentar nome, assinatura, rubrica ou outras formas de identificação no espaço destinado ao texto. TEXTO I O trabalho de cuidado não remunerado e mal pago e a crise global da desigualdade O trabalho de cuidado é essencial para nossas sociedades e para a economia. Ele inclui o trabalho de cuidar de crianças, idosos e pessoas com doenças e deficiências físicas e mentais, bem como o trabalho doméstico diário que inclui cozinhar, limpar, lavar, consertar coisas e buscar água e lenha. Se ninguém investisse tempo, esforços e recursos nessas tarefas diárias essenciais, comunidades, locais de trabalho e economias inteiras ficariam estagnados. Em todo o mundo, o trabalho de cuidado não remunerado e mal pago é desproporcionalmente assumido por mulheres e meninas em situação de pobreza, especialmente por aquelas que pertencem a grupos que, além da discriminação de gênero, sofrem preconceito em decorrência de sua raça, etnia, nacionalidade e sexualidade. As mulheres são responsáveis por mais de três quartos do cuidado não remunerado e compõem dois terços da força de trabalho envolvida em atividades de cuidado remuneradas. Documento informativo – Tempo de Cuidar. Disponível em: https://www.oxfam.org.br. A cesso em: 18 de jul. de 2023 (adaptado). TEXTO II Média de horas dedicadas pelas pessoas de 14 anos ou mais de idade aos afazeres domésticos e/ou às tarefas de cuidado de pessoas, por sexo Brasil - 2019 Sexo Horas Semanais Homens 11,0 Mulheres 21,4 Fonte: IBGE - Pnad contínua anual Disponível e m: h ttps://agenciadenoticias.ibge.gov.br. Acesso em: 18 de jul. 2023 (adaptado). PROPOSTA DE REDAÇÃO A partir da leitura dos"
+    }
+   ]
+  },
   "stats": {
    "answers": 95,
    "annulled": 0,
@@ -7698,6 +7833,7 @@
     }
    ]
   },
+  "essay": null,
   "stats": {
    "answers": 90,
    "annulled": 1,
@@ -8489,6 +8625,33 @@
     }
    ]
   },
+  "essay": {
+   "page": 19,
+   "theme": "Desafios para a valorização da herança africana no Brasil",
+   "max_lines": 30,
+   "zero_rules": [
+    {
+     "code": "INSUFICIENTE",
+     "description": "tiver até 7 (sete) linhas escritas, sendo considerada “texto insuficiente”"
+    },
+    {
+     "code": "FUGA_TEMA",
+     "description": "fugir ao tema ou não atender ao tipo dissertativo-argumentativo"
+    },
+    {
+     "code": "NAO_DISSERTATIVO",
+     "description": "fugir ao tema ou não atender ao tipo dissertativo-argumentativo"
+    },
+    {
+     "code": "DESCONECTADO",
+     "description": "apresentar parte do texto deliberadamente desconectada do tema proposto"
+    },
+    {
+     "code": "IDENTIFICACAO",
+     "description": "apresentar nome, assinatura, rubrica ou outras formas de identificação no espaço destinado ao texto. PROPOSTA DE REDAÇÃO A partir da leitura dos"
+    }
+   ]
+  },
   "stats": {
    "answers": 95,
    "annulled": 0,
@@ -9239,6 +9402,7 @@
     }
    ]
   },
+  "essay": null,
   "stats": {
    "answers": 90,
    "annulled": 1,

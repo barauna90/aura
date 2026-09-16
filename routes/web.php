@@ -12,6 +12,7 @@ use App\Http\Controllers\NotebookController;
 use App\Http\Controllers\PerformanceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReferralController;
+use App\Http\Controllers\SimuladoController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\StudyPlanController;
 use App\Http\Controllers\SubscriptionController;
@@ -46,7 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/provas/{exam}', [ExamController::class, 'show'])->name('exams.show');
     Route::post('/provas/{exam}/iniciar', [ExamController::class, 'start'])->name('exams.start');
     Route::get('/cadernos/{booklet}/pdf', [ExamController::class, 'pdf'])->name('booklets.pdf');
-    Route::view('/simulados', 'app.simulados')->name('simulados');
+    Route::get('/simulados', [SimuladoController::class, 'index'])->name('simulados');
+    Route::post('/simulados/iniciar', [SimuladoController::class, 'start'])->name('simulados.start');
 
     Route::prefix('sessao/{session}')->name('sessions.')->group(function () {
         Route::get('/', [SessionController::class, 'show'])->name('show');
@@ -79,7 +81,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/desempenho', [PerformanceController::class, 'index'])->name('performance');
     Route::get('/desempenho/comparar', [PerformanceController::class, 'compare'])->name('performance.compare');
-    Route::get('/guia', GuideController::class)->name('guide');
+    Route::get('/guia', [GuideController::class, 'index'])->name('guide');
+    Route::get('/guia/{topic:slug}', [GuideController::class, 'show'])->name('guide.show');
+    Route::post('/guia/{topic:slug}/videos', [GuideController::class, 'storeVideo'])->name('guide.videos.store');
+    Route::delete('/guia/videos/{video}', [GuideController::class, 'destroyVideo'])->name('guide.videos.destroy');
+    Route::post('/guia/{topic:slug}/estudado', [GuideController::class, 'toggleStudied'])->name('guide.studied');
 
     Route::get('/indique', [ReferralController::class, 'index'])->name('referral.index');
     Route::post('/indique/saque', [ReferralController::class, 'withdraw'])->name('referral.withdraw');

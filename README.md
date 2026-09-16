@@ -74,13 +74,19 @@ php artisan enem:import --publish                                    # importa, 
 
 O comando calcula os checksums, cria as questões (1–5 em inglês **e** espanhol), registra o gabarito oficial (anuladas incluídas) e percorre o fluxo `Importado → Validação automática → Revisão 1 (revisor) → Revisão 2 (admin) → Publicado`, reverificando o PDF e o gabarito antes de publicar. Nenhuma prova fica liberada sem assinatura, a menos que você passe `--free-sample=2024` (marca a edição como amostra acessível a quem ainda não assinou). Sem `--publish`, as provas ficam em `IMPORTADO` aguardando a revisão humana no painel.
 
-> As propostas de redação (tema e textos motivadores) **não** são importadas automaticamente — cadastre-as no painel com a transcrição fiel do caderno oficial; até lá, as provas do 1º dia funcionam sem a etapa de redação.
+> As propostas de redação do 1º dia são importadas do próprio caderno oficial: o tema (entre aspas na proposta) e as regras de nota zero (itens 4.x das instruções) são extraídos do PDF, e os textos motivadores são lidos na página da proposta, exibida inalterada no editor. Nenhum texto é transcrito à mão, exceto o tema de 2023 (kerning quebrado no PDF), transcrito da mesma página.
 
 ## Importando outra prova manualmente
 
 1. Baixe o caderno e o gabarito oficiais no site do Inep.
 2. Em **Administração → Conteúdo oficial**: cadastre a prova (ano, aplicação, dia, **duração oficial daquela edição**, URL e versão), adicione o caderno (PDF — checksum calculado na importação), registre o gabarito (`número;área;letra;idioma;página`) e a proposta de redação (transcrição fiel). Cadastre as regras de nota zero da edição com a URL da fonte.
 3. **Validar agora** → avance `Importado → Validação automática → Revisão humana 1 → Revisão humana 2 → Publicado`. As duas revisões exigem pessoas diferentes; publicar exige ADMIN e reverifica o checksum do PDF e do gabarito.
+
+## Simulados, Redação e Guia ENEM
+
+- **Simulados** (`/simulados`): simulado por área (só as questões de uma área de uma prova oficial, Modo Estudo), prova completa (Modo Prova Real), Maratona ENEM (1º + 2º dia por edição) e a rotina semanal do **Modo Intensivo** (exclusiva do Plano Intensivo). Tudo com questões oficiais.
+- **Redação** (`/redacao`): propostas oficiais 2019–2024, contador de correções do mês, melhor nota e média, explicação das cinco competências e da estrutura do texto.
+- **Guia ENEM** (`/guia`): 89 temas por eixo e disciplina (`StudyTopicsSeeder`), cada um com descrição e roteiro "o que estudar"; busca; ao abrir um tema o aluno marca como estudado (barra de progresso) e **cola links de vídeos de estudo** (YouTube/Vimeo incorporados; outros sites como link). Os vídeos são pessoais; a equipe pode marcar um vídeo como recomendado para todos.
 
 ## Durante a prova: caderno e cartão-resposta
 
@@ -95,7 +101,7 @@ O comando calcula os checksums, cria as questões (1–5 em inglês **e** espanh
 php artisan test
 ```
 
-23 testes / 270+ asserções: guardião (fonte oficial, checksum do gabarito, revisores distintos, alteração versionada que despublica a prova), cronômetro (sem pausa na Prova Real, expiração, retomada no modo estudo), correção (idioma, anuladas, em branco, por área/disciplina, nunca "nota ENEM"), fluxo completo de prova via HTTP, marcações do caderno salvas sem entrar na correção, redação (rascunho sem IA, limite de linhas, A/B, zero por regra da edição, limite do plano), checkout no Asaas + webhook (token, idempotência, ativação, indicação efetivada, estorno), meta de indicações (bônus de R$ 40 a cada 4 validadas, desistência no prazo, estorno cancela bônus não pago, saque e pagamento), configurações criptografadas, cupons, antifraude, plano de estudos e repetição espaçada.
+26 testes / 350+ asserções: guardião (fonte oficial, checksum do gabarito, revisores distintos, alteração versionada que despublica a prova), cronômetro (sem pausa na Prova Real, expiração, retomada no modo estudo), correção (idioma, anuladas, em branco, por área/disciplina, nunca "nota ENEM"), fluxo completo de prova via HTTP, marcações do caderno salvas sem entrar na correção, redação (rascunho sem IA, limite de linhas, A/B, zero por regra da edição, limite do plano), checkout no Asaas + webhook (token, idempotência, ativação, indicação efetivada, estorno), meta de indicações (bônus de R$ 40 a cada 4 validadas, desistência no prazo, estorno cancela bônus não pago, saque e pagamento), configurações criptografadas, cupons, antifraude, plano de estudos e repetição espaçada.
 
 ## Avisos institucionais
 

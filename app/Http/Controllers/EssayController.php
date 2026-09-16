@@ -16,13 +16,22 @@ class EssayController extends Controller
 {
     public function __construct(private readonly EssayService $essays) {}
 
-    public function index(Request $request): View
+    public function index(Request $request, \App\Services\Billing\AccessService $access): View
     {
         $prompts = EssayPrompt::with('exam.edition')->where('review_status', 'VERIFIED')
             ->whereHas('exam', fn ($q) => $q->officialVisible())->get()->sortByDesc(fn ($p) => $p->exam->edition->year);
         $mine = Essay::with(['prompt.exam.edition', 'finalResult'])->where('user_id', $request->user()->id)->latest()->get();
+        $limit = $access->resolve($request->user())['limits']['essaysPerMonth'];
+        $used = $mine->filter(fn ($e) => $e->submitted_at && $e->submitted_at->greaterThanOrEqualTo(now()->startOfMonth()))->count();
+        $evaluated = $mine->filter(fn ($e) => $e->finalResult);
 
-        return view('app.essays.index', ['prompts' => $prompts, 'essays' => $mine, 'notice' => Disclaimers::ESSAY_EVALUATION]);
+        return view('app.essays.index', [
+            'prompts' => $prompts, 'essays' => $mine, 'notice' => Disclaimers::ESSAY_EVALUATION,
+            'limit' => $limit, 'used' => $used,
+            'best' => $evaluated->max(fn ($e) => $e->finalResult->total),
+            'average' => $evaluated->isNotEmpty() ? (int) round($evaluated->avg(fn ($e) => $e->finalResult->total)) : null,
+            'done' => $mine->pluck('essay_prompt_id')->unique(),
+        ]);
     }
 
     public function startFromPrompt(Request $request, EssayPrompt $prompt): RedirectResponse
