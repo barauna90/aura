@@ -90,7 +90,7 @@ class BillingTest extends TestCase
 
     public function test_referral_is_not_validated_if_referred_user_gives_up_within_hold_period(): void
     {
-        $referrer = User::factory()->create();
+        $referrer = $this->activeReferrer();
         $user = User::factory()->create(['referred_by_id' => $referrer->id]);
         $this->actingAs($user)->post('/assinatura/assinar', ['plan' => 'ESTUDANTE', 'billing_type' => 'PIX', 'cpf' => '123.456.789-09'])->assertRedirect();
         $this->withHeaders(['asaas-access-token' => 'webhook-secret'])->postJson('/webhooks/asaas', ['id' => 'evt_1', 'event' => 'PAYMENT_CONFIRMED', 'payment' => ['id' => 'pay_1', 'subscription' => 'sub_abc', 'value' => 19.9]])->assertOk();
@@ -120,7 +120,7 @@ class BillingTest extends TestCase
 
     public function test_four_validated_referrals_grant_a_40_reais_bonus_and_refund_cancels_unpaid_bonus(): void
     {
-        $referrer = User::factory()->create();
+        $referrer = $this->activeReferrer();
         $subs = [];
         foreach ([1, 2, 3] as $i) {
             $subs[$i] = $this->referredActiveSubscription($referrer, "sub_$i", "pay_$i");
@@ -165,6 +165,15 @@ class BillingTest extends TestCase
         $this->assertSame('PAID', $withdrawal->fresh()->status);
     }
 
+    /** Indicador com assinatura ativa (sem assinatura ninguém acessa a página de indicações). */
+    private function activeReferrer(): User
+    {
+        $referrer = User::factory()->create();
+        Subscription::create(['user_id' => $referrer->id, 'plan_id' => Plan::where('code', 'ESTUDANTE')->value('id'), 'status' => 'ACTIVE', 'gateway_subscription_id' => 'sub_referrer_'.$referrer->id, 'current_period_start' => now(), 'current_period_end' => now()->addMonth()]);
+
+        return $referrer;
+    }
+
     /** Cria um indicado com assinatura ativa e confirma o 1º pagamento via webhook. */
     private function referredActiveSubscription(User $referrer, string $gatewaySub, string $gatewayPay): Subscription
     {
@@ -179,7 +188,9 @@ class BillingTest extends TestCase
     {
         $referrer = User::factory()->create();
         $user = User::factory()->create(['referred_by_id' => $referrer->id]);
-        $this->actingAs($user)->get('/assinatura')->assertOk()->assertSee('Resumo do pedido')->assertSee('data-price="4990"', false);
+        // Conta nova: cai direto na escolha do plano; sem pagar não entra em nada.
+        $this->actingAs($user)->get('/inicio')->assertRedirect('/assinatura');
+        $this->actingAs($user)->get('/assinatura')->assertOk()->assertSee('Escolha seu plano para começar')->assertSee('Resumo do pedido')->assertSee('data-price="4990"', false);
         $this->actingAs($user)->post('/assinatura/assinar', ['plan' => 'ESTUDANTE', 'billing_type' => 'PIX', 'cpf' => '123.456.789-09'])->assertRedirect();
         $old = Subscription::where('user_id', $user->id)->firstOrFail();
         $oldPayment = Payment::where('subscription_id', $old->id)->firstOrFail();

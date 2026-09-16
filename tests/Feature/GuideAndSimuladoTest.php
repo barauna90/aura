@@ -19,11 +19,21 @@ class GuideAndSimuladoTest extends TestCase
     {
         parent::setUp();
         $this->seed(StudyTopicsSeeder::class);
+        Plan::create(['code' => 'ESTUDANTE', 'name' => 'Estudante', 'price_cents' => 3990, 'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 8, 'intensive' => false], 'benefits' => []]);
+        Plan::create(['code' => 'INTENSIVO', 'name' => 'Intensivo', 'price_cents' => 4990, 'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 15, 'intensive' => true], 'benefits' => []]);
+    }
+
+    private function subscriber(string $plan = 'ESTUDANTE'): User
+    {
+        $user = User::factory()->create();
+        Subscription::create(['user_id' => $user->id, 'plan_id' => Plan::where('code', $plan)->value('id'), 'status' => 'ACTIVE', 'current_period_start' => now(), 'current_period_end' => now()->addMonth()]);
+
+        return $user;
     }
 
     public function test_guide_lists_detailed_topics_and_student_can_open_one_mark_it_and_paste_video_links(): void
     {
-        $student = User::factory()->create();
+        $student = $this->subscriber();
         $this->assertGreaterThan(80, StudyTopic::count());
 
         $this->actingAs($student)->get('/guia')->assertOk()->assertSee('Ecologia')->assertSee('Razão, proporção e porcentagem')->assertSee('0 <span class="text-sm font-normal text-muted">de', false);
@@ -46,7 +56,7 @@ class GuideAndSimuladoTest extends TestCase
         $page->assertSee('Aula de ecologia')->assertSee('youtube-nocookie.com/embed/dQw4w9WgXcQ', false)->assertSee('player.vimeo.com/video/123456789', false)->assertSee('exemplo.edu.br');
 
         // Os vídeos são pessoais: outro aluno não vê nem apaga.
-        $other = User::factory()->create();
+        $other = $this->subscriber();
         $this->actingAs($other)->get("/guia/{$topic->slug}")->assertOk()->assertDontSee('Aula de ecologia');
         $this->actingAs($other)->delete('/guia/videos/'.TopicVideo::first()->id)->assertForbidden();
         $this->actingAs($student)->delete('/guia/videos/'.TopicVideo::first()->id)->assertRedirect();
@@ -66,14 +76,11 @@ class GuideAndSimuladoTest extends TestCase
 
     public function test_simulados_page_shows_formats_and_intensive_mode_is_gated_by_plan(): void
     {
-        Plan::create(['code' => 'ESTUDANTE', 'name' => 'Estudante', 'price_cents' => 3990, 'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 8, 'intensive' => false], 'benefits' => []]);
-        Plan::create(['code' => 'INTENSIVO', 'name' => 'Intensivo', 'price_cents' => 4990, 'limits' => ['fullExamsPerMonth' => -1, 'essaysPerMonth' => 15, 'intensive' => true], 'benefits' => []]);
+        // Sem assinatura nada abre; assinante do Estudante vê o Modo Intensivo bloqueado.
+        $this->actingAs(User::factory()->create())->get('/simulados')->assertRedirect('/assinatura');
+        $this->actingAs($this->subscriber())->get('/simulados')->assertOk()->assertSee('Simulado por área')->assertSee('Maratona ENEM')->assertSee('Disponível no Plano Intensivo');
 
-        $nobody = User::factory()->create();
-        $this->actingAs($nobody)->get('/simulados')->assertOk()->assertSee('Simulado por área')->assertSee('Maratona ENEM')->assertSee('Disponível no Plano Intensivo')->assertSee('Assine um plano para fazer provas completas');
-
-        $intensive = User::factory()->create();
-        Subscription::create(['user_id' => $intensive->id, 'plan_id' => Plan::where('code', 'INTENSIVO')->value('id'), 'status' => 'ACTIVE', 'current_period_start' => now(), 'current_period_end' => now()->addMonth()]);
+        $intensive = $this->subscriber('INTENSIVO');
         $this->actingAs($intensive)->get('/simulados')->assertOk()->assertSee('Incluído no seu plano')->assertDontSee('Disponível no Plano Intensivo')->assertSee('Rotina semanal de simulados');
 
         // Sem prova publicada para a edição/área → 404 claro, nada é inventado.

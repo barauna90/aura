@@ -4,8 +4,8 @@
 @php($brl = fn ($c) => 'R$ '.number_format($c / 100, 2, ',', '.'))
 @php($tone = ['ACTIVE' => 'success', 'TRIALING' => 'primary', 'PENDING' => 'warning', 'PAST_DUE' => 'warning', 'CANCELED' => 'neutral', 'EXPIRED' => 'neutral', 'REFUNDED' => 'danger', 'SUSPENDED' => 'danger'])
 @php($sub = $subscription)
-<h1 class="text-2xl font-semibold">Minha assinatura</h1>
-<p class="text-sm text-muted">Sem taxas escondidas. Cancele quando quiser; o acesso continua até o fim do período pago.</p>
+<h1 class="text-2xl font-semibold">{{ $access['tier'] === 'PREMIUM' ? 'Minha assinatura' : 'Escolha seu plano para começar' }}</h1>
+<p class="text-sm text-muted">{{ $access['tier'] === 'PREMIUM' ? 'Sem taxas escondidas. Cancele quando quiser; o acesso continua até o fim do período pago.' : 'O acesso a provas, simulados, redação e guia é liberado automaticamente assim que o pagamento for confirmado. Sem taxas escondidas; cancele quando quiser.' }}</p>
 
 <div class="card mt-5">
     <div class="flex flex-wrap items-center justify-between gap-3">

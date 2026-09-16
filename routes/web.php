@@ -36,7 +36,8 @@ Route::middleware('guest')->group(function () {
 });
 
 // ---------- Área do aluno ----------
-Route::middleware('auth')->group(function () {
+// 'subscribed': sem assinatura confirmada (ou bolsa/equipe) só assinatura, perfil, ajuda e sair.
+Route::middleware(['auth', 'subscribed'])->group(function () {
     Route::post('/sair', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/inicio', DashboardController::class)->name('dashboard');

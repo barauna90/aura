@@ -69,10 +69,10 @@ class AccessService
 
     public function assertCanStartFullExam(User $user, Exam $exam): void
     {
-        if ($exam->is_free_sample) {
+        $limit = $this->resolve($user)['limits']['fullExamsPerMonth'];
+        if ($exam->is_free_sample && $limit !== 0) {
             return;
         }
-        $limit = $this->resolve($user)['limits']['fullExamsPerMonth'];
         if ($limit === -1) {
             return;
         }

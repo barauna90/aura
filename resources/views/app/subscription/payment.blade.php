@@ -9,7 +9,7 @@
 @if($errors->any())<div class="notice-danger mt-4">{{ $errors->first() }}</div>@endif
 
 @if($payment->status === 'CONFIRMED')
-    <div class="notice-success mt-5"><strong>Pagamento confirmado.</strong> Seu acesso premium está liberado. <a href="{{ route('dashboard') }}" class="underline">Ir para o início</a></div>
+    <div class="notice-success mt-5"><strong>Pagamento confirmado.</strong> Seu acesso está liberado. <a href="{{ auth()->user()->onboarding_done ? route('dashboard') : route('onboarding') }}" class="btn-primary ml-2 px-4 py-1.5">{{ auth()->user()->onboarding_done ? 'Ir para o início' : 'Começar: montar meu plano de estudos' }}</a></div>
 @elseif($payment->status === 'PENDING')
     <div id="payment-waiting" class="card mt-5 grid gap-6 md:grid-cols-2">
         <div>

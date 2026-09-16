@@ -70,7 +70,10 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->route('onboarding')->withCookie(cookie()->forget('aura_ref'));
+        // Conta criada: primeiro o plano e o pagamento; o acesso é liberado pelo webhook.
+        return redirect()->route('subscription.index')
+            ->with('status', 'Conta criada! Escolha seu plano e conclua o pagamento para liberar o acesso.')
+            ->withCookie(cookie()->forget('aura_ref'));
     }
 
     public function logout(Request $request): RedirectResponse

@@ -80,7 +80,7 @@ class EssayFlowTest extends TestCase
     {
         $nobody = User::factory()->create();
         $e = Essay::create(['user_id' => $nobody->id, 'essay_prompt_id' => $this->prompt->id, 'draft_text' => implode("\n", array_fill(0, 10, 'linha de texto'))]);
-        $this->actingAs($nobody)->post("/redacao/{$e->id}/enviar")->assertForbidden();
+        $this->actingAs($nobody)->post("/redacao/{$e->id}/enviar")->assertRedirect('/assinatura'); // sem assinatura: nenhuma função
 
         $user = $this->subscriber();
         foreach ([1, 2] as $_) {

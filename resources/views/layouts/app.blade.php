@@ -2,7 +2,8 @@
 
 @section('body')
 @php($user = auth()->user())
-@php($menu = \App\Support\Enem::MENU)
+@php($hasAccess = app(\App\Services\Billing\AccessService::class)->isPremium($user))
+@php($menu = $hasAccess ? \App\Support\Enem::MENU : array_values(array_filter(\App\Support\Enem::MENU, fn ($i) => \App\Http\Middleware\EnsureSubscribed::isOpen($i['route']))))
 <div class="min-h-screen lg:grid lg:grid-cols-[250px_1fr]">
     <aside class="hidden border-r border-border bg-bg-2/70 lg:flex lg:flex-col">
         <div class="px-5 py-5">
@@ -41,6 +42,7 @@
 
         <main id="conteudo" class="flex-1 px-4 py-6 md:px-8 md:py-8">
             <div class="mx-auto max-w-6xl">
+                @unless($hasAccess)<div class="notice-warning mb-5" role="status"><strong>Acesso bloqueado até a confirmação do pagamento.</strong> Escolha um plano em <a href="{{ route('subscription.index') }}" class="underline">Minha assinatura</a>; assim que o pagamento for confirmado, provas, simulados, redação e o guia são liberados automaticamente.</div>@endunless
                 @if(session('status'))<div class="notice-success mb-5" role="status">{{ session('status') }}</div>@endif
                 @if(session('error'))<div class="notice-danger mb-5" role="alert">{{ session('error') }}</div>@endif
                 @if($errors->any())

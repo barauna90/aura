@@ -22,7 +22,7 @@ A tela mostra a URL do webhook a cadastrar no Asaas (`POST /webhooks/asaas`) e o
 4. Busca a primeira cobrança em `GET /subscriptions/{id}/payments`; para PIX também `GET /payments/{id}/pixQrCode`. Grava `payments` (`PENDING`, `invoice_url`, `bank_slip_url`, `pix_payload`).
 5. A tela `/assinatura/pagamento/{payment}` mostra QR Code PIX / boleto / link da fatura hospedada pelo Asaas (dados de cartão nunca passam pela plataforma) e recarrega a cada 15 s.
 
-**O navegador nunca libera acesso e não existe plano gratuito.** Sem bolsa ou assinatura, `AccessService::resolve` devolve `tier = NONE` (nenhuma prova completa, nenhuma redação). `AccessService::resolve` só considera `subscriptions.status ∈ {TRIALING, ACTIVE}` com `current_period_end` futuro — e `ACTIVE` só é escrito pelo webhook.
+**O navegador nunca libera acesso e não existe plano gratuito.** O middleware `EnsureSubscribed` (alias `subscribed`, em todo o grupo autenticado) redireciona qualquer rota para `/assinatura` — exceto `subscription.*`, `profile.*`, `help` e `logout` — enquanto `AccessService::isPremium` for falso; chamadas JSON recebem `402`. Sem bolsa ou assinatura, `AccessService::resolve` devolve `tier = NONE` (nenhuma prova completa, nenhuma redação). `AccessService::resolve` só considera `subscriptions.status ∈ {TRIALING, ACTIVE}` com `current_period_end` futuro — e `ACTIVE` só é escrito pelo webhook.
 
 ## Webhook
 

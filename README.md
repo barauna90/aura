@@ -45,7 +45,7 @@ O seeder se recusa a rodar com `APP_ENV=production`.
 
 ## Planos
 
-Não existe plano gratuito nem período de teste: sem assinatura ativa (ou bolsa) o aluno só acessa provas marcadas como amostra pelo admin. Os três planos são editáveis em **Administração → Planos** (preço, benefícios, limites, selo e destaque):
+Não existe plano gratuito nem período de teste. Ao criar a conta o aluno cai direto na escolha do plano e pagamento; até o webhook do Asaas confirmar o pagamento (ou o admin conceder bolsa), o middleware `subscribed` bloqueia **todas** as funções — só ficam acessíveis Minha assinatura, Perfil, Ajuda e Sair. Os três planos são editáveis em **Administração → Planos** (preço, benefícios, limites, selo e destaque):
 
 | Plano | Preço | Correções de redação/mês | Extras |
 |---|---|---|---|
@@ -101,7 +101,7 @@ O comando calcula os checksums, cria as questões (1–5 em inglês **e** espanh
 php artisan test
 ```
 
-26 testes / 350+ asserções: guardião (fonte oficial, checksum do gabarito, revisores distintos, alteração versionada que despublica a prova), cronômetro (sem pausa na Prova Real, expiração, retomada no modo estudo), correção (idioma, anuladas, em branco, por área/disciplina, nunca "nota ENEM"), fluxo completo de prova via HTTP, marcações do caderno salvas sem entrar na correção, redação (rascunho sem IA, limite de linhas, A/B, zero por regra da edição, limite do plano), checkout no Asaas + webhook (token, idempotência, ativação, indicação efetivada, estorno), meta de indicações (bônus de R$ 40 a cada 4 validadas, desistência no prazo, estorno cancela bônus não pago, saque e pagamento), configurações criptografadas, cupons, antifraude, plano de estudos e repetição espaçada.
+27 testes / 400+ asserções: guardião (fonte oficial, checksum do gabarito, revisores distintos, alteração versionada que despublica a prova), cronômetro (sem pausa na Prova Real, expiração, retomada no modo estudo), correção (idioma, anuladas, em branco, por área/disciplina, nunca "nota ENEM"), fluxo completo de prova via HTTP, marcações do caderno salvas sem entrar na correção, redação (rascunho sem IA, limite de linhas, A/B, zero por regra da edição, limite do plano), checkout no Asaas + webhook (token, idempotência, ativação, indicação efetivada, estorno), meta de indicações (bônus de R$ 40 a cada 4 validadas, desistência no prazo, estorno cancela bônus não pago, saque e pagamento), configurações criptografadas, cupons, antifraude, plano de estudos e repetição espaçada.
 
 ## Avisos institucionais
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\EnsureRole;
+use App\Http\Middleware\EnsureSubscribed;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -13,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->alias(['role' => EnsureRole::class]);
+        $middleware->alias(['role' => EnsureRole::class, 'subscribed' => EnsureSubscribed::class]);
         // Webhook do Asaas é autenticado por token próprio, não por sessão/CSRF.
         $middleware->validateCsrfTokens(except: ['webhooks/asaas']);
         $middleware->redirectGuestsTo(fn () => route('login'));

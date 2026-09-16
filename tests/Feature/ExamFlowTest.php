@@ -64,9 +64,17 @@ class ExamFlowTest extends TestCase
         return $exam->fresh();
     }
 
-    public function test_only_published_official_exams_are_visible_and_full_flow_grades_by_answer_sheet(): void
+    private function subscriber(): User
     {
         $student = User::factory()->create();
+        Subscription::create(['user_id' => $student->id, 'plan_id' => Plan::where('code', 'ESTUDANTE')->value('id'), 'status' => 'ACTIVE', 'current_period_start' => now(), 'current_period_end' => now()->addMonth()]);
+
+        return $student;
+    }
+
+    public function test_only_published_official_exams_are_visible_and_full_flow_grades_by_answer_sheet(): void
+    {
+        $student = $this->subscriber();
         $this->actingAs($student)->get('/provas')->assertOk()->assertSee('Nenhuma prova oficial');
 
         $exam = $this->publishExam();
@@ -88,7 +96,7 @@ class ExamFlowTest extends TestCase
         $this->actingAs($student)->post("/sessao/{$session->id}/iniciar")->assertRedirect();
         $this->actingAs($student)->get("/sessao/{$session->id}")->assertOk()->assertSee('Cartão-resposta')->assertSee('id="pdf-frame"', false);
         $this->actingAs($student)->get("/cadernos/{$booklet->id}/pdf")->assertOk()->assertHeader('Content-Type', 'application/pdf');
-        $this->actingAs(User::factory()->create())->get("/sessao/{$session->id}")->assertNotFound();
+        $this->actingAs($this->subscriber())->get("/sessao/{$session->id}")->assertNotFound();
         $this->actingAs($student)->postJson("/sessao/{$session->id}/pausar")->assertStatus(422); // Prova Real não pausa
 
         $ids = $session->answerSheet->answers()->pluck('question_id', 'question_number');
@@ -116,7 +124,7 @@ class ExamFlowTest extends TestCase
     public function test_booklet_marks_are_saved_but_only_the_answer_sheet_is_graded(): void
     {
         $exam = $this->publishExam();
-        $student = User::factory()->create();
+        $student = $this->subscriber();
         $booklet = ExamBooklet::first();
         $this->actingAs($student)->post("/provas/{$exam->id}/iniciar", ['booklet_id' => $booklet->id, 'mode' => 'PROVA_REAL', 'language' => 'INGLES'])->assertRedirect();
         $session = $student->examSessions()->first();
@@ -156,7 +164,7 @@ class ExamFlowTest extends TestCase
         $this->assertSame('PENDING', $exam->review_status);
         $this->assertSame('IMPORTED', $exam->pipeline_stage);
         $this->assertDatabaseHas('content_versions', ['entity_type' => 'OfficialAnswer', 'reason' => 'Errata oficial publicada pelo Inep']);
-        $this->actingAs(User::factory()->create())->get('/provas')->assertSee('Nenhuma prova oficial');
+        $this->actingAs($this->subscriber())->get('/provas')->assertSee('Nenhuma prova oficial');
         // Republicar exige que o gabarito volte a bater com um conjunto importado (integridade).
         $problems = app(GuardianService::class)->verifyIntegrity($exam);
         $this->assertContains('ANSWER_KEY_MISMATCH', array_column($problems, 'code'));
@@ -168,14 +176,21 @@ class ExamFlowTest extends TestCase
         $exam->update(['is_free_sample' => false]);
         $student = User::factory()->create();
         $booklet = ExamBooklet::first();
-        // Sem assinatura (não existe plano gratuito): nenhuma prova completa.
-        $this->actingAs($student)->post("/provas/{$exam->id}/iniciar", ['booklet_id' => $booklet->id, 'mode' => 'PROVA_REAL', 'language' => 'INGLES'])->assertForbidden();
-        $this->actingAs($student)->get('/assinatura')->assertOk()->assertSee('Sem assinatura ativa')->assertDontSee('Grátis');
+        // Sem assinatura (não existe plano gratuito): nenhuma função — tudo redireciona para a escolha do plano.
+        $this->actingAs($student)->post("/provas/{$exam->id}/iniciar", ['booklet_id' => $booklet->id, 'mode' => 'PROVA_REAL', 'language' => 'INGLES'])->assertRedirect('/assinatura');
+        foreach (['/inicio', '/provas', '/simulados', '/redacao', '/guia', '/plano', '/caderno-de-erros', '/desempenho', '/indique', "/provas/{$exam->id}"] as $path) {
+            $this->actingAs($student)->get($path)->assertRedirect('/assinatura');
+        }
+        $this->actingAs($student)->getJson('/provas')->assertStatus(402); // chamadas JSON recebem 402 Payment Required
+        $this->actingAs($student)->get('/assinatura')->assertOk()->assertSee('Escolha seu plano para começar')->assertSee('Acesso bloqueado até a confirmação do pagamento')->assertDontSee('Grátis');
+        $this->actingAs($student)->get('/perfil')->assertOk();
+        $this->actingAs($student)->get('/ajuda')->assertOk();
 
         // Assinatura ACTIVE (confirmada por webhook) libera simulados ilimitados.
         Subscription::create(['user_id' => $student->id, 'plan_id' => Plan::where('code', 'ESTUDANTE')->value('id'), 'status' => 'ACTIVE', 'current_period_start' => now(), 'current_period_end' => now()->addMonth()]);
         $this->actingAs($student)->post("/provas/{$exam->id}/iniciar", ['booklet_id' => $booklet->id, 'mode' => 'PROVA_REAL', 'language' => 'INGLES'])->assertRedirect();
         $this->actingAs($student)->post("/provas/{$exam->id}/iniciar", ['booklet_id' => $booklet->id, 'mode' => 'PROVA_REAL', 'language' => 'INGLES'])->assertRedirect();
         $this->actingAs($student)->post("/provas/{$exam->id}/iniciar", ['booklet_id' => $booklet->id, 'mode' => 'ESTUDO', 'language' => 'INGLES', 'areas' => ['HUMANAS']])->assertRedirect();
+        $this->actingAs($student)->get('/provas')->assertOk()->assertDontSee('Acesso bloqueado');
     }
 }
